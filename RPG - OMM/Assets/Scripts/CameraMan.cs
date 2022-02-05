@@ -11,7 +11,7 @@ public class CameraMan : MonoBehaviour
     {
         if (playerTransform)
         {
-            Vector3 target = new Vector3(playerTransform.position.x, playerTransform.position.y+1f, playerTransform.position.z - 10);
+            Vector3 target = new Vector3(playerTransform.position.x, playerTransform.position.y+0.5f, playerTransform.position.z - 10);
             Vector3 pos = Vector3.Lerp(transform.position, target, movespeed * Time.deltaTime);
             transform.position = pos;
         }
