@@ -23,7 +23,7 @@ public class Move : MonoBehaviour
     }
     void Jump()
     {
-        if (Input.GetKey(KeyCode.Space) && isGrounded == true)
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && isGrounded == true)
         {
             rb.velocity = new Vector2(rb.velocity.x, Jforce);
         }
