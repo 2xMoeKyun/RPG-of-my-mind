@@ -47,6 +47,7 @@ public class Move : MonoBehaviour
         }
         transform.Translate(Vector2.right * Xmove * maxSpeed * Time.deltaTime);
     }
+    // Ground check
     public Transform GrCheck;
     public LayerMask Ground;
     bool isGrounded;
@@ -55,5 +56,5 @@ public class Move : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(GrCheck.position, CheckRad, Ground);
     }
-
+    //
 }
