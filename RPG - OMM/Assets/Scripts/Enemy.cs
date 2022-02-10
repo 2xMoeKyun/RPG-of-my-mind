@@ -6,13 +6,20 @@ public class Enemy : MonoBehaviour
 {
     private Animator anim;
     private Rigidbody2D rb;
-
     public GameObject player;
-    public float followDistance = 5f;
-    public float atackDistance = 1f;
-    public float speed = 1f;
-    public float atackSpeed = 4f;
+
+    //Follow
+    float speed = 1f;
+    float followDistance = 5f;
+    // Atack
+    float atackDistance = 1.5f;
+    float atackSpeed = 3f;
+    // position y
     public float Ydistance = 0;
+    // recharge
+    float recharge = 0f;
+    float startRecharge = 2f;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -47,46 +54,37 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    //IEnumerator Atack()
-    //{
-
-    //    rb.constraints = RigidbodyConstraints2D.FreezeAll;
-    //    isAtack = true;
-    //    anim.SetBool("Atack", false);
-    //    yield return null;
-    //    anim.SetBool("Atack", true);
-
-    //}
     void Atack()
     {
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
         isAtack = true;
-        anim.SetBool("Atack", true);
-    }
-    //void Atack()
-    //{
-    //    isAtack = true;
-    //    GroundCheck();
-    //    if (player.transform.position.x < transform.position.x)// идет влево
-    //    {
-    //        rb.velocity = new Vector2(-atackSpeed, Ydistance);
-    //        anim.SetBool("Atack", true);
-    //        GetComponent<SpriteRenderer>().flipX = true;
-    //    }
-    //    else if (player.transform.position.x > transform.position.x)
-    //    {
-    //        rb.velocity = new Vector2(atackSpeed, Ydistance);
-    //        anim.SetBool("Atack", false);
-    //        GetComponent<SpriteRenderer>().flipX = false;
-    //    }
 
-    //}
+        if (recharge <= 0)
+        {
+            GroundCheck();
+            if (player.transform.position.x < transform.position.x)// идет влево
+            {
+                rb.velocity = new Vector2(-atackSpeed, Ydistance);
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            if (player.transform.position.x > transform.position.x)
+            {
+                rb.velocity = new Vector2(atackSpeed, Ydistance);
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
+            anim.Play("Atack");
+            recharge = startRecharge;
+        }
+        else
+        {
+
+            recharge -= Time.deltaTime;
+        }
+    }
+
     void StopAtack()
     {
-        rb.constraints = RigidbodyConstraints2D.None;
         isAtack = false;
         anim.SetBool("Atack", false);
-        
     }
     void Follow()
     {
@@ -122,21 +120,19 @@ public class Enemy : MonoBehaviour
             rb.constraints = RigidbodyConstraints2D.None;
 
             Ydistance = obj.transform.position.y + 1f;
-
-            Debug.Log(Ydistance);
         }
         if (isGrounded == false)
         {
             
             if(obj.transform.position.y < transform.position.y)
             {
+
                 Ydistance = obj.transform.position.y;
             }
             else
             {
                 rb.constraints = RigidbodyConstraints2D.FreezePositionY;
             }
-            Debug.Log("-------------------------------");
         }
 
     }
