@@ -206,7 +206,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3226572093471747233, guid: a3a34be32126ee54886d1aed5d95e312, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -3.33
+      value: -2.41
       objectReference: {fileID: 0}
     - target: {fileID: 3226572093471747233, guid: a3a34be32126ee54886d1aed5d95e312, type: 3}
       propertyPath: m_LocalPosition.y
@@ -456,6 +456,14 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 1459428121}
+    - target: {fileID: 750661806, guid: 12c0140d87a20584e804c45385bac671, type: 3}
+      propertyPath: isAtack
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 750661806, guid: 12c0140d87a20584e804c45385bac671, type: 3}
+      propertyPath: atkSpeed
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1809090310890839548, guid: 12c0140d87a20584e804c45385bac671, type: 3}
       propertyPath: m_IsTrigger
       value: 1

@@ -12,13 +12,13 @@ public class Enemy : MonoBehaviour
     public float followDistance = 5f;
     public float _followDistance = 1f; // Stop Follow Distance 
     //Atack
-    public bool isAtack = false;
-    public float atkDistance = 1f;
-    public float atkSpeed = 3f;
+     bool isAtack = false;
+     float atkDistance = 3f;
+     float atkSpeed = 3f;
     // Atk reload
     float recharge = 0f;
     float startRecharge = 2f;
-
+    float direction;
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -44,9 +44,9 @@ public class Enemy : MonoBehaviour
     void Atack()
     {
         isAtack = true;
-       
         if (recharge <= 0)
         {
+            transform.Translate(new Vector2(transform.position.x + 3 * direction, transform.position.y));
             anim.Play("Atack");
             recharge = startRecharge;
         }
@@ -63,10 +63,12 @@ public class Enemy : MonoBehaviour
         }
         if (transform.position.x < target.position.x) // vpravo
         {
+            direction = 1;
             GetComponent<SpriteRenderer>().flipX = false;
         }
         else
         {
+            direction = -1;
             GetComponent<SpriteRenderer>().flipX = true;
         }
     }
