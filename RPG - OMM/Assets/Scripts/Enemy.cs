@@ -8,7 +8,6 @@ public class Enemy : MonoBehaviour
     private Transform target;
     private Animator anim;
     private Rigidbody2D rb;
-    
     //Follow
     public float speed = 1f;
     public float followDistance = 5f;
@@ -16,14 +15,12 @@ public class Enemy : MonoBehaviour
     //Atack
     bool isAtack = false;
     float atkDistance = 1f;
-    float atkSpeed = 6f;
-    float atkCurve;
+    float atkSpeed = 3f;
     // Atk reload
-    float recharge = 0f;
-    float startRecharge = 2f;
+    public static float recharge = 0f;
+    float startRecharge = 1.5f;
     //other
-    float direction;
-    float atkMove;
+    public static float direction;
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -45,26 +42,21 @@ public class Enemy : MonoBehaviour
         else
         {
             isAtack = false;
+            rb.velocity = Vector2.zero;
         }
     }
 
-    private int lunge = 5000;
     void Atack()
     {
         isAtack = true;
-
-        rb.AddForce(new Vector2(direction, 0) * lunge);
-
-        Debug.Log(lunge);
-
         if (recharge <= 0)
         {
+            rb.velocity = new Vector2(direction * atkSpeed, 0);
             anim.Play("Atack");
             recharge = startRecharge;
         }
         else
         {
-
             recharge -= Time.deltaTime;
         }
     }
@@ -73,7 +65,6 @@ public class Enemy : MonoBehaviour
         if (Vector2.Distance(transform.position, target.position) > _followDistance)
         {
             transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-            
         }
         if (transform.position.x < target.position.x) // vpravo
         {

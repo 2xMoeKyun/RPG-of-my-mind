@@ -4,14 +4,16 @@ using UnityEngine;
 
 public class Move : MonoBehaviour
 {
-    Animator anim;
-    Rigidbody2D rb;
+    public static Animator playerAnimator;
+    public static Rigidbody2D playerRb;
     public float maxSpeed = 3f;
     public float Jforce = 6f;
+    float Xmove;
+    public static int HitForce;
     void Start()
     {
-        anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
+        playerRb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -20,33 +22,45 @@ public class Move : MonoBehaviour
         GroundCheck();
         MoveX();
         Jump();
+        
+        
     }
+    
     void Jump()
     {
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && isGrounded == true)
         {
-            rb.velocity = new Vector2(rb.velocity.x, Jforce);
+            playerRb.velocity = new Vector2(playerRb.velocity.x, Jforce);
         }
     }
     void MoveX()
     {
-        float Xmove = Input.GetAxis("Horizontal");
+        Xmove = Input.GetAxis("Horizontal");
         if (Xmove == 0)
         {
-            anim.Play("Idle");
+            playerAnimator.SetBool("MoveRight", false);
         }
         if (Xmove > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
-            anim.Play("Move_right");
+            playerAnimator.SetBool("MoveRight", true);
         }
         if (Xmove < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
-            anim.Play("Move_right");
+            playerAnimator.SetBool("MoveRight", true);
         }
         transform.Translate(Vector2.right * Xmove * maxSpeed * Time.deltaTime);
     }
+
+    // импульс после атаки (для скрипта Damage)
+    public void AfterHit(int HitForce)
+    {
+        playerRb.velocity = Vector2.zero;
+
+        playerRb.AddForce(new Vector2(Enemy.direction * HitForce, 0));
+    }
+
     // Ground check
     public Transform GrCheck;
     public LayerMask Ground;
