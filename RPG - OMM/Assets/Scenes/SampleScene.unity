@@ -145,7 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed17602c5e527164f9488f1745411d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 10
   Tag: Player
   HitForce: 120
 --- !u!114 &1092820748
@@ -179,6 +179,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1459428122, guid: a3a34be32126ee54886d1aed5d95e312, type: 3}
+      propertyPath: dashForce
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 716431406470653859, guid: a3a34be32126ee54886d1aed5d95e312, type: 3}
       propertyPath: m_Name
       value: Hero

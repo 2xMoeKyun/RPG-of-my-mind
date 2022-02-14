@@ -10,6 +10,7 @@ public class Move : MonoBehaviour
     public float Jforce = 6f;
     float Xmove;
     public static int HitForce;
+    public int dashForce = 500;
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
@@ -22,10 +23,19 @@ public class Move : MonoBehaviour
         GroundCheck();
         MoveX();
         Jump();
-        
-        
+        Dash();
     }
     
+     
+    void Dash()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            playerRb.velocity = Vector2.zero;
+
+            playerRb.AddForce(new Vector2(Xmove * dashForce, 0));
+        }
+    }
     void Jump()
     {
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && isGrounded == true)
