@@ -6,7 +6,7 @@ public class Damage : MonoBehaviour
 {
     public int damage;
     public string Tag;
-    public int HitForce = 10;
+    public int HitForce;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == Tag)
