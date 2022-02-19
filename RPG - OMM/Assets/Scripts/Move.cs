@@ -75,7 +75,7 @@ public class Move : MonoBehaviour
     public Transform GrCheck;
     public LayerMask Ground;
     bool isGrounded;
-    float CheckRad = 0.5f;
+    float CheckRad = 0.1f;
     void GroundCheck()
     {
         isGrounded = Physics2D.OverlapCircle(GrCheck.position, CheckRad, Ground);
