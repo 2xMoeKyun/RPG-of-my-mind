@@ -21,6 +21,7 @@ public class Move : MonoBehaviour
     void Update()
     {
         GroundCheck();
+        WallCheck();
         MoveX();
         Jump();
         Dash();
@@ -46,6 +47,20 @@ public class Move : MonoBehaviour
     void MoveX()
     {
         Xmove = Input.GetAxis("Horizontal");
+        if (rightWall)
+        {
+            if(Xmove > 0)
+            {
+                Xmove = 0;
+            }
+        }
+        if (LeftWall)
+        {
+            if (Xmove < 0)
+            {
+                Xmove = 0;
+            }
+        }
         if (Xmove == 0)
         {
             playerAnimator.SetBool("MoveRight", false);
@@ -59,7 +74,9 @@ public class Move : MonoBehaviour
         {
             GetComponent<SpriteRenderer>().flipX = true;
             playerAnimator.SetBool("MoveRight", true);
+
         }
+
         transform.Translate(Vector2.right * Xmove * maxSpeed * Time.deltaTime);
     }
 
@@ -71,7 +88,7 @@ public class Move : MonoBehaviour
         playerRb.AddForce(new Vector2(Enemy.direction * HitForce, 0));
     }
 
-    // Ground check
+    // Ground Check
     public Transform GrCheck;
     public LayerMask Ground;
     bool isGrounded;
@@ -79,6 +96,29 @@ public class Move : MonoBehaviour
     void GroundCheck()
     {
         isGrounded = Physics2D.OverlapCircle(GrCheck.position, CheckRad, Ground);
+    }
+    //
+
+    // Wall Check
+    //—оздание точек дл€ проверки
+    float CheckRadius = 0.01f;
+    public Transform WC_right;
+    public Transform WC_left;
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        Gizmos.DrawSphere(WC_right.position, CheckRadius);
+        Gizmos.color = Color.cyan;
+        Gizmos.DrawSphere(WC_left.position, CheckRadius);
+    }
+    // обнаружение стен
+    public LayerMask Wall;
+    bool rightWall;
+    bool LeftWall;
+    private void WallCheck()
+    {
+        rightWall = Physics2D.OverlapPoint(WC_right.position, Wall);
+        LeftWall = Physics2D.OverlapPoint(WC_left.position, Wall);
     }
     //
 }

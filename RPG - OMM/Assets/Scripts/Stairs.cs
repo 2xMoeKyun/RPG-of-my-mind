@@ -15,7 +15,7 @@ public class Stairs : MonoBehaviour
     }
 
 
-    public float CheckRadius;
+    float CheckRadius = 0.01f;
     public Transform LadderCheck;
     public Transform BottomCheck;
     private void OnDrawGizmos()
@@ -32,15 +32,7 @@ public class Stairs : MonoBehaviour
     private void CheckLadder()
     {
         checkedLadder = Physics2D.OverlapPoint(LadderCheck.position, Ladder);
-        if (checkedLadder)
-        {
-            Debug.Log("kek");
-        }
         checkedBottom = Physics2D.OverlapPoint(BottomCheck.position, Ladder);
-        if (checkedBottom)
-        {
-            Debug.Log("lol");
-        }
     }
 
     float posY;
