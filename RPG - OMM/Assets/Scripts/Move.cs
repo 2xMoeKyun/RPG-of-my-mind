@@ -42,8 +42,10 @@ public class Move : MonoBehaviour
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && isGrounded == true)
         {
             playerRb.velocity = new Vector2(playerRb.velocity.x, Jforce);
+            playerAnimator.Play("Jump");
         }
     }
+
     void MoveX()
     {
         Xmove = Input.GetAxis("Horizontal");
@@ -63,17 +65,17 @@ public class Move : MonoBehaviour
         }
         if (Xmove == 0)
         {
-            playerAnimator.SetBool("MoveRight", false);
+            playerAnimator.SetBool("MovingRight", false);
         }
         if (Xmove > 0)
         {
             GetComponent<SpriteRenderer>().flipX = false;
-            playerAnimator.SetBool("MoveRight", true);
+            playerAnimator.SetBool("MovingRight", true);
         }
         if (Xmove < 0)
         {
             GetComponent<SpriteRenderer>().flipX = true;
-            playerAnimator.SetBool("MoveRight", true);
+            playerAnimator.SetBool("MovingRight", true);
 
         }
 

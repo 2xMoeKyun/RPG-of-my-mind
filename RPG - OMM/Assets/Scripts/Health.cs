@@ -16,7 +16,7 @@ public class Health : MonoBehaviour
         if (health <= 0)
         {
             Destroy(gameObject);
-            Debug.Log("Player was slaiyed");
+            Debug.Log("Player was slayed");
         }
     }
 
