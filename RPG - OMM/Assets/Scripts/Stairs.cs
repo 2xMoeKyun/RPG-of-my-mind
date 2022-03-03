@@ -9,11 +9,27 @@ public class Stairs : MonoBehaviour
 
     private void Update()
     {
+        
         CheckLadder();
         
         MoveOnLadder();
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Move.CanJump = false;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Move.CanJump = true;
+        }
+    }
 
     float CheckRadius = 0.01f;
     public Transform LadderCheck;

@@ -23,7 +23,10 @@ public class Move : MonoBehaviour
         GroundCheck();
         WallCheck();
         MoveX();
-        Jump();
+        if (CanJump)
+        {
+            Jump();
+        }
         Dash();
     }
     
@@ -37,14 +40,45 @@ public class Move : MonoBehaviour
             playerRb.AddForce(new Vector2(Xmove * dashForce, 0));
         }
     }
-    void Jump()
+
+    public static bool CanJump = true;
+    #region Jump
+    bool onAirVal = false;// для определения, что перс был ввоздухе
+    bool startJump = false;// для определения окончания стадии подготовки пржыка
+    public void Jumping()//Вызывается в анимации подготовки прыжка
     {
-        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && isGrounded == true)
+        playerRb.velocity = new Vector2(playerRb.velocity.x, Jforce);
+    }
+    public void StartingJumpAnimEnd()// вызывается в конце анимации подготовки прыжка
+    {
+        startJump = true;
+    }
+    
+    void Jump()// вызывается в апдейте
+    {
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && isGrounded && !startJump)
         {
-            playerRb.velocity = new Vector2(playerRb.velocity.x, Jforce);
-            playerAnimator.Play("Jump");
+            playerAnimator.Play("StartingJump");// Подготовка к прыжку
+        }
+        else if (!isGrounded && startJump) //В воздухе
+        {
+            playerAnimator.SetBool("OnAir", true);
+            onAirVal = true;
+        }
+        else if (isGrounded && onAirVal && startJump)// на земле
+        {
+            playerAnimator.SetBool("OnGround", true);
+            onAirVal = false;
         }
     }
+    public void JumpEnd()// сброс к анимации покоя
+    {
+        playerAnimator.SetBool("OnAir", false);
+        playerAnimator.SetBool("OnGround", false);
+        startJump = false;
+    }
+    #endregion 
+
 
     void MoveX()
     {
@@ -94,7 +128,7 @@ public class Move : MonoBehaviour
     public Transform GrCheck;
     public LayerMask Ground;
     bool isGrounded;
-    float CheckRad = 0.1f;
+    float CheckRad = 0.2f;
     void GroundCheck()
     {
         isGrounded = Physics2D.OverlapCircle(GrCheck.position, CheckRad, Ground);
