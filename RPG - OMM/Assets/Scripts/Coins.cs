@@ -6,15 +6,15 @@ using UnityEngine.UI;
 public class Coins : MonoBehaviour
 {
     public int coinsCount;
-    Text t;
+    public Text T;
 
-    private void Start()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        t = GameObject.FindGameObjectWithTag("Coin").GetComponentInChildren<Text>();
-    }
-
-    private void Update()
-    {
-        t.text = coinsCount.ToString();
+        if (collision.CompareTag("Coin"))
+        {
+            coinsCount++;
+            T.text = coinsCount.ToString();
+            collision.gameObject.SetActive(false);
+        }
     }
 }
