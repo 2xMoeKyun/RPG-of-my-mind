@@ -29,8 +29,24 @@ public class Move : MonoBehaviour
         }
         Dash();
     }
-    
-     
+
+    #region for moveing Platform
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Platform"))
+        {
+            transform.parent = collision.transform;
+        }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("Platform"))
+        {
+            transform.parent = null;
+        }
+    }
+    #endregion
     void Dash()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -124,7 +140,7 @@ public class Move : MonoBehaviour
         playerRb.AddForce(new Vector2(Enemy.direction * HitForce, 0));
     }
 
-    // Ground Check
+    #region Ground Check
     public Transform GrCheck;
     public LayerMask Ground;
     bool isGrounded;
@@ -133,9 +149,9 @@ public class Move : MonoBehaviour
     {
         isGrounded = Physics2D.OverlapCircle(GrCheck.position, CheckRad, Ground);
     }
-    //
+    #endregion
 
-    // Wall Check
+    #region Wall Check
     //Создание точек для проверки
     float CheckRadius = 0.01f;
     public Transform WC_right;
@@ -156,5 +172,5 @@ public class Move : MonoBehaviour
         rightWall = Physics2D.OverlapPoint(WC_right.position, Wall);
         LeftWall = Physics2D.OverlapPoint(WC_left.position, Wall);
     }
-    //
+    #endregion
 }

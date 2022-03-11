@@ -9,23 +9,30 @@ public class MoveingPlatform : MonoBehaviour
 
     int currentIndex;
     Vector2 currentPoint;
-    
-
-
+   
     private void Update()
     {
         Going();
     }
 
+    bool first = true;
     void Going()
     {
-        transform.position = Vector2.MoveTowards(transform.position, currentPoint, speed * Time.deltaTime);
+
         if(Vector3.Distance(transform.position, currentPoint) < 0.3f)
         {
+            Debug.Log(1);
             NextPoint();
         }
-    }
+        if (first)
+        {
+            currentPoint = points[1].position;
+            first = false;
+        }
+        transform.position = Vector2.MoveTowards(transform.position, currentPoint, speed * Time.deltaTime);
 
+    }
+    
     void NextPoint()
     {
         if(currentIndex + 1< points.Count)
