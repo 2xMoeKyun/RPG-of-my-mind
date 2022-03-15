@@ -16,14 +16,25 @@ public class PickUp : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            for(int i = 0; i < inventory.slots.Length; i++)
+            if (gameObject.CompareTag("RedStone"))
             {
-                if(inventory.isFull[i] == false)
+                inventory.isFull[0] = true;
+                Instantiate(slotButton, inventory.slots[0].transform);
+                Destroy(gameObject);
+                Move.CanUse = true;
+            }
+            else
+            {
+                for (int i = 1; i < inventory.slots.Length; i++)
                 {
-                    inventory.isFull[i] = true;
-                    Instantiate(slotButton, inventory.slots[i].transform);
-                    Destroy(gameObject);
-                    break; 
+                    if (inventory.isFull[i] == false)
+                    {
+                        inventory.isFull[i] = true;
+                        Instantiate(slotButton, inventory.slots[i].transform);
+                        Destroy(gameObject);
+                        Move.CanUse = true;
+                        break;
+                    }
                 }
             }
         }

@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Coin
   - Platform
+  - RedStone
   layers:
   - Default
   - TransparentFX

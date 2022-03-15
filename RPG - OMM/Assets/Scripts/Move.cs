@@ -27,6 +27,10 @@ public class Move : MonoBehaviour
         {
             Jump();
         }
+        if (CanUse)
+        {
+            UseThing();
+        }
         Dash();
     }
 
@@ -131,6 +135,18 @@ public class Move : MonoBehaviour
 
         transform.Translate(Vector2.right * Xmove * maxSpeed * Time.deltaTime);
     }
+
+    public static bool CanUse = false;
+    public static bool isUsed = false;
+    void UseThing()
+    {
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            playerAnimator.SetTrigger("Use");
+            isUsed = true;
+        }
+    }
+
 
     // импульс после атаки (для скрипта Damage)
     public void AfterHit(int HitForce)
