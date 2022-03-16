@@ -9,6 +9,7 @@ TagManager:
   - Coin
   - Platform
   - RedStone
+  - Key
   layers:
   - Default
   - TransparentFX

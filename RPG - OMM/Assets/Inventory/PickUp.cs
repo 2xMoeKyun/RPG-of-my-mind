@@ -6,12 +6,42 @@ public class PickUp : MonoBehaviour
 {
     private Inventory inventory;
     public GameObject slotButton;
+    public int currentIndex;
+    GameObject currentObject;
+    public static bool isKey;
 
     private void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
     }
 
+    public void DeleteSlotButton()
+    {
+        Destroy(gameObject);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            
+            currentIndex = 0;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            currentIndex = 1;
+        }
+        else if (Input.GetKeyDown(KeyCode.Alpha3))
+        {
+            currentIndex = 2;
+        }
+        currentObject = inventory.slots[currentIndex];
+        if (currentObject.transform.GetComponentInChildren<Transform>().CompareTag("Key"))
+        {
+            Debug.Log("dfsafds");
+            isKey = true;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))

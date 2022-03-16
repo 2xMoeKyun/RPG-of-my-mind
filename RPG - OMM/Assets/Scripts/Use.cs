@@ -5,13 +5,16 @@ using UnityEngine;
 public class Use : MonoBehaviour
 {
     public Transform SpawnObject;
-
-    private void OnTriggerEnter2D(Collider2D collision)
+    private PickUp pickUp;
+    private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && Move.isUsed)
+        if (collision.CompareTag("Player") && Move.isUsed && PickUp.isKey)
         {
-            Instantiate(SpawnObject, gameObject.transform.position, Quaternion.identity);
+            Debug.Log(0);
+            Instantiate(SpawnObject, gameObject.transform.position , Quaternion.identity);
             Destroy(gameObject);
+            PickUp p = GetComponent<PickUp>();
+            pickUp.DeleteSlotButton();
             Move.isUsed = false;
         }
     }

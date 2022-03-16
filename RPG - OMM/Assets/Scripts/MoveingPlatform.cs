@@ -21,7 +21,6 @@ public class MoveingPlatform : MonoBehaviour
 
         if(Vector3.Distance(transform.position, currentPoint) < 0.3f)
         {
-            Debug.Log(1);
             NextPoint();
         }
         if (first)
