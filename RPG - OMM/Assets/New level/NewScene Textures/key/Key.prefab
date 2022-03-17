@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1646566000083226738}
   - component: {fileID: 1646566000083226739}
   - component: {fileID: 1646566000083226740}
-  - component: {fileID: 1646566000083226741}
+  - component: {fileID: 2350909419663501178}
   m_Layer: 0
   m_Name: Key
   m_TagString: Key
@@ -130,7 +130,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1646566000083226741
+--- !u!114 &2350909419663501178
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -143,3 +143,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   slotButton: {fileID: 8462424125528456368, guid: 51068e11ae8e91243bb1a3a01fd46b35, type: 3}
+  currentIndex: 0

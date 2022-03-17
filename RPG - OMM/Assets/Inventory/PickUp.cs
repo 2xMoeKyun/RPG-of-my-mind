@@ -6,50 +6,36 @@ public class PickUp : MonoBehaviour
 {
     private Inventory inventory;
     public GameObject slotButton;
-    public int currentIndex;
-    GameObject currentObject;
     public static bool isKey;
-
+    GameObject a;
     private void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
     }
 
-    public void DeleteSlotButton()
-    {
-        Destroy(gameObject);
-    }
 
+
+    public static bool delete = false;
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
+        if (delete)
         {
-            
-            currentIndex = 0;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha2))
-        {
-            currentIndex = 1;
-        }
-        else if (Input.GetKeyDown(KeyCode.Alpha3))
-        {
-            currentIndex = 2;
-        }
-        currentObject = inventory.slots[currentIndex];
-        if (currentObject.transform.GetComponentInChildren<Transform>().CompareTag("Key"))
-        {
-            Debug.Log("dfsafds");
-            isKey = true;
+            delete = false;
+            Destroy(GameObject.Find("KeyOnInv(Clone)"));
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            if (slotButton.CompareTag("Key"))
+            {
+                isKey = true;
+            }
             if (gameObject.CompareTag("RedStone"))
             {
                 inventory.isFull[0] = true;
-                Instantiate(slotButton, inventory.slots[0].transform);
+                a = Instantiate(slotButton, inventory.slots[0].transform);
                 Destroy(gameObject);
                 Move.CanUse = true;
             }
@@ -59,6 +45,7 @@ public class PickUp : MonoBehaviour
                 {
                     if (inventory.isFull[i] == false)
                     {
+                        slotButton.SetActive(true);
                         inventory.isFull[i] = true;
                         Instantiate(slotButton, inventory.slots[i].transform);
                         Destroy(gameObject);
