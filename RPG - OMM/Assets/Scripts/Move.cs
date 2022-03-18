@@ -140,7 +140,7 @@ public class Move : MonoBehaviour
     public static bool isUsed = false;
     void UseThing()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             playerAnimator.SetTrigger("Use");
             isUsed = true;
