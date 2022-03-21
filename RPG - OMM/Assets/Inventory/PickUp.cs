@@ -7,7 +7,7 @@ public class PickUp : MonoBehaviour
     private Inventory inventory;
     public GameObject slotButton;
     public static bool isKey;
-    GameObject a;
+    public static bool isRedStone;
     private void Start()
     {
         inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
@@ -34,8 +34,9 @@ public class PickUp : MonoBehaviour
             }
             if (gameObject.CompareTag("RedStone"))
             {
+                isRedStone = true;
                 inventory.isFull[0] = true;
-                a = Instantiate(slotButton, inventory.slots[0].transform);
+                Instantiate(slotButton, inventory.slots[0].transform);
                 Destroy(gameObject);
                 Move.CanUse = true;
             }

@@ -62,6 +62,7 @@ public class Move : MonoBehaviour
     }
 
     public static bool CanJump = true;
+    public static bool IsJump = false;
     #region Jump
     bool onAirVal = false;// для определения, что перс был ввоздухе
     bool startJump = false;// для определения окончания стадии подготовки пржыка
@@ -72,6 +73,7 @@ public class Move : MonoBehaviour
     public void StartingJumpAnimEnd()// вызывается в конце анимации подготовки прыжка
     {
         startJump = true;
+        IsJump = false;
     }
     
     void Jump()// вызывается в апдейте
@@ -79,6 +81,7 @@ public class Move : MonoBehaviour
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && isGrounded && !startJump)
         {
             playerAnimator.Play("StartingJump");// Подготовка к прыжку
+            IsJump = true;
         }
         else if (!isGrounded && startJump) //В воздухе
         {
