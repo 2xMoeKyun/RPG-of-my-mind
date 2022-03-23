@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Move : MonoBehaviour
 {
@@ -16,7 +17,6 @@ public class Move : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
     }
-
     // Update is called once per frame
     void Update()
     {
@@ -27,6 +27,7 @@ public class Move : MonoBehaviour
         {
             Jump();
         }
+        
         if (CanUse)
         {
             UseThing();
@@ -101,6 +102,8 @@ public class Move : MonoBehaviour
         startJump = false;
     }
     #endregion 
+
+
 
 
     void MoveX()

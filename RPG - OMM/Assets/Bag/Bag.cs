@@ -10,6 +10,13 @@ public class Bag : MonoBehaviour
 
     public GameObject Slots;
     private bool isActive = false;
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            SlotsAtcive();
+        }
+    }
     public void SlotsAtcive()
     {
         isActive = !isActive;
