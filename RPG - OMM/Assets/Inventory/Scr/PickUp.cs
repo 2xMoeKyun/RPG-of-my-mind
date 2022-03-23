@@ -24,6 +24,7 @@ public class PickUp : MonoBehaviour
             Destroy(GameObject.Find("KeyOnInv(Clone)"));
         }
     }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
@@ -38,7 +39,6 @@ public class PickUp : MonoBehaviour
                 inventory.isFull[0] = true;
                 Instantiate(slotButton, inventory.slots[0].transform);
                 Destroy(gameObject);
-                Move.CanUse = true;
             }
             else
             {
@@ -46,7 +46,6 @@ public class PickUp : MonoBehaviour
                 {
                     if (inventory.isFull[i] == false)
                     {
-                        slotButton.SetActive(true);
                         inventory.isFull[i] = true;
                         Instantiate(slotButton, inventory.slots[i].transform);
                         Destroy(gameObject);
