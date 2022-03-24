@@ -20,18 +20,22 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.J) && isGrounded && !isMoveing)
         {
             Attack();
         }
+        if (CanMove)
+        {
+            MoveX();
+        }
         GroundCheck();
         WallCheck();
-        MoveX();
+
         if (CanJump)
         {
             Jump();
         }
-        
+
         if (CanUse)
         {
             UseThing();
@@ -112,6 +116,7 @@ public class Move : MonoBehaviour
     private float timeLeft = 0;
     public void Attack()
     {
+        CanMove = false;
         playerAnimator.SetTrigger("Atk");
         StartCoroutine(AttackTimer());
     }
@@ -120,20 +125,29 @@ public class Move : MonoBehaviour
     {
         while (true)
         {
-                Debug.Log("TimerCount: " + timeLeft++);
-                yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.5f);
             if(timeLeft % 2 == 0)
             {
+                
                 playerAnimator.SetTrigger("AtkEnd");
+                playerRb.bodyType = RigidbodyType2D.Dynamic;
                 yield return null;
                 break;
             }
         }
     }
+    public void CanGo()
+    {
+        CanMove = true;
+    }
     #endregion
 
+
+    public static bool isMoveing;
+    public static bool CanMove;
     void MoveX()
     {
+        isMoveing = true;
         Xmove = Input.GetAxis("Horizontal");
         if (rightWall)
         {
@@ -152,6 +166,7 @@ public class Move : MonoBehaviour
         if (Xmove == 0)
         {
             playerAnimator.SetBool("MovingRight", false);
+            isMoveing = false;
         }
         if (Xmove > 0)
         {
