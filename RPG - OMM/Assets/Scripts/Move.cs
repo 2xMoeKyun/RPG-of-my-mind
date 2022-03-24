@@ -20,6 +20,10 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.J) && isGrounded)
+        {
+            Attack();
+        }
         GroundCheck();
         WallCheck();
         MoveX();
@@ -101,10 +105,32 @@ public class Move : MonoBehaviour
         playerAnimator.SetBool("OnGround", false);
         startJump = false;
     }
-    #endregion 
+    #endregion
 
 
+    #region Attack
+    private float timeLeft = 0;
+    public void Attack()
+    {
+        playerAnimator.SetTrigger("Atk");
+        StartCoroutine(AttackTimer());
+    }
 
+    IEnumerator AttackTimer()
+    {
+        while (true)
+        {
+                Debug.Log("TimerCount: " + timeLeft++);
+                yield return new WaitForSeconds(0.5f);
+            if(timeLeft % 2 == 0)
+            {
+                playerAnimator.SetTrigger("AtkEnd");
+                yield return null;
+                break;
+            }
+        }
+    }
+    #endregion
 
     void MoveX()
     {
