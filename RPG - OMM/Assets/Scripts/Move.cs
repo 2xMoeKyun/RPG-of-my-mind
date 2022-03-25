@@ -20,7 +20,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J) && isGrounded && !isMoveing)
+        if (Input.GetKeyDown(KeyCode.J) && isGrounded)
         {
             Attack();
         }
@@ -130,7 +130,6 @@ public class Move : MonoBehaviour
             {
                 
                 playerAnimator.SetTrigger("AtkEnd");
-                playerRb.bodyType = RigidbodyType2D.Dynamic;
                 yield return null;
                 break;
             }
@@ -144,9 +143,10 @@ public class Move : MonoBehaviour
 
 
     public static bool isMoveing;
-    public static bool CanMove;
+    public static bool CanMove = true;
     void MoveX()
     {
+        
         isMoveing = true;
         Xmove = Input.GetAxis("Horizontal");
         if (rightWall)
