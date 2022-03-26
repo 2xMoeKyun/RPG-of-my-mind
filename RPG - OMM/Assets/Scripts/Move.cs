@@ -20,7 +20,7 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J) && isGrounded)
+        if (Input.GetKeyDown(KeyCode.J) && isGrounded && CanAttack)
         {
             Attack();
         }
@@ -114,30 +114,40 @@ public class Move : MonoBehaviour
 
     #region Attack
     private float timeLeft = 0;
+    public static bool CanAttack = true;
+    private int CurrentAtk = 0;
     public void Attack()
     {
         CanMove = false;
-        playerAnimator.SetTrigger("Atk");
+        playerRb.velocity = Vector2.zero;
+        CurrentAtk++;
+        if(CurrentAtk == 3)
+        {
+            CanAttack = false;
+            playerAnimator.SetTrigger("AtkEnd");
+        }
+        playerAnimator.SetInteger("Atk", CurrentAtk);
         StartCoroutine(AttackTimer());
     }
 
     IEnumerator AttackTimer()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(0.5f);
-            if(timeLeft % 2 == 0)
-            {
-                
-                playerAnimator.SetTrigger("AtkEnd");
-                yield return null;
-                break;
-            }
-        }
+        yield return new WaitForSeconds(1f);
+        CanAttack = false;
+        playerAnimator.SetTrigger("AtkEnd");
     }
+    IEnumerator AfterAttack()
+    {
+        yield return new WaitForSeconds(0.3f);
+        CanAttack = true;
+        Debug.Log(CurrentAtk);
+    }
+
     public void CanGo()
     {
         CanMove = true;
+        CurrentAtk = 0;
+        playerAnimator.SetInteger("Atk", CurrentAtk);
     }
     #endregion
 
@@ -208,6 +218,9 @@ public class Move : MonoBehaviour
     public LayerMask Ground;
     bool isGrounded;
     float CheckRad = 0.2f;
+
+
+
     void GroundCheck()
     {
         isGrounded = Physics2D.OverlapCircle(GrCheck.position, CheckRad, Ground);
