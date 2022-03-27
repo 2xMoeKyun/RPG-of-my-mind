@@ -9,16 +9,14 @@ public class Enemy : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb;
     //Follow
-    public float speed = 1f;
-    public float followDistance = 5f;
-    public float _followDistance = 1f; // Stop Follow Distance 
-    //Atack
-    bool isAtack = false;
-    float atkDistance = 1f;
-    float atkSpeed = 3f;
-    // Atk reload
-    public static float recharge = 0f;
-    float startRecharge = 1.5f;
+    public float speed;
+    public float followDistance;
+    public float _followDistance; // Stop Follow Distance 
+    //Attack
+    private bool isAtack = false;
+    public float atkDistance;
+    public float atkSpeed;
+    private bool CanAttack = true;
     //other
     public static float direction;
     void Start()
@@ -31,50 +29,44 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if((Vector2.Distance(transform.position, target.position) < followDistance) && !isAtack)
+        if(Vector2.Distance(transform.position, target.position) < followDistance && !isAtack)
         {
             Follow();
         }
-        if(Vector2.Distance(transform.position, target.position) < atkDistance)
+        if (Vector2.Distance(transform.position, target.position) < atkDistance && CanAttack)
         {
-            Atack();
-        }
-        else
-        {
-            isAtack = false;
-            rb.velocity = Vector2.zero;
+            anim.SetBool("Going", false);
+            isAtack = true;
+            anim.SetTrigger("Atk");            
         }
     }
 
-    void Atack()
+    public void ResetAttack()
     {
-        isAtack = true;
-        if (recharge <= 0)
-        {
-            rb.velocity = new Vector2(direction * atkSpeed, 0);
-            anim.Play("Atack");
-            recharge = startRecharge;
-        }
-        else
-        {
-            recharge -= Time.deltaTime;
-        }
+        anim.SetTrigger("AtkEnd");
+        anim.ResetTrigger("Atk");
+        CanAttack = false;
     }
+
+    IEnumerator AfterAttack()
+    {
+        yield return new WaitForSeconds(atkSpeed + 1f);
+        CanAttack = true;
+    }
+
     void Follow()
     {
-        if (Vector2.Distance(transform.position, target.position) > _followDistance)
-        {
-            transform.position = Vector2.MoveTowards(transform.position, target.position, speed * Time.deltaTime);
-        }
+        anim.SetBool("Going", true);
         if (transform.position.x < target.position.x) // vpravo
         {
-            direction = 1;
-            GetComponent<SpriteRenderer>().flipX = false;
+            transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
+            
+            GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
-            direction = -1;
-            GetComponent<SpriteRenderer>().flipX = true;
+            transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
+            GetComponent<SpriteRenderer>().flipX = false;
         }
     }
 

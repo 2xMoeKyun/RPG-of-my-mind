@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System;
 
 public class Move : MonoBehaviour
 {
@@ -113,11 +114,31 @@ public class Move : MonoBehaviour
 
 
     #region Attack
-    private float timeLeft = 0;
+    
+    //for attack registration
+    public Collider2D[] HitEnemies;
+    public LayerMask enemyLayer;
+    public Transform attackRange;
+    private float atkRad = 0.2f;
+    //
+
+    public void AttackReg()
+    {
+        HitEnemies = Physics2D.OverlapCircleAll(attackRange.position, atkRad, enemyLayer);
+        foreach(Collider2D enemyy in HitEnemies)
+        {
+            Damage d = GetComponent<Damage>();
+            d.Hit(enemyy);
+        }
+        Array.Clear(HitEnemies, 0, HitEnemies.Length);
+    }
+
     public static bool CanAttack = true;
     private int CurrentAtk = 0;
+
     public void Attack()
     {
+        AttackReg();
         CanMove = false;
         playerRb.velocity = Vector2.zero;
         CurrentAtk++;
@@ -218,8 +239,6 @@ public class Move : MonoBehaviour
     public LayerMask Ground;
     bool isGrounded;
     float CheckRad = 0.2f;
-
-
 
     void GroundCheck()
     {
