@@ -114,12 +114,12 @@ public class Move : MonoBehaviour
 
 
     #region Attack
-    
+
     //for attack registration
     public Collider2D[] HitEnemies;
     public LayerMask enemyLayer;
     public Transform attackRange;
-    private float atkRad = 0.4f;
+    private float atkRad = 0.3f;
     //
 
     public void AttackReg()
@@ -129,21 +129,18 @@ public class Move : MonoBehaviour
         {
             Damage d = GetComponent<Damage>();
             d.Hit(enemyy);
-            Debug.Log("Srabotalo");
         }
         Array.Clear(HitEnemies, 0, HitEnemies.Length);
     }
 
     public static bool CanAttack = true;
     private int CurrentAtk = 0;
-
     public void Attack()
     {
-        AttackReg();
         CanMove = false;
         playerRb.velocity = Vector2.zero;
         CurrentAtk++;
-        if(CurrentAtk == 3)
+        if (CurrentAtk == 3)
         {
             CanAttack = false;
             playerAnimator.SetTrigger("AtkEnd");
@@ -158,11 +155,12 @@ public class Move : MonoBehaviour
         CanAttack = false;
         playerAnimator.SetTrigger("AtkEnd");
     }
+
+
     IEnumerator AfterAttack()
     {
         yield return new WaitForSeconds(0.3f);
         CanAttack = true;
-        Debug.Log(CurrentAtk);
     }
 
     public void CanGo()

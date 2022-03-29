@@ -47,6 +47,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
+
+    #region for switch color while taken damage
+    public void ColorRed()
+    {
+        GetComponent<Renderer>().material.color = Color.red;
+    }
+
+    public void ColorTransparent()
+    {
+        GetComponent<Renderer>().material.color = Color.white;
+    }
+    #endregion
+
     public void ResetAttack()
     {
         anim.SetTrigger("AtkEnd");
