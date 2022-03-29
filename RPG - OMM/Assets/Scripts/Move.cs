@@ -18,9 +18,12 @@ public class Move : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
     }
+
+    public Transform Who;
     // Update is called once per frame
     void Update()
     {
+        Who.position = attackRange.position;
         if (Input.GetKeyDown(KeyCode.J) && isGrounded && CanAttack)
         {
             Attack();
@@ -86,7 +89,7 @@ public class Move : MonoBehaviour
         IsJump = false;
     }
     
-    void Jump()// גûחûגאועסÿ ג אןהויעו
+    public void Jump()// גûחûגאועסÿ ג אןהויעו
     {
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && isGrounded && !startJump)
         {
@@ -119,11 +122,12 @@ public class Move : MonoBehaviour
     public Collider2D[] HitEnemies;
     public LayerMask enemyLayer;
     public Transform attackRange;
-    private float atkRad = 0.3f;
+    private float atkRad = 0.4f;
     //
 
     public void AttackReg()
     {
+        // attackRange.position = new Vector2(transform.position.x + 2f * playerDirection , transform.position.y);
         HitEnemies = Physics2D.OverlapCircleAll(attackRange.position, atkRad, enemyLayer);
         foreach (Collider2D enemyy in HitEnemies)
         {
@@ -174,6 +178,7 @@ public class Move : MonoBehaviour
 
     public static bool isMoveing;
     public static bool CanMove = true;
+    public static int playerDirection;
     void MoveX()
     {
         
@@ -200,11 +205,13 @@ public class Move : MonoBehaviour
         }
         if (Xmove > 0)
         {
+            playerDirection = 1;
             GetComponent<SpriteRenderer>().flipX = false;
             playerAnimator.SetBool("MovingRight", true);
         }
         if (Xmove < 0)
         {
+            playerDirection = -1;
             GetComponent<SpriteRenderer>().flipX = true;
             playerAnimator.SetBool("MovingRight", true);
 
@@ -212,6 +219,9 @@ public class Move : MonoBehaviour
 
         transform.Translate(Vector2.right * Xmove * maxSpeed * Time.deltaTime);
     }
+
+
+
 
     public static bool CanUse = false;
     public static bool isUsed = false;
@@ -236,7 +246,7 @@ public class Move : MonoBehaviour
     #region Ground Check
     public Transform GrCheck;
     public LayerMask Ground;
-    bool isGrounded;
+    public static bool isGrounded;
     float CheckRad = 0.2f;
 
     void GroundCheck()

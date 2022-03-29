@@ -33,7 +33,6 @@ public class Enemy : MonoBehaviour
         {
             anim.SetTrigger("TakeHit");
             Health.HitTaken = false;
-            Debug.Log(Health.HitTaken);
         }
         if(Vector2.Distance(transform.position, target.position) < followDistance && !isAtack)
         {
@@ -44,6 +43,10 @@ public class Enemy : MonoBehaviour
             anim.SetBool("Going", false);
             isAtack = true;
             anim.SetTrigger("Atk");            
+        }
+        else if(Vector2.Distance(transform.position, target.position) > atkDistance + 1f)
+        {
+            isAtack = false;
         }
     }
 
@@ -60,11 +63,13 @@ public class Enemy : MonoBehaviour
     }
     #endregion
 
+    #region attack
     public void ResetAttack()
     {
         anim.SetTrigger("AtkEnd");
         anim.ResetTrigger("Atk");
         CanAttack = false;
+        
     }
 
     IEnumerator AfterAttack()
@@ -72,6 +77,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(atkSpeed + 1f);
         CanAttack = true;
     }
+    #endregion
 
     void Follow()
     {
