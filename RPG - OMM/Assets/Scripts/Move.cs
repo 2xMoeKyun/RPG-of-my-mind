@@ -10,7 +10,7 @@ public class Move : MonoBehaviour
     public static Rigidbody2D playerRb;
     public float maxSpeed = 3f;
     public float Jforce = 6f;
-    float Xmove;
+    private float Xmove;
     public static int HitForce;
     public int dashForce = 500;
     void Start()
@@ -119,16 +119,17 @@ public class Move : MonoBehaviour
     public Collider2D[] HitEnemies;
     public LayerMask enemyLayer;
     public Transform attackRange;
-    private float atkRad = 0.2f;
+    private float atkRad = 0.4f;
     //
 
     public void AttackReg()
     {
         HitEnemies = Physics2D.OverlapCircleAll(attackRange.position, atkRad, enemyLayer);
-        foreach(Collider2D enemyy in HitEnemies)
+        foreach (Collider2D enemyy in HitEnemies)
         {
             Damage d = GetComponent<Damage>();
             d.Hit(enemyy);
+            Debug.Log("Srabotalo");
         }
         Array.Clear(HitEnemies, 0, HitEnemies.Length);
     }

@@ -6,7 +6,7 @@ public class Damage : MonoBehaviour
 {
     public int damage;
     public string Tag;
-    public int HitForce;
+    //public int HitForce;
 
     public void Hit(Collider2D collision)
     {

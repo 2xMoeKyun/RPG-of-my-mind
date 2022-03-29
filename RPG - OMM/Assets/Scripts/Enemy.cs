@@ -29,6 +29,12 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+        if (Health.HitTaken)
+        {
+            anim.SetTrigger("TakeHit");
+            Health.HitTaken = false;
+            Debug.Log(Health.HitTaken);
+        }
         if(Vector2.Distance(transform.position, target.position) < followDistance && !isAtack)
         {
             Follow();
@@ -68,6 +74,12 @@ public class Enemy : MonoBehaviour
             transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
             GetComponent<SpriteRenderer>().flipX = false;
         }
+    }
+
+
+    public void Death()
+    {
+
     }
 
 }

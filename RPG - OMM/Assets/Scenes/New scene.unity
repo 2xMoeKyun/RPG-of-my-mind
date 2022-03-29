@@ -1293,7 +1293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed17602c5e527164f9488f1745411d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 25
+  damage: 1
   Tag: Enemy
   HitForce: 0
 --- !u!1 &273279497
@@ -10988,7 +10988,7 @@ GameObject:
   - component: {fileID: 280858001}
   - component: {fileID: 280858000}
   - component: {fileID: 280857999}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Slime
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -11024,7 +11024,7 @@ MonoBehaviour:
   speed: 1
   followDistance: 10
   _followDistance: 1
-  atkDistance: 1
+  atkDistance: 0.8
   atkSpeed: 1
 --- !u!114 &280858000
 MonoBehaviour:
