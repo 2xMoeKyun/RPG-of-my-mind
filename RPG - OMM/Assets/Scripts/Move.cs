@@ -18,12 +18,12 @@ public class Move : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         playerRb = GetComponent<Rigidbody2D>();
     }
+    //отслеживание радиуса атаки
+    public Transform atkRangeSave;
 
-    public Transform Who;
-    // Update is called once per frame
     void Update()
     {
-        Who.position = attackRange.position;
+        atkRangeSave.position = attackRange.position;
         if (Input.GetKeyDown(KeyCode.J) && isGrounded && CanAttack)
         {
             Attack();
@@ -64,6 +64,7 @@ public class Move : MonoBehaviour
         }
     }
     #endregion
+
     void Dash()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))
@@ -122,12 +123,22 @@ public class Move : MonoBehaviour
     public Collider2D[] HitEnemies;
     public LayerMask enemyLayer;
     public Transform attackRange;
+    public Transform AR_right;
+    public Transform AR_left;
     private float atkRad = 0.4f;
+
     //
 
     public void AttackReg()
     {
-        // attackRange.position = new Vector2(transform.position.x + 2f * playerDirection , transform.position.y);
+        if(playerDirection == 1)
+        {
+            attackRange.position = AR_right.position;
+        }
+        else
+        {
+            attackRange.position = AR_left.position;
+        }
         HitEnemies = Physics2D.OverlapCircleAll(attackRange.position, atkRad, enemyLayer);
         foreach (Collider2D enemyy in HitEnemies)
         {
@@ -178,7 +189,7 @@ public class Move : MonoBehaviour
 
     public static bool isMoveing;
     public static bool CanMove = true;
-    public static int playerDirection;
+    public static int playerDirection = 1;
     void MoveX()
     {
         
