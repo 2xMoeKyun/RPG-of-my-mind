@@ -7,6 +7,7 @@ using System;
 public class Move : MonoBehaviour
 {
     public static Animator playerAnimator;
+    public static Animation playerAnimation;
     public static Rigidbody2D playerRb;
     public float maxSpeed = 3f;
     public float Jforce = 6f;
@@ -16,6 +17,7 @@ public class Move : MonoBehaviour
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
+        playerAnimation = GetComponent<Animation>();
         playerRb = GetComponent<Rigidbody2D>();
     }
     //отслеживание радиуса атаки
@@ -24,6 +26,7 @@ public class Move : MonoBehaviour
     void Update()
     {
         atkRangeSave.position = attackRange.position;
+        Debug.Log(CanAttack);
         if (Input.GetKeyDown(KeyCode.J) && isGrounded && CanAttack)
         {
             Attack();
@@ -34,8 +37,7 @@ public class Move : MonoBehaviour
         }
         GroundCheck();
         WallCheck();
-
-        if (CanJump)
+        if (CanJump && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_end"))
         {
             Jump();
         }
@@ -152,22 +154,31 @@ public class Move : MonoBehaviour
     private int CurrentAtk = 0;
     public void Attack()
     {
+        CanAttack = false;
+        CanJump = false;
         CanMove = false;
         playerRb.velocity = Vector2.zero;
         CurrentAtk++;
-        if (CurrentAtk == 3)
+        if (CurrentAtk >= 3)
         {
             CanAttack = false;
             playerAnimator.SetTrigger("AtkEnd");
         }
         playerAnimator.SetInteger("Atk", CurrentAtk);
         StartCoroutine(AttackTimer());
+        StartCoroutine(AttackPause());
+    }
+
+    IEnumerator AttackPause()
+    {
+        yield return new WaitForSeconds(0.1f);
+        CanAttack = true;
     }
 
     IEnumerator AttackTimer()
     {
         yield return new WaitForSeconds(1f);
-        CanAttack = false;
+        
         playerAnimator.SetTrigger("AtkEnd");
     }
 
@@ -180,6 +191,7 @@ public class Move : MonoBehaviour
 
     public void CanGo()
     {
+        CanJump = true;
         CanMove = true;
         CurrentAtk = 0;
         playerAnimator.SetInteger("Atk", CurrentAtk);
