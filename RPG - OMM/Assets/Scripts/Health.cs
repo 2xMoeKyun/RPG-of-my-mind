@@ -8,14 +8,24 @@ public class Health : MonoBehaviour
     public int health;
     public int maxHealth;
     public static bool HitTaken;
-    public void TakeHit(int damage)
+    public static bool HitTakenEnemy;
+    public void TakeHit(int damage, Collider2D col)
     {
-        health -= damage;
-        HitTaken = true;
-        if (health <= 0)
+        if (col.CompareTag("Enemy"))
         {
-            Destroy(gameObject);
+            health -= damage;
+            Enemy en = GetComponent<Enemy>();
+            en.HitTake();
+            if(health <= 0)
+            {
+                en.Death();
+            }
         }
+        else if (col.CompareTag("Player"))
+        {
+            health -= damage;
+            
+        }
+        
     }
-
 }

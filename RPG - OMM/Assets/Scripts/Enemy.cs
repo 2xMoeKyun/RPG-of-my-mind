@@ -18,7 +18,7 @@ public class Enemy : MonoBehaviour
     public float atkSpeed;
     private bool CanAttack = true;
     //other
-    public static float direction;
+    public static float direction = 1;
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -29,10 +29,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (Health.HitTaken)
+        if (Health.HitTakenEnemy)
         {
             anim.SetTrigger("TakeHit");
-            Health.HitTaken = false;
+            Health.HitTakenEnemy = false;
         }
         if(Vector2.Distance(transform.position, target.position) < followDistance && !isAtack)
         {
@@ -40,6 +40,7 @@ public class Enemy : MonoBehaviour
         }
         if (Vector2.Distance(transform.position, target.position) < atkDistance && CanAttack)
         {
+            //Attack function
             anim.SetBool("Going", false);
             isAtack = true;
             anim.SetTrigger("Atk");            
@@ -50,6 +51,10 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void HitTake()
+    {
+        anim.SetTrigger("TakeHit");
+    }
 
     #region for switch color while taken damage
     public void ColorRed()
@@ -64,12 +69,35 @@ public class Enemy : MonoBehaviour
     #endregion
 
     #region attack
+
+    //these functions invokes on animation ivents
+    public Collider2D Hitplayer;
+    public LayerMask playerLayer;
+    public Transform attackRange;
+    public Transform AR_right;
+    public Transform AR_left;
+    private float atkRad = 0.4f;
+    public void HitPlayer()
+    {
+        if (direction == 1)
+        {
+            attackRange.position = AR_right.position;
+        }
+        else
+        {
+            attackRange.position = AR_left.position;
+        }
+        Hitplayer = Physics2D.OverlapCircle(attackRange.position, atkRad, playerLayer);
+        Damage d = GetComponent<Damage>();
+        d.Hit(Hitplayer);
+        Hitplayer = null;
+    }
+
     public void ResetAttack()
     {
         anim.SetTrigger("AtkEnd");
         anim.ResetTrigger("Atk");
         CanAttack = false;
-        
     }
 
     IEnumerator AfterAttack()
@@ -77,6 +105,7 @@ public class Enemy : MonoBehaviour
         yield return new WaitForSeconds(atkSpeed + 1f);
         CanAttack = true;
     }
+    //
     #endregion
 
     void Follow()
@@ -85,12 +114,13 @@ public class Enemy : MonoBehaviour
         if (transform.position.x < target.position.x) // vpravo
         {
             transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
-            
+            direction = 1;
             GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
             transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
+            direction = -1;
             GetComponent<SpriteRenderer>().flipX = false;
         }
     }
@@ -98,7 +128,12 @@ public class Enemy : MonoBehaviour
 
     public void Death()
     {
-
+        anim.SetTrigger("Die");
+        
     }
 
+    public void AfterDeath()
+    {
+        Destroy(gameObject);
+    }
 }

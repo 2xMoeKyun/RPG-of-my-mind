@@ -26,26 +26,27 @@ public class Move : MonoBehaviour
     void Update()
     {
         atkRangeSave.position = attackRange.position;
-        Debug.Log(CanAttack);
+        GroundCheck();
+        WallCheck();
         if (Input.GetKeyDown(KeyCode.J) && isGrounded && CanAttack)
         {
             Attack();
         }
+
         if (CanMove)
         {
             MoveX();
         }
-        GroundCheck();
-        WallCheck();
-        if (CanJump && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_end"))
+        if (CanJump &&  !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_end"))
         {
+            
             Jump();
         }
-
         if (CanUse)
         {
             UseThing();
         }
+
         Dash();
     }
 
@@ -94,8 +95,9 @@ public class Move : MonoBehaviour
     
     public void Jump()// вызывается в апдейте
     {
-        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && isGrounded && !startJump)
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && !startJump && isGrounded)
         {
+            CanAttack = false;
             playerAnimator.Play("StartingJump");// Подготовка к прыжку
             IsJump = true;
         }
@@ -115,6 +117,7 @@ public class Move : MonoBehaviour
         playerAnimator.SetBool("OnAir", false);
         playerAnimator.SetBool("OnGround", false);
         startJump = false;
+        CanAttack = true;
     }
     #endregion
 

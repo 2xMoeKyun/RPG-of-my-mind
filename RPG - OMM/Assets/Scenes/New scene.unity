@@ -11058,7 +11058,10 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 5.63, y: 0.211, z: 8.760569}
   m_LocalScale: {x: 3, y: 3, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 297284311}
+  - {fileID: 463504385}
+  - {fileID: 421687315}
   m_Father: {fileID: 943368802}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11077,8 +11080,15 @@ MonoBehaviour:
   speed: 1
   followDistance: 10
   _followDistance: 1
-  atkDistance: 0.8
+  atkDistance: 1
   atkSpeed: 1
+  Hitplayer: {fileID: 0}
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 1024
+  attackRange: {fileID: 297284311}
+  AR_right: {fileID: 463504385}
+  AR_left: {fileID: 421687315}
 --- !u!114 &280858000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11259,6 +11269,36 @@ Transform:
   m_Father: {fileID: 1305221724}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!1 &297284310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 297284311}
+  m_Layer: 0
+  m_Name: AttckRange_null
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &297284311
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 297284310}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.005000077, y: -0.02, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.56666666, z: 1}
+  m_Children: []
+  m_Father: {fileID: 280857998}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &299827637
 GameObject:
   m_ObjectHideFlags: 0
@@ -11964,6 +12004,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383579390}
   m_CullTransparentMesh: 1
+--- !u!1 &421687314
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 421687315}
+  m_Layer: 0
+  m_Name: AttackRange_left
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &421687315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 421687314}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.2, y: -0.023276478, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.56666666, z: 1}
+  m_Children: []
+  m_Father: {fileID: 280857998}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &425232940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12128,6 +12198,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 454562168}
   m_CullTransparentMesh: 1
+--- !u!1 &463504384
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 463504385}
+  m_Layer: 0
+  m_Name: AttackRange_right
+  m_TagString: Untagged
+  m_Icon: {fileID: -5487077368411116049, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &463504385
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 463504384}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.2, y: -0.023276463, z: 0}
+  m_LocalScale: {x: 0.5, y: 0.56666666, z: 1}
+  m_Children: []
+  m_Father: {fileID: 280857998}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &466645720
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -24927,9 +25027,17 @@ PrefabInstance:
       propertyPath: T
       value: 
       objectReference: {fileID: 491060474}
+    - target: {fileID: 246290086, guid: 8bf2656ddadfbc748a79866543a05227, type: 3}
+      propertyPath: damage
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 157811904667305704, guid: 8bf2656ddadfbc748a79866543a05227, type: 3}
       propertyPath: m_Name
       value: Alchemist
+      objectReference: {fileID: 0}
+    - target: {fileID: 157811904667305704, guid: 8bf2656ddadfbc748a79866543a05227, type: 3}
+      propertyPath: m_Layer
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 847221565897914961, guid: 8bf2656ddadfbc748a79866543a05227, type: 3}
       propertyPath: atkRangeSave
