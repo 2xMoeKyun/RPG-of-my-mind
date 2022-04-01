@@ -29,11 +29,6 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (Health.HitTakenEnemy)
-        {
-            anim.SetTrigger("TakeHit");
-            Health.HitTakenEnemy = false;
-        }
         if(Vector2.Distance(transform.position, target.position) < followDistance && !isAtack)
         {
             Follow();
@@ -71,7 +66,7 @@ public class Enemy : MonoBehaviour
     #region attack
 
     //these functions invokes on animation ivents
-    public Collider2D Hitplayer;
+    public Collider2D hitPlayer;
     public LayerMask playerLayer;
     public Transform attackRange;
     public Transform AR_right;
@@ -87,10 +82,14 @@ public class Enemy : MonoBehaviour
         {
             attackRange.position = AR_left.position;
         }
-        Hitplayer = Physics2D.OverlapCircle(attackRange.position, atkRad, playerLayer);
+        hitPlayer = Physics2D.OverlapCircle(attackRange.position, atkRad, playerLayer);
+        if(hitPlayer == null)
+        {
+            return;
+        }
         Damage d = GetComponent<Damage>();
-        d.Hit(Hitplayer);
-        Hitplayer = null;
+        d.Hit(hitPlayer);
+        hitPlayer = null;
     }
 
     public void ResetAttack()
