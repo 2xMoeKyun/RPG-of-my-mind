@@ -10,6 +10,7 @@ TagManager:
   - Platform
   - RedStone
   - Key
+  - Spike
   layers:
   - Default
   - TransparentFX
