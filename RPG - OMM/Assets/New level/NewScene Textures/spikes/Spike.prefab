@@ -10,8 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 3367596784155557460}
   - component: {fileID: 3367596784155557462}
-  - component: {fileID: 1713255742509340482}
-  - component: {fileID: -8725744087319863419}
   m_Layer: 0
   m_Name: Spike
   m_TagString: Spike
@@ -84,41 +82,3 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &1713255742509340482
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3367596784155557467}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.65336955, y: -0.67391634}
-  - {x: -0.007470574, y: 0.5121763}
-  - {x: 0.64326066, y: -0.6772868}
-  m_AdjacentStartPoint: {x: 0, y: 0}
-  m_AdjacentEndPoint: {x: 0, y: 0}
-  m_UseAdjacentStartPoint: 0
-  m_UseAdjacentEndPoint: 0
---- !u!114 &-8725744087319863419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3367596784155557467}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6a9f5962011863f4aa50a5f3438f6f12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Damage: 5
-  PushAwayForce: 5
-  playerCollider2D: {fileID: 0}
