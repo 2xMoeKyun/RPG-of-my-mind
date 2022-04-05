@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    //Type of enemy
+    public bool Slime;
+    public bool Skeleton;
     //Other
     private Transform target;
     private Animator anim;
@@ -11,7 +14,7 @@ public class Enemy : MonoBehaviour
     //Follow
     public float speed;
     public float followDistance;
-    public float _followDistance; // Stop Follow Distance 
+   // public float StopfollowDistance; // Stop Follow Distance 
     //Attack
     private bool isAtack = false;
     public float atkDistance;
@@ -114,12 +117,14 @@ public class Enemy : MonoBehaviour
         {
             transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
             direction = 1;
+            if(Slime)
             GetComponent<SpriteRenderer>().flipX = true;
         }
         else
         {
             transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
             direction = -1;
+            if(Slime)
             GetComponent<SpriteRenderer>().flipX = false;
         }
     }

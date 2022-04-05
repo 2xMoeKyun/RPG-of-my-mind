@@ -25,7 +25,7 @@ public class Move : MonoBehaviour
 
     void Update()
     {
-        atkRangeSave.position = attackRange.position;
+        //atkRangeSave.position = attackRange.position;
         GroundCheck();
         WallCheck();
         if (Input.GetKeyDown(KeyCode.J) && isGrounded && CanAttack)
