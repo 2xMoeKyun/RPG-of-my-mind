@@ -117,15 +117,27 @@ public class Enemy : MonoBehaviour
         {
             transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
             direction = 1;
-            if(Slime)
-            GetComponent<SpriteRenderer>().flipX = true;
+            if (Slime)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
+            else if (Skeleton)
+            {
+                 GetComponent<SpriteRenderer>().flipX = false;
+            }
         }
         else
         {
             transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
             direction = -1;
-            if(Slime)
-            GetComponent<SpriteRenderer>().flipX = false;
+            if (Slime)
+            {
+                GetComponent<SpriteRenderer>().flipX = false;
+            }
+            else if (Skeleton)
+            {
+                GetComponent<SpriteRenderer>().flipX = true;
+            }
         }
     }
 
@@ -138,6 +150,8 @@ public class Enemy : MonoBehaviour
 
     public void AfterDeath()
     {
-        Destroy(gameObject);
+        GetComponent<BoxCollider2D>().enabled = false;
+        rb.bodyType = RigidbodyType2D.Static;
+        Destroy(this);
     }
 }
