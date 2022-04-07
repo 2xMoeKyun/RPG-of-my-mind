@@ -231,7 +231,7 @@ GameObject:
   - component: {fileID: 847221566758345925}
   - component: {fileID: 246290079}
   - component: {fileID: 246290086}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Alchemist
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -478,7 +478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed17602c5e527164f9488f1745411d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 1
+  damage: 50
   Tag: Enemy
 --- !u!1 &1086461752419503022
 GameObject:
