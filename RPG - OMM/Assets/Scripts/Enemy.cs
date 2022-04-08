@@ -152,6 +152,7 @@ public class Enemy : MonoBehaviour
     {
         GetComponent<BoxCollider2D>().enabled = false;
         rb.bodyType = RigidbodyType2D.Static;
+        Destroy(transform.GetChild(0).GetComponent<BoxCollider2D>());
         Destroy(this);
     }
 }
