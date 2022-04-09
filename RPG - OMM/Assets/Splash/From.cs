@@ -7,6 +7,7 @@ public class From : MonoBehaviour
     public GameObject TeleportTo;
     public GameObject Player;
     private Vector2 from;
+    
 
     private void Update()
     {
@@ -44,12 +45,12 @@ public class From : MonoBehaviour
     public void Arrived()
     {
         Player.GetComponent<SpriteRenderer>().enabled = true;
-        
     }
 
     public void End()
     {
         GetComponent<Animator>().SetBool("Strike",false);
         transform.position = from;
+        
     }
 }
