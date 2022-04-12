@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8197577157323350643}
   - component: {fileID: 8197577157323350642}
+  - component: {fileID: -7046456940721730386}
   m_Layer: 0
   m_Name: Boulder
   m_TagString: Untagged
@@ -71,7 +72,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 20
-  m_Sprite: {fileID: 21300000, guid: 76d518e96fe150648bd6387435504884, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 27eee517d2e724241936410b04f4c836, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,3 +83,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-7046456940721730386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8197577157323350645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ddd295a699e601488580070e94b5714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
