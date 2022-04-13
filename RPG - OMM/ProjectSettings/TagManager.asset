@@ -12,6 +12,7 @@ TagManager:
   - Key
   - Spike
   - Destroy
+  - Ignore
   layers:
   - Default
   - TransparentFX
@@ -24,7 +25,7 @@ TagManager:
   - Ladder
   - Wall
   - Player
-  - 
+  - Ignore
   - 
   - 
   - 

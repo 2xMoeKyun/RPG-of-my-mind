@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     //Type of enemy
     public bool Slime;
     public bool Skeleton;
+    public bool isTriggerEnemy;
     //Other
     private Transform target;
     private Animator anim;
@@ -144,6 +145,10 @@ public class Enemy : MonoBehaviour
 
     public void Death()
     {
+        if(Skeleton && isTriggerEnemy)
+        {
+            Boulder.boulderStart = true;
+        }
         anim.SetTrigger("Die");
         
     }
