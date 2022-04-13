@@ -19,4 +19,13 @@ public class Boulder : MonoBehaviour
         rb.velocity = new Vector2(1, 0);
         
     }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.tag == "Destroy")
+        {
+            Destroy(collision.gameObject);
+        }
+    }
+
 }

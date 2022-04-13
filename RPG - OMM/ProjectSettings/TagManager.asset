@@ -11,6 +11,7 @@ TagManager:
   - RedStone
   - Key
   - Spike
+  - Destroy
   layers:
   - Default
   - TransparentFX
