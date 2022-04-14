@@ -32,7 +32,10 @@ public class Move : MonoBehaviour
         {
             Attack();
         }
-
+        if ((Input.GetKeyDown(KeyCode.LeftControl) || isSitting) && CanSit)
+        {
+            MoveingSit();
+        }
         if (CanMove)
         {
             MoveX();
@@ -157,6 +160,8 @@ public class Move : MonoBehaviour
     private int CurrentAtk = 0;
     public void Attack()
     {
+        RealoadSit();
+        CanSit = false;
         CanAttack = false;
         CanJump = false;
         CanMove = false;
@@ -194,6 +199,7 @@ public class Move : MonoBehaviour
 
     public void CanGo()
     {
+        CanSit = true; 
         CanJump = true;
         CanMove = true;
         CurrentAtk = 0;
@@ -202,14 +208,62 @@ public class Move : MonoBehaviour
     #endregion
 
 
+    private float XSit;
+    private bool reloadAnimation;
+    private bool isSitting;
+    public static bool CanSit = true;
+
+    private void RealoadSit()
+    {
+        playerAnimator.SetBool("IdleSit", false);
+        playerAnimator.SetBool("Sit", false);
+        isSitting = false;
+        CanMove = true;
+        
+    }
+
+    void MoveingSit()
+    {
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !CanMove)
+        {
+            RealoadSit();
+            return;
+        }
+        isSitting = true;
+        CanMove = false;
+        playerAnimator.SetBool("IdleSit", true);
+        XSit = Input.GetAxis("Horizontal");
+        Debug.Log(XSit);
+        if (XSit == 0)
+        {
+            playerAnimator.SetBool("Sit", false);
+        }
+        if (XSit > 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+            playerAnimator.SetBool("Sit", true);
+        }
+        if (XSit < 0)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+            playerAnimator.SetBool("Sit", true);
+
+        }
+        transform.Translate(Vector2.right * XSit * maxSpeed * Time.deltaTime);
+        
+    }
+    
+
+
+
     public static bool isMoveing;
     public static bool CanMove = true;
     public static int playerDirection = 1;
     void MoveX()
     {
-        
         isMoveing = true;
         Xmove = Input.GetAxis("Horizontal");
+        // Check for walls
         if (rightWall)
         {
             if(Xmove > 0)
@@ -224,11 +278,12 @@ public class Move : MonoBehaviour
                 Xmove = 0;
             }
         }
+        //
         if (Xmove == 0)
         {
             playerAnimator.SetBool("MovingRight", false);
             isMoveing = false;
-        }
+        }    
         if (Xmove > 0)
         {
             playerDirection = 1;

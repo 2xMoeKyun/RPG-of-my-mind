@@ -40,6 +40,13 @@ public class Boulder : MonoBehaviour
             collision.transform.GetComponent<BoxCollider2D>().enabled = false;
             Destroy(collision.transform.GetChild(0).gameObject);
         }
+        StartCoroutine(OnView());
     }
 
+
+    private IEnumerator OnView()
+    {
+        yield return new WaitForSeconds(11f);
+        GetComponent<SpriteRenderer>().sortingOrder = 22;
+    }
 }
