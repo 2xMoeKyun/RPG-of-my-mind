@@ -9,6 +9,7 @@ public class Move : MonoBehaviour
     public static Animator playerAnimator;
     public static Animation playerAnimation;
     public static Rigidbody2D playerRb;
+    private BoxCollider2D playerCollider;
     public float maxSpeed = 3f;
     public float Jforce = 6f;
     private float Xmove;
@@ -19,6 +20,7 @@ public class Move : MonoBehaviour
         playerAnimator = GetComponent<Animator>();
         playerAnimation = GetComponent<Animation>();
         playerRb = GetComponent<Rigidbody2D>();
+        playerCollider = GetComponent<BoxCollider2D>();
     }
     //отслеживание радиуса атаки
     public Transform atkRangeSave;
@@ -100,6 +102,7 @@ public class Move : MonoBehaviour
     {
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && !startJump && isGrounded)
         {
+            RealoadSit();
             CanAttack = false;
             playerAnimator.Play("StartingJump");// Подготовка к прыжку
             IsJump = true;
@@ -160,11 +163,14 @@ public class Move : MonoBehaviour
     private int CurrentAtk = 0;
     public void Attack()
     {
-        RealoadSit();
-        CanSit = false;
-        CanAttack = false;
-        CanJump = false;
-        CanMove = false;
+        if (CurrentAtk == 0)
+        {
+            RealoadSit();
+            CanSit = false;
+            CanAttack = false;
+            CanJump = false;
+            CanMove = false;
+        }
         playerRb.velocity = Vector2.zero;
         CurrentAtk++;
         if (CurrentAtk >= 3)
@@ -209,12 +215,14 @@ public class Move : MonoBehaviour
 
 
     private float XSit;
-    private bool reloadAnimation;
     private bool isSitting;
     public static bool CanSit = true;
+    public GameObject AlternativeHitBox;
 
     private void RealoadSit()
     {
+        playerCollider.enabled = true;
+        AlternativeHitBox.SetActive(false);
         playerAnimator.SetBool("IdleSit", false);
         playerAnimator.SetBool("Sit", false);
         isSitting = false;
@@ -229,11 +237,15 @@ public class Move : MonoBehaviour
             RealoadSit();
             return;
         }
+        //resizing hit box
+        AlternativeHitBox.SetActive(true);
+        playerCollider.enabled = false;
+
+        //
         isSitting = true;
         CanMove = false;
         playerAnimator.SetBool("IdleSit", true);
         XSit = Input.GetAxis("Horizontal");
-        Debug.Log(XSit);
         if (XSit == 0)
         {
             playerAnimator.SetBool("Sit", false);
@@ -249,7 +261,7 @@ public class Move : MonoBehaviour
             playerAnimator.SetBool("Sit", true);
 
         }
-        transform.Translate(Vector2.right * XSit * maxSpeed * Time.deltaTime);
+        transform.Translate(Vector2.right * XSit * (maxSpeed - 2f) * Time.deltaTime);
         
     }
     

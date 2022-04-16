@@ -7,8 +7,7 @@ public class Health : MonoBehaviour
 {
     public int health;
     public int maxHealth;
-    public static bool HitTaken;
-    public static bool HitTakenEnemy;
+    public static int HitTaken;
     public void TakeHit(int damage, Collider2D col)
     {
         if (col.CompareTag("Enemy"))
@@ -23,6 +22,10 @@ public class Health : MonoBehaviour
         }
         else if (col.CompareTag("Player"))
         {
+            if(col.name == "AlternativeHitBox")
+            {
+                HitTaken = damage;
+            }
             health -= damage;
             
         }
