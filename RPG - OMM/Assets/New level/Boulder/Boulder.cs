@@ -34,13 +34,14 @@ public class Boulder : MonoBehaviour
                 Destroy(GameObject.FindGameObjectsWithTag("Destroy")[i]);
             }
             Fakel.SetActive(true);
+            StartCoroutine(OnView());
         }
         else if(collision.transform.tag == "Ignore")
         {
             collision.transform.GetComponent<BoxCollider2D>().enabled = false;
             Destroy(collision.transform.GetChild(0).gameObject);
         }
-        StartCoroutine(OnView());
+        
     }
 
 
