@@ -19,8 +19,8 @@ public class Boulder : MonoBehaviour
         {
             transform.GetChild(0).position = new Vector2(transform.position.x - 0.6f, startPosY);
             transform.GetChild(0).rotation = Quaternion.identity;
-            transform.Rotate(new Vector3(0, 0, -90) * 1.4f * Time.deltaTime);
-            rb.velocity = new Vector2(1, 0);
+            transform.Rotate(new Vector3(0, 0, -90) * 1.5f * Time.deltaTime);
+            rb.velocity = new Vector2(1, 0) * 2 ;
         }
     }
 
@@ -47,7 +47,7 @@ public class Boulder : MonoBehaviour
 
     private IEnumerator OnView()
     {
-        yield return new WaitForSeconds(11f);
-        GetComponent<SpriteRenderer>().sortingOrder = 22;
+        yield return new WaitForSeconds(6f);
+        GetComponent<SpriteRenderer>().sortingOrder = 23;
     }
 }
