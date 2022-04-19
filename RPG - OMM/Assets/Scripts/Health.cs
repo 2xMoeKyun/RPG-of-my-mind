@@ -15,19 +15,25 @@ public class Health : MonoBehaviour
             health -= damage;
             Enemy en = GetComponent<Enemy>();
             en.HitTake();
-            if(health <= 0)
+            if (health <= 0)
             {
                 en.Death();
             }
         }
         else if (col.CompareTag("Player"))
         {
-            if(col.name == "AlternativeHitBox")
+            if (col.name == "AlternativeHitBox")
             {
                 HitTaken = damage;
             }
             health -= damage;
-            
+            Move m = GetComponent<Move>();
+            m.GetHitAnimation();
+            if (health <= 0)
+            {
+                m.Death();
+            }
+
         }
         
     }

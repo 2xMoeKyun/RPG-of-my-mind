@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DamagePlace : MonoBehaviour
 {
+    public int PushAwayForce;
     private Trap trap;
 
     private void Start()
@@ -13,5 +14,6 @@ public class DamagePlace : MonoBehaviour
     private void OnTriggerStay2D(Collider2D collision)
     {
         trap.HitScan(collision);
+        Move.playerRb.AddForce(new Vector2(0, collision.transform.position.y + PushAwayForce));
     }
 }

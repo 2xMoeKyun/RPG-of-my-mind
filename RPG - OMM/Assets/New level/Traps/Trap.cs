@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Trap : MonoBehaviour
 {
+    public bool IsSaw;
     public GameObject damagePlace;
     public float coolDown;
     private Animator anim;
     private Damage d;
-    private ContactPoint2D[] contacts;
+    
 
     private void Start()
     {
@@ -40,12 +41,16 @@ public class Trap : MonoBehaviour
         damagePlace.SetActive(false);
         anim.ResetTrigger("trigger");
         coroutineEnd = false;
+
     }
 
     public void HitScan(Collider2D collision)
     {
         d.Hit(collision);
-        damagePlace.SetActive(false);
+        if (!IsSaw)
+        {
+            damagePlace.SetActive(false);
+        }
         coroutineEnd = false;
     }
 }

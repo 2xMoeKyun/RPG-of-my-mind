@@ -73,6 +73,27 @@ public class Move : MonoBehaviour
     }
     #endregion
 
+    #region Get hit
+    public void GetHitAnimation()
+    {
+        GetComponent<Renderer>().material.color = Color.red;
+        StartCoroutine(CD());
+    }
+
+    private IEnumerator CD()
+    {
+        yield return new WaitForSeconds(0.2f);
+        GetComponent<Renderer>().material.color = Color.white;
+    }
+    #endregion
+
+    #region Death
+    public void Death()
+    {
+        Destroy(gameObject);
+    }
+    #endregion
+
     void Dash()
     {
         if (Input.GetKeyDown(KeyCode.LeftShift))

@@ -16,7 +16,6 @@ public class Spikes : MonoBehaviour
             Health h = collision.gameObject.GetComponent<Health>();
             h.TakeHit(Damage, playerCollider2D.transform.GetComponent<Collider2D>());
             Move.playerRb.AddForce(new Vector2(0, collision.transform.position.y + PushAwayForce));
-            Debug.Log(11);
         }
     }
 }
