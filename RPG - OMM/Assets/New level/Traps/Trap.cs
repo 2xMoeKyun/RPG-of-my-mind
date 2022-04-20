@@ -19,7 +19,7 @@ public class Trap : MonoBehaviour
     private bool coroutineEnd;
     private void Update()
     {
-        if (!coroutineEnd)
+        if (!coroutineEnd && !IsSaw)
         {
             StartCoroutine(CoolDown());
             coroutineEnd = true;

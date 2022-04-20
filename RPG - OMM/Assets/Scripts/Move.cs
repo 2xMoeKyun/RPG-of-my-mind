@@ -261,7 +261,6 @@ public class Move : MonoBehaviour
         //resizing hit box
         AlternativeHitBox.SetActive(true);
         playerCollider.enabled = false;
-
         //
         isSitting = true;
         CanMove = false;
@@ -283,7 +282,7 @@ public class Move : MonoBehaviour
 
         }
         transform.Translate(Vector2.right * XSit * (maxSpeed - 2f) * Time.deltaTime);
-        
+        Debug.Log(transform.position.y > 5.943001f);
     }
     
 

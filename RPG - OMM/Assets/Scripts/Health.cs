@@ -20,12 +20,13 @@ public class Health : MonoBehaviour
                 en.Death();
             }
         }
+        else if (col.name == "AlternativeHitBox")
+        {
+            HitTaken = damage;
+        }
         else if (col.CompareTag("Player"))
         {
-            if (col.name == "AlternativeHitBox")
-            {
-                HitTaken = damage;
-            }
+            
             health -= damage;
             Move m = GetComponent<Move>();
             m.GetHitAnimation();
@@ -36,5 +37,6 @@ public class Health : MonoBehaviour
 
         }
         
+
     }
 }

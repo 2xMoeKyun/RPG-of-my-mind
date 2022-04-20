@@ -41,9 +41,14 @@ public class Boulder : MonoBehaviour
             collision.transform.GetComponent<BoxCollider2D>().enabled = false;
             Destroy(collision.transform.GetChild(0).gameObject);
         }
-        if(collision.transform.tag == "Player")
+        if (collision.transform.tag == "Finish")
         {
-
+            boulderStart = false;
+            transform.GetChild(0).GetComponent<GameObject>().SetActive(false);
+        }
+        if (collision.transform.tag == "Player")
+        {
+            Destroy(collision.transform.gameObject);
         }
     }
 
