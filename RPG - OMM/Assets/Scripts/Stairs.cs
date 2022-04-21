@@ -5,14 +5,20 @@ using UnityEngine;
 public class Stairs : MonoBehaviour
 {
     public float speed;
-
+    public GameObject stayPlatform;
+    private BoxCollider2D colPlatform;
+    private void Start()
+    {
+        colPlatform = stayPlatform.GetComponent<BoxCollider2D>();
+    }
 
     private void Update()
     {
-        
         CheckLadder();
         
         MoveOnLadder();
+
+        
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -60,6 +66,14 @@ public class Stairs : MonoBehaviour
             Move.playerRb.bodyType = RigidbodyType2D.Kinematic;
             if (!checkedLadder && checkedBottom)//сверху лестницы
             {
+                if ( colPlatform.isTrigger)
+                {
+                    colPlatform.isTrigger = false;
+                }
+                else
+                {
+                    colPlatform.isTrigger = true;
+                }
                 if (posY < 0)
                 {
                     Move.playerRb.velocity = Vector2.down * speed;

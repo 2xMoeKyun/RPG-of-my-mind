@@ -30,29 +30,34 @@ public class Move : MonoBehaviour
         //atkRangeSave.position = attackRange.position;
         GroundCheck();
         WallCheck();
-        if (Input.GetKeyDown(KeyCode.J) && isGrounded && CanAttack)
-        {
-            Attack();
-        }
         if ((Input.GetKeyDown(KeyCode.LeftControl) || isSitting) && CanSit)
         {
             MoveingSit();
         }
-        if (CanMove)
+        if (!finish)
         {
-            MoveX();
-        }
-        if (CanJump &&  !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_end"))
-        {
-            
-            Jump();
-        }
-        if (CanUse)
-        {
-            UseThing();
-        }
 
-        Dash();
+            if (Input.GetKeyDown(KeyCode.J) && isGrounded && CanAttack)
+            {
+                Attack();
+            }
+
+            if (CanMove)
+            {
+                MoveX();
+            }
+            if (CanJump && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_end"))
+            {
+
+                Jump();
+            }
+            if (CanUse)
+            {
+                UseThing();
+            }
+            Dash();
+        }
+        
     }
 
     #region for moveing Platform
@@ -106,17 +111,28 @@ public class Move : MonoBehaviour
 
     public static bool CanJump = true;
     public static bool IsJump = false;
+    private bool SuperJump;
     #region Jump
     bool onAirVal = false;// для определения, что перс был ввоздухе
     bool startJump = false;// для определения окончания стадии подготовки пржыка
     public void Jumping()//Вызывается в анимации подготовки прыжка
     {
+        if (SuperJump)
+        {
+            Jforce += 0.5f;
+        }
         playerRb.velocity = new Vector2(playerRb.velocity.x, Jforce);
+        
     }
     public void StartingJumpAnimEnd()// вызывается в конце анимации подготовки прыжка
     {
         startJump = true;
         IsJump = false;
+        if (SuperJump)
+        {
+            Jforce -= 0.5f;
+            SuperJump = false;
+        }
     }
     
     public void Jump()// вызывается в апдейте
@@ -235,8 +251,10 @@ public class Move : MonoBehaviour
     #endregion
 
 
+    #region Sit mechanics
+    public static bool finish;//from script: Finish
     private float XSit;
-    private bool isSitting;
+    public static bool isSitting;
     public static bool CanSit = true;
     public GameObject AlternativeHitBox;
 
@@ -251,13 +269,21 @@ public class Move : MonoBehaviour
         
     }
 
+    private IEnumerator ForSuperJump()
+    {
+        yield return new WaitForSeconds(1f);
+        SuperJump = false;
+    }
+
     void MoveingSit()
     {
-        if (Input.GetKeyDown(KeyCode.LeftControl) && !CanMove)
+        if (Input.GetKeyDown(KeyCode.LeftControl) && !CanMove && !finish)
         {
             RealoadSit();
             return;
         }
+        SuperJump = true;
+        StartCoroutine(ForSuperJump());
         //resizing hit box
         AlternativeHitBox.SetActive(true);
         playerCollider.enabled = false;
@@ -284,8 +310,8 @@ public class Move : MonoBehaviour
         transform.Translate(Vector2.right * XSit * (maxSpeed - 2f) * Time.deltaTime);
         Debug.Log(transform.position.y > 5.943001f);
     }
-    
 
+#endregion
 
 
     public static bool isMoveing;
