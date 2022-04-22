@@ -30,7 +30,7 @@ public class Move : MonoBehaviour
         //atkRangeSave.position = attackRange.position;
         GroundCheck();
         WallCheck();
-        if ((Input.GetKeyDown(KeyCode.LeftControl) || isSitting) && CanSit)
+        if ((Input.GetKeyDown(KeyCode.LeftControl) || isSitting) && CanSit  )
         {
             MoveingSit();
         }
@@ -120,29 +120,32 @@ public class Move : MonoBehaviour
         if (SuperJump)
         {
             Jforce += 0.5f;
+            SuperJumpWorks = true;
         }
         playerRb.velocity = new Vector2(playerRb.velocity.x, Jforce);
         
     }
     public void StartingJumpAnimEnd()// вызывается в конце анимации подготовки прыжка
     {
-        startJump = true;
-        IsJump = false;
+        
         if (SuperJump)
         {
             Jforce -= 0.5f;
             SuperJump = false;
         }
+        startJump = true;
+        IsJump = false;
     }
     
     public void Jump()// вызывается в апдейте
     {
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && !startJump && isGrounded)
         {
+            IsJump = true;
             RealoadSit();
             CanAttack = false;
             playerAnimator.Play("StartingJump");// Подготовка к прыжку
-            IsJump = true;
+            
         }
         else if (!isGrounded && startJump) //В воздухе
         {
@@ -269,10 +272,14 @@ public class Move : MonoBehaviour
         
     }
 
+    private bool SuperJumpWorks;
     private IEnumerator ForSuperJump()
     {
         yield return new WaitForSeconds(1f);
-        SuperJump = false;
+        if (!IsJump && !SuperJumpWorks)
+        {
+            SuperJump = false;
+        }
     }
 
     void MoveingSit()
@@ -308,7 +315,6 @@ public class Move : MonoBehaviour
 
         }
         transform.Translate(Vector2.right * XSit * (maxSpeed - 2f) * Time.deltaTime);
-        Debug.Log(transform.position.y > 5.943001f);
     }
 
 #endregion
