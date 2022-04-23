@@ -18,14 +18,14 @@ public class NPC : MonoBehaviour
 
     private void Update()
     {
-        if (!stopFollow)
-        {
-        Follow();
-        }
         if (setSpecialAnimation)
         {
             anim.SetBool("Walk", false);
             SpecialAnimation();
+        }
+        if (!stopFollow && pointsToGo[0] != null)
+        {
+            Follow();
         }
     }
 
@@ -78,5 +78,14 @@ public class NPC : MonoBehaviour
             SwitchPoint();
         }
 
+    }
+
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player") && !DialogueManager.dialogueDone)
+        {
+            GetComponent<DialogueTrigger>().TriggerDialogue();
+        }
     }
 }

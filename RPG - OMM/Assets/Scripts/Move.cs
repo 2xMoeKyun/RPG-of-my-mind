@@ -22,43 +22,55 @@ public class Move : MonoBehaviour
         playerRb = GetComponent<Rigidbody2D>();
         playerCollider = GetComponent<BoxCollider2D>();
     }
-    //отслеживание радиуса атаки
-    public Transform atkRangeSave;
 
     void Update()
     {
-        //atkRangeSave.position = attackRange.position;
         GroundCheck();
-        WallCheck();
-        if ((Input.GetKeyDown(KeyCode.LeftControl) || isSitting) && CanSit  )
+        if (!SetAblePlayer)
         {
-            MoveingSit();
+            playerAnimator.SetBool("MovingRight", false);
+            playerAnimator.SetBool("IdleSit", false);
+            playerAnimator.SetBool("Sit", false);
+            playerAnimator.SetBool("OnGround", false);
         }
-        if (!finish)
+        else
         {
 
-            if (Input.GetKeyDown(KeyCode.J) && isGrounded && CanAttack)
+            
+            WallCheck();
+            if ((Input.GetKeyDown(KeyCode.LeftControl) || isSitting) && CanSit)
             {
-                Attack();
+                MoveingSit();
             }
-
-            if (CanMove)
-            {
-                MoveX();
-            }
-            if (CanJump && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_end"))
+            if (!finish)
             {
 
-                Jump();
+                if (Input.GetKeyDown(KeyCode.J) && isGrounded && CanAttack)
+                {
+                    Attack();
+                }
+
+                if (CanMove)
+                {
+                    MoveX();
+                }
+                if (CanJump && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_end"))
+                {
+
+                    Jump();
+                }
+                if (CanUse)
+                {
+                    UseThing();
+                }
+                Dash();
             }
-            if (CanUse)
-            {
-                UseThing();
-            }
-            Dash();
         }
-        
+
     }
+
+    public static bool SetAblePlayer = true;
+
 
     #region for moveing Platform
     private void OnCollisionEnter2D(Collision2D collision)
