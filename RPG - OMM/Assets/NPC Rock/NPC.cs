@@ -16,8 +16,18 @@ public class NPC : MonoBehaviour
         
     }
 
+    public static bool npcDialogue;
     private void Update()
     {
+        if (npcDialogue && !DialogueManager.DialogueEnd )
+        {
+            GetComponent<DialogueTrigger>().TriggerDialogue();
+            DialogueManager.SwitchesCount++;
+            if (DialogueManager.SwitchesCount == 1)
+            {
+                DialogueManager.SwitchTo = "Player";
+            }
+        }
         if (setSpecialAnimation)
         {
             anim.SetBool("Walk", false);
@@ -83,9 +93,9 @@ public class NPC : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !DialogueManager.dialogueDone)
+        if (collision.CompareTag("Player") )
         {
-            GetComponent<DialogueTrigger>().TriggerDialogue();
+            npcDialogue = true;
         }
     }
 }

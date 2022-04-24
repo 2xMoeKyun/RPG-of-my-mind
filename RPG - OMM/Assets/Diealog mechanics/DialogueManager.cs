@@ -8,6 +8,7 @@ public class DialogueManager : MonoBehaviour
     private Queue<string> sentences;
     public Text nameText;
     public Text dialogueText;
+    public GameObject dialogueUI;
 
     private void Start()
     {
@@ -18,6 +19,9 @@ public class DialogueManager : MonoBehaviour
     {
         
         Move.SetAblePlayer = false;
+        NPC.npcDialogue = false;
+        Move.playerDialogue = false;
+        DialogueEnd = true;
         nameText.text = dialogue.name; 
 
         sentences.Clear();
@@ -33,12 +37,12 @@ public class DialogueManager : MonoBehaviour
     {
         if(sentences.Count == 0)
         {
+            
             EndDialogue();
             return;
         }
 
         string sentence = sentences.Dequeue();
-        StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
 
@@ -52,11 +56,18 @@ public class DialogueManager : MonoBehaviour
         }
     }
 
-    public static bool dialogueDone;
+    public static string SwitchTo;
+    public static int SwitchesCount;
+    public static bool DialogueEnd;
     private void EndDialogue()
     {
         Move.SetAblePlayer = true;
-        dialogueDone = true;
-        GetComponent<DialogueTrigger>().dialogueUI.SetActive(false);
+        dialogueUI.SetActive(false);
+        DialogueEnd = false;
+        if(SwitchTo != "")
+        {
+            GameObject.FindGameObjectWithTag(SwitchTo).GetComponent<DialogueTrigger>().TriggerDialogue();
+            SwitchTo = "";
+        }
     }
 }

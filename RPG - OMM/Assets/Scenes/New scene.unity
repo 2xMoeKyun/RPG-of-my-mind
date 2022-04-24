@@ -206,7 +206,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 879573918}
+      - m_Target: {fileID: 565569687}
         m_TargetAssemblyTypeName: DialogueManager, Assembly-CSharp
         m_MethodName: DisplayNextSentences
         m_Mode: 1
@@ -1994,6 +1994,24 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 157811904667305704, guid: 8bf2656ddadfbc748a79866543a05227, type: 3}
   m_PrefabInstance: {fileID: 5140663028967484250}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &246290088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246290078}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a986f9590ee468c478353d4c6815dd51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dm: {fileID: 565569687}
+  dialogue:
+    name: Meruem
+    sentences:
+    - I'm a traveler
+    - ' I''m looking for a nearby place to equip'
 --- !u!1 &256888261
 GameObject:
   m_ObjectHideFlags: 0
@@ -22346,6 +22364,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 565569686}
+  - component: {fileID: 565569687}
   m_Layer: 0
   m_Name: DialogueManager
   m_TagString: Untagged
@@ -22367,6 +22386,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 13
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &565569687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 565569685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d76a40aaef8b12047abe9b0b7e57e9b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nameText: {fileID: 87172430}
+  dialogueText: {fileID: 2022044042}
+  dialogueUI: {fileID: 1744235593}
 --- !u!1001 &566868496
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -25231,10 +25265,9 @@ GameObject:
   - component: {fileID: 879573912}
   - component: {fileID: 879573911}
   - component: {fileID: 879573917}
-  - component: {fileID: 879573918}
   m_Layer: 0
   m_Name: Rock(NPC)
-  m_TagString: Untagged
+  m_TagString: Rock
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -25396,26 +25429,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a986f9590ee468c478353d4c6815dd51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dialogueUI: {fileID: 1744235593}
+  dm: {fileID: 565569687}
   dialogue:
     name: Rock
     sentences:
     - Hey there!
     - Who are you? I haven't seen you before
---- !u!114 &879573918
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879573910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d76a40aaef8b12047abe9b0b7e57e9b6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  nameText: {fileID: 87172430}
-  dialogueText: {fileID: 2022044042}
 --- !u!4 &884577852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3836866522025262471, guid: 8ced37a510aae314384c863405dac1b3, type: 3}

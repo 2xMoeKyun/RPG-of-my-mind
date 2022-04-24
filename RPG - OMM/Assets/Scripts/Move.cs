@@ -23,8 +23,18 @@ public class Move : MonoBehaviour
         playerCollider = GetComponent<BoxCollider2D>();
     }
 
+    public static bool playerDialogue;
     void Update()
     {
+        if (playerDialogue)
+        {
+            GetComponent<DialogueTrigger>().TriggerDialogue();
+            DialogueManager.SwitchesCount++;
+            if (DialogueManager.SwitchesCount == 2)
+            {
+                DialogueManager.SwitchTo = "Rock";
+            }
+        }
         GroundCheck();
         if (!SetAblePlayer)
         {
