@@ -25283,7 +25283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17ddac668741b6547878451dd3a6e2f1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsToGo: []
+  pointsToGo:
+  - {fileID: 0}
   speed: 0.5
 --- !u!61 &879573912
 BoxCollider2D:

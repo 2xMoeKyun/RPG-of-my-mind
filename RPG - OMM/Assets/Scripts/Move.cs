@@ -35,52 +35,64 @@ public class Move : MonoBehaviour
                 DialogueManager.SwitchTo = "Rock";
             }
         }
+       
         GroundCheck();
-        if (!SetAblePlayer)
+        WallCheck();
+        if ((Input.GetKeyDown(KeyCode.LeftControl) || isSitting) && CanSit)
         {
-            playerAnimator.SetBool("MovingRight", false);
-            playerAnimator.SetBool("IdleSit", false);
-            playerAnimator.SetBool("Sit", false);
-            playerAnimator.SetBool("OnGround", false);
+            MoveingSit();
         }
-        else
+        if (!finish)
         {
 
-            
-            WallCheck();
-            if ((Input.GetKeyDown(KeyCode.LeftControl) || isSitting) && CanSit)
+            if (Input.GetKeyDown(KeyCode.J) && isGrounded && CanAttack)
             {
-                MoveingSit();
+                Attack();
             }
-            if (!finish)
+
+            if (CanMove)
+            {
+                MoveX();
+            }
+            if (CanJump && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_end"))
             {
 
-                if (Input.GetKeyDown(KeyCode.J) && isGrounded && CanAttack)
-                {
-                    Attack();
-                }
-
-                if (CanMove)
-                {
-                    MoveX();
-                }
-                if (CanJump && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_end"))
-                {
-
-                    Jump();
-                }
-                if (CanUse)
-                {
-                    UseThing();
-                }
-                Dash();
+                Jump();
             }
+            if (CanUse)
+            {
+                UseThing();
+            }
+            Dash();
         }
+
 
     }
 
     public static bool SetAblePlayer = true;
+    public void DisablePlayer()
+    {
+        // P.S. Если в момент срабатывания функции песронаж прыгнул, то запрет прыжка находится в функции, которая выхывается в конце прыжка
+        // Т.к. функция прыжка не может работать без апдейта(там же включения прыжка)
+        if (!IsJump)
+        {
+            CanJump = false;
+        }
+        RealoadSit();
+        playerAnimator.SetBool("MovingRight", false);
+        CanAttack = false;
+        CanMove = false;
+        CanSit = false;
+        CanUse = false;
+    }
 
+    public void AblePlayer()
+    {
+        CanAttack = true;
+        CanMove = true;
+        CanSit = true;
+        CanUse = true;
+    }
 
     #region for moveing Platform
     private void OnCollisionEnter2D(Collision2D collision)
@@ -186,6 +198,14 @@ public class Move : MonoBehaviour
         playerAnimator.SetBool("OnGround", false);
         startJump = false;
         CanAttack = true;
+        if (!SetAblePlayer)
+        {
+            CanJump = false;
+        }
+        else
+        {
+            CanJump = true;
+        }
     }
     #endregion
 

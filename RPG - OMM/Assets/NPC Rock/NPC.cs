@@ -18,17 +18,27 @@ public class NPC : MonoBehaviour
 
     public static bool npcDialogue;
     public static int getDialogue;
+    public static bool EndOfCountDialogue;
     private void Update()
     {
         if (npcDialogue && !DialogueManager.DialogueEnd )
         {
-            transform.GetChild(getDialogue).GetComponent<DialogueTrigger>().TriggerDialogue();
-            getDialogue++;
-            DialogueManager.SwitchesCount++;
-            if (DialogueManager.SwitchesCount == 1 || DialogueManager.SwitchesCount == 3)
+            if (transform.GetChildCount() == getDialogue)
             {
-                Debug.Log(12321423423431);
-                DialogueManager.SwitchTo = "Player";
+                getDialogue = 0;
+                EndOfCountDialogue = true;
+                npcDialogue = false;
+            }
+            else
+            {
+                transform.GetChild(getDialogue).GetComponent<DialogueTrigger>().TriggerDialogue();
+                getDialogue++;
+                DialogueManager.SwitchesCount++;
+                if (DialogueManager.SwitchesCount == 1 || DialogueManager.SwitchesCount == 3)
+                {
+                   
+                    DialogueManager.SwitchTo = "Player";
+                }
             }
         }
         if (setSpecialAnimation)
@@ -93,12 +103,28 @@ public class NPC : MonoBehaviour
 
     }
 
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.CompareTag("Player") && !EndOfCountDialogue)
+    //    {
+    //        collision.GetComponent<Move>().DisablePlayer();
+    //    }
+    //    if(collision.CompareTag("Player") && EndOfCountDialogue)
+    //    {
+    //        collision.GetComponent<Move>().AblePlayer();
+    //    }
+    //}
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") )
+        if (collision.CompareTag("Player") && !EndOfCountDialogue)
         {
             npcDialogue = true;
+            collision.GetComponent<Move>().DisablePlayer();
+        }
+        else if(collision.CompareTag("Player") && EndOfCountDialogue)
+        {
+            collision.GetComponent<Move>().AblePlayer();
         }
     }
 }

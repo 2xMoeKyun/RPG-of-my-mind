@@ -17,7 +17,7 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        
+        Debug.Log("dfsfdsfs");
         Move.SetAblePlayer = false;
         NPC.npcDialogue = false;
         Move.playerDialogue = false;
@@ -43,6 +43,7 @@ public class DialogueManager : MonoBehaviour
         }
 
         string sentence = sentences.Dequeue();
+        StopAllCoroutines();
         StartCoroutine(TypeSentence(sentence));
     }
 
