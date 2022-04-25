@@ -17,14 +17,17 @@ public class NPC : MonoBehaviour
     }
 
     public static bool npcDialogue;
+    public static int getDialogue;
     private void Update()
     {
         if (npcDialogue && !DialogueManager.DialogueEnd )
         {
-            GetComponent<DialogueTrigger>().TriggerDialogue();
+            transform.GetChild(getDialogue).GetComponent<DialogueTrigger>().TriggerDialogue();
+            getDialogue++;
             DialogueManager.SwitchesCount++;
-            if (DialogueManager.SwitchesCount == 1)
+            if (DialogueManager.SwitchesCount == 1 || DialogueManager.SwitchesCount == 3)
             {
+                Debug.Log(12321423423431);
                 DialogueManager.SwitchTo = "Player";
             }
         }
@@ -91,7 +94,7 @@ public class NPC : MonoBehaviour
     }
 
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player") )
         {

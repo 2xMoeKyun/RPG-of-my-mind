@@ -2011,7 +2011,7 @@ MonoBehaviour:
     name: Meruem
     sentences:
     - I'm a traveler
-    - ' I''m looking for a nearby place to equip'
+    - I've met a lot of monsters recently, and I could use some equipment.
 --- !u!1 &256888261
 GameObject:
   m_ObjectHideFlags: 0
@@ -25264,7 +25264,6 @@ GameObject:
   - component: {fileID: 879573913}
   - component: {fileID: 879573912}
   - component: {fileID: 879573911}
-  - component: {fileID: 879573917}
   m_Layer: 0
   m_Name: Rock(NPC)
   m_TagString: Rock
@@ -25413,28 +25412,12 @@ Transform:
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.728, y: 0.364, z: 3.1512954}
   m_LocalScale: {x: 2.1, y: 2.2, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 2037926505}
+  - {fileID: 1850843041}
   m_Father: {fileID: 1656893781}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &879573917
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 879573910}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a986f9590ee468c478353d4c6815dd51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dm: {fileID: 565569687}
-  dialogue:
-    name: Rock
-    sentences:
-    - Hey there!
-    - Who are you? I haven't seen you before
 --- !u!4 &884577852 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3836866522025262471, guid: 8ced37a510aae314384c863405dac1b3, type: 3}
@@ -35635,7 +35618,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1442378432}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 87.524, y: 1.02825, z: -10}
+  m_LocalPosition: {x: 88.02, y: 1.1412501, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 531852533}
@@ -42868,6 +42851,57 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 9214892954022828898, guid: 04ef0395db740364a92139d4c6b6b0f0, type: 3}
   m_PrefabInstance: {fileID: 758078776}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1850843040
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1850843041}
+  - component: {fileID: 1850843042}
+  m_Layer: 0
+  m_Name: Dialogue_1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1850843041
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850843040}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 879573916}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1850843042
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1850843040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a986f9590ee468c478353d4c6815dd51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dm: {fileID: 565569687}
+  dialogue:
+    name: Rock
+    sentences:
+    - What?
+    - ' You were able to survive in these caves?'
+    - You seem to be not ordinary traveler.
+    - Come with me. I was just on my way into town.
 --- !u!1 &1866759505
 GameObject:
   m_ObjectHideFlags: 0
@@ -44559,6 +44593,55 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &2037926504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2037926505}
+  - component: {fileID: 2037926506}
+  m_Layer: 0
+  m_Name: Dialogue_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2037926505
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037926504}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 879573916}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2037926506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2037926504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a986f9590ee468c478353d4c6815dd51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dm: {fileID: 565569687}
+  dialogue:
+    name: Rock
+    sentences:
+    - Hey there!
+    - Who are you? I haven't seen you before
 --- !u!1 &2043143408
 GameObject:
   m_ObjectHideFlags: 0
@@ -47097,11 +47180,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004317798506387214, guid: 8ed248f94ff922949b440e52103d102b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 87.524
+      value: 88.02
       objectReference: {fileID: 0}
     - target: {fileID: 4004317798506387214, guid: 8ed248f94ff922949b440e52103d102b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.02825
+      value: 1.1412501
       objectReference: {fileID: 0}
     - target: {fileID: 4004317798506387214, guid: 8ed248f94ff922949b440e52103d102b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -47347,11 +47430,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812209618322345450, guid: 8bf2656ddadfbc748a79866543a05227, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 87.524
+      value: 88.02
       objectReference: {fileID: 0}
     - target: {fileID: 2812209618322345450, guid: 8bf2656ddadfbc748a79866543a05227, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.747
+      value: 0.86
       objectReference: {fileID: 0}
     - target: {fileID: 2812209618322345450, guid: 8bf2656ddadfbc748a79866543a05227, type: 3}
       propertyPath: m_LocalPosition.z

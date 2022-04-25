@@ -61,11 +61,13 @@ public class DialogueManager : MonoBehaviour
     public static bool DialogueEnd;
     private void EndDialogue()
     {
+        
         Move.SetAblePlayer = true;
         dialogueUI.SetActive(false);
         DialogueEnd = false;
         if(SwitchTo != "")
         {
+            Debug.Log(SwitchTo);
             GameObject.FindGameObjectWithTag(SwitchTo).GetComponent<DialogueTrigger>().TriggerDialogue();
             SwitchTo = "";
         }
