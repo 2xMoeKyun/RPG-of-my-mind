@@ -23,7 +23,7 @@ public class NPC : MonoBehaviour
     {
         if (npcDialogue && !DialogueManager.DialogueEnd )
         {
-            if (transform.GetChildCount() == getDialogue)
+            if (transform.GetChild(0).GetChildCount() == getDialogue)
             {
                 getDialogue = 0;
                 EndOfCountDialogue = true;
@@ -31,12 +31,11 @@ public class NPC : MonoBehaviour
             }
             else
             {
-                transform.GetChild(getDialogue).GetComponent<DialogueTrigger>().TriggerDialogue();
+                transform.GetChild(0).GetChild(getDialogue).GetComponent<DialogueTrigger>().TriggerDialogue();
                 getDialogue++;
                 DialogueManager.SwitchesCount++;
                 if (DialogueManager.SwitchesCount == 1 || DialogueManager.SwitchesCount == 3)
                 {
-                   
                     DialogueManager.SwitchTo = "Player";
                 }
             }
@@ -88,12 +87,12 @@ public class NPC : MonoBehaviour
         if (transform.position.x < pointsToGo[currentIndex].position.x) // vpravo
         {
             transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
-            GetComponent<SpriteRenderer>().flipX = false;
+            GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
         }
         else
         {
             transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
-            GetComponent<SpriteRenderer>().flipX = true;
+            GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
         }
         if (Vector2.Distance(transform.position, pointsToGo[currentIndex].position) < 0.3f)
         {
@@ -103,17 +102,7 @@ public class NPC : MonoBehaviour
 
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Player") && !EndOfCountDialogue)
-    //    {
-    //        collision.GetComponent<Move>().DisablePlayer();
-    //    }
-    //    if(collision.CompareTag("Player") && EndOfCountDialogue)
-    //    {
-    //        collision.GetComponent<Move>().AblePlayer();
-    //    }
-    //}
+
 
     private void OnTriggerStay2D(Collider2D collision)
     {

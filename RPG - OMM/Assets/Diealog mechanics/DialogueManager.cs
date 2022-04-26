@@ -69,7 +69,7 @@ public class DialogueManager : MonoBehaviour
         if(SwitchTo != "")
         {
             Debug.Log(SwitchTo);
-            GameObject.FindGameObjectWithTag(SwitchTo).GetComponent<DialogueTrigger>().TriggerDialogue();
+            GameObject.FindGameObjectWithTag(SwitchTo).transform.GetChild(0).GetChild(0).GetComponent<DialogueTrigger>().TriggerDialogue();
             SwitchTo = "";
         }
     }

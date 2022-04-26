@@ -10,6 +10,7 @@ public class Move : MonoBehaviour
     public static Animation playerAnimation;
     public static Rigidbody2D playerRb;
     private BoxCollider2D playerCollider;
+    //
     public float maxSpeed = 3f;
     public float Jforce = 6f;
     private float Xmove;
@@ -24,14 +25,21 @@ public class Move : MonoBehaviour
     }
 
     public static bool playerDialogue;
+    public static int getDialogue;
     void Update()
     {
-        if (playerDialogue)
+        if(transform.GetChild(0).GetChildCount() == getDialogue)
         {
-            GetComponent<DialogueTrigger>().TriggerDialogue();
+            getDialogue = 0;
+        }
+        else if (playerDialogue && !DialogueManager.DialogueEnd )
+        {
+            transform.GetChild(0).GetChild(getDialogue).GetComponent<DialogueTrigger>().TriggerDialogue();
+            getDialogue++;
             DialogueManager.SwitchesCount++;
             if (DialogueManager.SwitchesCount == 2)
             {
+                Debug.Log("worked");
                 DialogueManager.SwitchTo = "Rock";
             }
         }
