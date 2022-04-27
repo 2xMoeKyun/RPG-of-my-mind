@@ -143,3 +143,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   loadSceneNumber: 1
+  Objects:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

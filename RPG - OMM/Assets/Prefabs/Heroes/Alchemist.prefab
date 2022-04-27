@@ -152,6 +152,55 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec7b04f8d6cc228478152c0844b77db4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1275354880
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1275354881}
+  - component: {fileID: 1275354882}
+  m_Layer: 10
+  m_Name: Dialogue_0
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1275354881
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275354880}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7678912309566556603}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1275354882
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1275354880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a986f9590ee468c478353d4c6815dd51, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dm: {fileID: 0}
+  dialogue:
+    name: Meruem
+    sentences:
+    - I'm a traveler
+    - I've met a lot of monsters recently, and I could use some equipment.
 --- !u!1 &1656863677
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +280,6 @@ GameObject:
   - component: {fileID: 847221566758345925}
   - component: {fileID: 246290079}
   - component: {fileID: 246290086}
-  - component: {fileID: 246290088}
   m_Layer: 10
   m_Name: Alchemist
   m_TagString: Player
@@ -483,24 +531,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   Tag: Enemy
---- !u!114 &246290088
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 157811904667305704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a986f9590ee468c478353d4c6815dd51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dm: {fileID: 0}
-  dialogue:
-    name: Meruem
-    sentences:
-    - I'm a traveler
-    - I've met a lot of monsters recently, and I could use some equipment.
 --- !u!1 &1086461752419503022
 GameObject:
   m_ObjectHideFlags: 0
@@ -714,7 +744,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1275354881}
   m_Father: {fileID: 2812209618322345450}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
