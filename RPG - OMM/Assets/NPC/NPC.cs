@@ -21,10 +21,11 @@ public class NPC : MonoBehaviour
     public static bool EndOfCountDialogue;
     private void Update()
     {
-        if (npcDialogue && !DialogueManager.DialogueEnd )
+        if (npcDialogue && !DialogueManager.DialogueEnd)
         {
             if (transform.GetChild(0).GetChildCount() == getDialogue)
             {
+                Debug.Log("enddialogue");
                 getDialogue = 0;
                 EndOfCountDialogue = true;
                 npcDialogue = false;
@@ -33,10 +34,15 @@ public class NPC : MonoBehaviour
             {
                 transform.GetChild(0).GetChild(getDialogue).GetComponent<DialogueTrigger>().TriggerDialogue();
                 getDialogue++;
-                DialogueManager.SwitchesCount++;
-                if (DialogueManager.SwitchesCount == 1 || DialogueManager.SwitchesCount == 3)
+                if(transform.tag == "Rock")
+                {
+                    DialogueManager.SwitchesCount++;
+                }
+                
+                if (DialogueManager.SwitchesCount == 1 || DialogueManager.SwitchesCount == 3 )
                 {
                     DialogueManager.SwitchTo = "Player";
+                    Debug.Log("work");
                 }
             }
         }
@@ -104,16 +110,5 @@ public class NPC : MonoBehaviour
 
 
 
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player") && !EndOfCountDialogue)
-        {
-            npcDialogue = true;
-            collision.GetComponent<Move>().DisablePlayer();
-        }
-        else if(collision.CompareTag("Player") && EndOfCountDialogue)
-        {
-            collision.GetComponent<Move>().AblePlayer();
-        }
-    }
+ 
 }

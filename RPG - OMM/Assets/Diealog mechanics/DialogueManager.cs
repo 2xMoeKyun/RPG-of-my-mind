@@ -17,8 +17,8 @@ public class DialogueManager : MonoBehaviour
 
     public void StartDialogue(Dialogue dialogue)
     {
-        Debug.Log("dfsfdsfs");
         Move.SetAblePlayer = false;
+        Debug.Log("dfsfdsfs");
         NPC.npcDialogue = false;
         Move.playerDialogue = false;
         DialogueEnd = true;
@@ -62,15 +62,14 @@ public class DialogueManager : MonoBehaviour
     public static bool DialogueEnd;
     private void EndDialogue()
     {
-        
         Move.SetAblePlayer = true;
         dialogueUI.SetActive(false);
         DialogueEnd = false;
-        if(SwitchTo != "")
+        if(SwitchTo != null)
         {
             Debug.Log(SwitchTo);
             GameObject.FindGameObjectWithTag(SwitchTo).transform.GetChild(0).GetChild(0).GetComponent<DialogueTrigger>().TriggerDialogue();
-            SwitchTo = "";
+            SwitchTo = null;
         }
     }
 }

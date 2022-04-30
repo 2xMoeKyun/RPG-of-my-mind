@@ -26,8 +26,14 @@ public class Move : MonoBehaviour
 
     public static bool playerDialogue;
     public static int getDialogue;
+    public static bool fUsed;
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.F) && !fUsed)
+        {
+            fUsed = true;
+            StartCoroutine(Fcooldown());
+        }
         if(transform.GetChild(0).GetChildCount() == getDialogue)
         {
             getDialogue = 0;
@@ -37,13 +43,13 @@ public class Move : MonoBehaviour
             transform.GetChild(0).GetChild(getDialogue).GetComponent<DialogueTrigger>().TriggerDialogue();
             getDialogue++;
             DialogueManager.SwitchesCount++;
-            if (DialogueManager.SwitchesCount == 2)
-            {
-                Debug.Log("worked");
-                DialogueManager.SwitchTo = "Rock";
-            }
+            //if (DialogueManager.SwitchesCount == 2 && DTriggerObject.parentName == "Rock")
+            //{
+            //    DialogueManager.SwitchTo = "Rock";
+            //}
         }
        
+
         GroundCheck();
         WallCheck();
         if ((Input.GetKeyDown(KeyCode.LeftControl) || isSitting) && CanSit)
@@ -61,7 +67,9 @@ public class Move : MonoBehaviour
             if (CanMove)
             {
                 MoveX();
-            }
+            } 
+
+           
             if (CanJump && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_end"))
             {
 
@@ -77,10 +85,17 @@ public class Move : MonoBehaviour
 
     }
 
+
+    private IEnumerator Fcooldown()
+    {
+        yield return new WaitForSeconds(0.1f);
+        fUsed =false;
+    }
+
     public static bool SetAblePlayer = true;
     public void DisablePlayer()
     {
-        // P.S. Если в момент срабатывания функции песронаж прыгнул, то запрет прыжка находится в функции, которая выхывается в конце прыжка
+        // P.S. Если в момент срабатывания функции песронаж прыгнул, то запрет прыжка находится в функции, которая вызывается в конце прыжка
         // Т.к. функция прыжка не может работать без апдейта(там же включения прыжка)
         if (!IsJump)
         {
@@ -96,6 +111,10 @@ public class Move : MonoBehaviour
 
     public void AblePlayer()
     {
+        if (SetAblePlayer)
+        {
+            CanJump = true;
+        }
         CanAttack = true;
         CanMove = true;
         CanSit = true;
@@ -181,6 +200,7 @@ public class Move : MonoBehaviour
     
     public void Jump()// вызывается в апдейте
     {
+
         if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && !startJump && isGrounded)
         {
             IsJump = true;
@@ -210,10 +230,7 @@ public class Move : MonoBehaviour
         {
             CanJump = false;
         }
-        else
-        {
-            CanJump = true;
-        }
+        
     }
     #endregion
 
