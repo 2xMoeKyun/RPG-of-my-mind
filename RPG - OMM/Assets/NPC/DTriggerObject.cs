@@ -9,10 +9,11 @@ public class DTriggerObject : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        Debug.Log("ontrgg");
+
         if (collision.CompareTag("Player") && !NPC.EndOfCountDialogue && Move.fUsed)
         {
             NPC.npcDialogue = true;
+            transform.parent.GetComponent<NPC>().isDialogue = true;
             parentName = transform.parent.name;
             collision.GetComponent<Move>().DisablePlayer();
         }

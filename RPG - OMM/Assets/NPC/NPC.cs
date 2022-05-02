@@ -16,29 +16,38 @@ public class NPC : MonoBehaviour
         
     }
 
+    //
+    public static bool firstLevel = true;
+    //
+
     public static bool npcDialogue;
     public static int getDialogue;
     public static bool EndOfCountDialogue;
+    public bool isDialogue;
     private void Update()
     {
-        if (npcDialogue && !DialogueManager.DialogueEnd)
+        if (npcDialogue && !DialogueManager.DialogueEnd && isDialogue)
         {
-            if (transform.GetChild(0).GetChildCount() == getDialogue)
+            if (transform.GetChild(0).GetChildCount() == getDialogue )
             {
                 Debug.Log("enddialogue");
                 getDialogue = 0;
                 EndOfCountDialogue = true;
                 npcDialogue = false;
+                isDialogue = false;
+                if (transform.name != "Rock" )
+                {
+                    StartCoroutine(ReloadDialogue());
+                }
             }
             else
             {
                 transform.GetChild(0).GetChild(getDialogue).GetComponent<DialogueTrigger>().TriggerDialogue();
                 getDialogue++;
-                if(transform.tag == "Rock")
+                if(transform.tag == "Rock" && firstLevel)
                 {
                     DialogueManager.SwitchesCount++;
                 }
-                
                 if (DialogueManager.SwitchesCount == 1 || DialogueManager.SwitchesCount == 3 )
                 {
                     DialogueManager.SwitchTo = "Player";
@@ -56,6 +65,14 @@ public class NPC : MonoBehaviour
             Follow();
         }
     }
+
+
+    private IEnumerator ReloadDialogue()
+    {
+        yield return new WaitForSeconds(0.2f);
+        EndOfCountDialogue = false;
+    }
+
 
 
     private void SpecialAnimation()
@@ -93,12 +110,13 @@ public class NPC : MonoBehaviour
         if (transform.position.x < pointsToGo[currentIndex].position.x) // vpravo
         {
             transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
-            GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
+            GetComponent<SpriteRenderer>().flipX = false;
+            Debug.Log(GetComponent<SpriteRenderer>().flipX);
         }
         else
         {
             transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
-            GetComponent<SpriteRenderer>().flipX = !GetComponent<SpriteRenderer>().flipX;
+            GetComponent<SpriteRenderer>().flipX = true;
         }
         if (Vector2.Distance(transform.position, pointsToGo[currentIndex].position) < 0.3f)
         {
