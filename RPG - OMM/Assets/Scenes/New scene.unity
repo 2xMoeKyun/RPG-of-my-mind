@@ -23147,7 +23147,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 510515577}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 104.74461, y: 2.2035708, z: 5.939653}
+  m_LocalPosition: {x: 104.68, y: 2.2035708, z: 5.939653}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1856926471}
@@ -47699,7 +47699,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2094756460}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 106.27461, y: 1.9635708, z: 5.939653}
+  m_LocalPosition: {x: 106.45, y: 1.9635708, z: 5.939653}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children: []
   m_Father: {fileID: 1856926471}
@@ -49329,11 +49329,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4004317798506387214, guid: 8ed248f94ff922949b440e52103d102b, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 77.118
+      value: 86.8
       objectReference: {fileID: 0}
     - target: {fileID: 4004317798506387214, guid: 8ed248f94ff922949b440e52103d102b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.08325
+      value: 1.78125
       objectReference: {fileID: 0}
     - target: {fileID: 4004317798506387214, guid: 8ed248f94ff922949b440e52103d102b, type: 3}
       propertyPath: m_LocalPosition.z
@@ -49459,11 +49459,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4716726843925203926, guid: 1f9e6ebacc502f748a19c4f3601cc035, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 77.118
+      value: 86.8
       objectReference: {fileID: 0}
     - target: {fileID: 4716726843925203926, guid: 1f9e6ebacc502f748a19c4f3601cc035, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 3.08325
+      value: 1.78125
       objectReference: {fileID: 0}
     - target: {fileID: 4716726843925203926, guid: 1f9e6ebacc502f748a19c4f3601cc035, type: 3}
       propertyPath: m_LocalPosition.z
@@ -49516,7 +49516,11 @@ PrefabInstance:
       objectReference: {fileID: 565569687}
     - target: {fileID: 4999117049532725029, guid: 46a70235de5e3954f9876302db33b2d2, type: 3}
       propertyPath: m_Name
-      value: Rock(NPC)
+      value: Rock
+      objectReference: {fileID: 0}
+    - target: {fileID: 4999117049532725032, guid: 46a70235de5e3954f9876302db33b2d2, type: 3}
+      propertyPath: m_SortingOrder
+      value: 19
       objectReference: {fileID: 0}
     - target: {fileID: 4999117049532725039, guid: 46a70235de5e3954f9876302db33b2d2, type: 3}
       propertyPath: m_RootOrder
@@ -49601,11 +49605,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2812209618322345450, guid: 8bf2656ddadfbc748a79866543a05227, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 77.118
+      value: 86.8
       objectReference: {fileID: 0}
     - target: {fileID: 2812209618322345450, guid: 8bf2656ddadfbc748a79866543a05227, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.802
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 2812209618322345450, guid: 8bf2656ddadfbc748a79866543a05227, type: 3}
       propertyPath: m_LocalPosition.z

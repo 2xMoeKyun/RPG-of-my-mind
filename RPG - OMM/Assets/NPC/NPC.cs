@@ -19,40 +19,50 @@ public class NPC : MonoBehaviour
     //
     public static bool firstLevel = true;
     //
-
+    
     public static bool npcDialogue;
-    public static int getDialogue;
-    public static bool EndOfCountDialogue;
+    private int getDialogue;
+    public bool EndOfCountDialogue;
     public bool isDialogue;
     private void Update()
     {
-        if (npcDialogue && !DialogueManager.DialogueEnd && isDialogue)
+        
+        if (npcDialogue && !DialogueManager.DialogueEnd && isDialogue )
         {
-            if (transform.GetChild(0).GetChildCount() == getDialogue )
+
+            if (transform.GetChild(0).GetChildCount() == getDialogue)
             {
-                Debug.Log("enddialogue");
                 getDialogue = 0;
                 EndOfCountDialogue = true;
                 npcDialogue = false;
                 isDialogue = false;
-                if (transform.name != "Rock" )
+                if (transform.name != "Rock")
                 {
+                    Debug.Log("Rockwtf");
                     StartCoroutine(ReloadDialogue());
                 }
             }
+
             else
             {
+                Debug.Log("Getdial" + getDialogue);
                 transform.GetChild(0).GetChild(getDialogue).GetComponent<DialogueTrigger>().TriggerDialogue();
                 getDialogue++;
-                if(transform.tag == "Rock" && firstLevel)
+
+                if (transform.tag == "Rock" && firstLevel)
                 {
                     DialogueManager.SwitchesCount++;
                 }
-                if (DialogueManager.SwitchesCount == 1 || DialogueManager.SwitchesCount == 3 )
+                if (DialogueManager.SwitchesCount == 1)
                 {
                     DialogueManager.SwitchTo = "Player";
                     Debug.Log("work");
                 }
+                else if (DialogueManager.SwitchesCount == 3)
+                {
+                    DialogueManager.SwitchTo = "Rock";
+                }
+
             }
         }
         if (setSpecialAnimation)
@@ -62,6 +72,7 @@ public class NPC : MonoBehaviour
         }
         if (!stopFollow && pointsToGo[0] != null)
         {
+            EndOfCountDialogue = true;
             Follow();
         }
     }
@@ -100,6 +111,7 @@ public class NPC : MonoBehaviour
         }
         else
         {
+            EndOfCountDialogue = false;
             return;
         }
     }

@@ -12,7 +12,7 @@ public class SituativeScript : MonoBehaviour // this sript must be component of 
     private bool npcGo;
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (Move.SetAblePlayer && npcGo)
+        if (Move.SetAblePlayer && npcGo )
         {
             transform.parent.GetComponent<NPC>().pointsToGo[0] = point.transform;
             transform.parent.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
@@ -23,12 +23,13 @@ public class SituativeScript : MonoBehaviour // this sript must be component of 
             Destroy(deleteDialogue.gameObject);
             Destroy(this);
         }
-        if (srabotalo)
+        if (srabotalo /*&& ManagerScene.SceneSwitch*/)
         {
             NPC.firstLevel = false;
             point.SetActive(true);
             Move.fUsed = true;
             srabotalo = false;
+            ManagerScene.SceneSwitch = false;
             StartCoroutine(NPCGO());
         }
 

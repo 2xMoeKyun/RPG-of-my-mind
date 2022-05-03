@@ -65,10 +65,20 @@ public class DialogueManager : MonoBehaviour
         Move.SetAblePlayer = true;
         dialogueUI.SetActive(false);
         DialogueEnd = false;
-        if(SwitchTo != null)
+        Debug.Log(SwitchTo);
+        if (SwitchTo != null)
         {
-            Debug.Log(SwitchTo);
-            GameObject.FindGameObjectWithTag(SwitchTo).transform.GetChild(0).GetChild(0).GetComponent<DialogueTrigger>().TriggerDialogue();
+            
+            if (GameObject.FindGameObjectWithTag(SwitchTo).tag == "Player")
+            {
+                Move.playerDialogue = true;
+            }
+            else
+            {
+
+                NPC.npcDialogue = true;
+            }
+            
             SwitchTo = null;
         }
     }

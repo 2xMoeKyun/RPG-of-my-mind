@@ -25,31 +25,31 @@ public class Move : MonoBehaviour
     }
 
     public static bool playerDialogue;
-    public static int getDialogue;
+    private int getDialogue;
     public static bool fUsed;
+    public static bool CanInteract = true;
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F) && !fUsed)
+        if (Input.GetKeyDown(KeyCode.F) && !fUsed && CanInteract)
         {
             fUsed = true;
             StartCoroutine(Fcooldown());
         }
         if(transform.GetChild(0).GetChildCount() == getDialogue)
         {
-            getDialogue = 0;
+            playerDialogue = false;
         }
         else if (playerDialogue && !DialogueManager.DialogueEnd )
         {
+            DialogueManager.SwitchesCount++;
+            Debug.Log(DialogueManager.SwitchesCount);
+            if (DialogueManager.SwitchesCount == 2 )
+            {
+                DialogueManager.SwitchTo = "Rock";
+            }
             transform.GetChild(0).GetChild(getDialogue).GetComponent<DialogueTrigger>().TriggerDialogue();
             getDialogue++;
-            DialogueManager.SwitchesCount++;
-            //if (DialogueManager.SwitchesCount == 2 && DTriggerObject.parentName == "Rock")
-            //{
-            //    DialogueManager.SwitchTo = "Rock";
-            //}
         }
-       
-
         GroundCheck();
         WallCheck();
         if ((Input.GetKeyDown(KeyCode.LeftControl) || isSitting) && CanSit)
@@ -96,8 +96,8 @@ public class Move : MonoBehaviour
     public void DisablePlayer()
     {
         // P.S. Если в момент срабатывания функции песронаж прыгнул, то запрет прыжка находится в функции, которая вызывается в конце прыжка
-        // Т.к. функция прыжка не может работать без апдейта(там же включения прыжка)
-        if (!IsJump)
+        // Т.к. функция прыжка не может работать без апдейта
+        if (!IsJump && !startJump)
         {
             CanJump = false;
         }
