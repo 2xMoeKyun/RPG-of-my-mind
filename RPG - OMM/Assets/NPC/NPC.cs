@@ -9,27 +9,31 @@ public class NPC : MonoBehaviour
     private int currentIndex = 0;
     public float speed;
     public static bool setSpecialAnimation;
-
     private void Start()
     {
         anim = GetComponent<Animator>();
-        
     }
 
     //
     public static bool firstLevel = true;
     //
-    
+    //Dialogue
     public static bool npcDialogue;
     private int getDialogue;
     public bool EndOfCountDialogue;
     public bool isDialogue;
+    //Trade
+    public bool CanTrade = true;
+    public bool trade;
+
+
     private void Update()
     {
-        
+
+
+        #region Dialogue
         if (npcDialogue && !DialogueManager.DialogueEnd && isDialogue )
         {
-
             if (transform.GetChild(0).GetChildCount() == getDialogue)
             {
                 getDialogue = 0;
@@ -38,13 +42,17 @@ public class NPC : MonoBehaviour
                 isDialogue = false;
                 if (transform.name != "Rock")
                 {
-                    Debug.Log("Rockwtf");
                     StartCoroutine(ReloadDialogue());
+                }
+                if (CanTrade)
+                {
+                    trade = true;
                 }
             }
 
             else
             {
+                
                 Debug.Log("Getdial" + getDialogue);
                 transform.GetChild(0).GetChild(getDialogue).GetComponent<DialogueTrigger>().TriggerDialogue();
                 getDialogue++;
@@ -65,6 +73,7 @@ public class NPC : MonoBehaviour
 
             }
         }
+        #endregion
         if (setSpecialAnimation)
         {
             anim.SetBool("Walk", false);

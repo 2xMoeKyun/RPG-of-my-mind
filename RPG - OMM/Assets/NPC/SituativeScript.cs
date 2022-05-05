@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SituativeScript : MonoBehaviour // this sript must be component of Rock's(NPC) child(DTrigger)
+public class SituativeScript : MonoBehaviour // this sript must be component of Rock(NPC)'s child(DTrigger)
 {
     public GameObject point;
     public GameObject deleteDialogue;
@@ -17,14 +17,13 @@ public class SituativeScript : MonoBehaviour // this sript must be component of 
             transform.parent.GetComponent<NPC>().pointsToGo[0] = point.transform;
             transform.parent.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             transform.parent.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
-
             parentThisDialogue.transform.SetParent(transform.parent.GetChild(0).transform);
-            Debug.Log("doshlo");
             Destroy(deleteDialogue.gameObject);
             Destroy(this);
         }
-        if (srabotalo /*&& ManagerScene.SceneSwitch*/)
+        if (srabotalo /*&& ManagerScene.SceneSwitch*/)//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
+            transform.parent.GetComponent<NPC>().CanTrade = false;
             NPC.firstLevel = false;
             point.SetActive(true);
             Move.fUsed = true;

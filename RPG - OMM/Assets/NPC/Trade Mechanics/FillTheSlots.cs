@@ -5,20 +5,24 @@ using UnityEngine;
 public class FillTheSlots : MonoBehaviour
 {
     private SlotManager sm;
-    public GameObject currentSlot;
+    private Bag bag;
     private void Start()
     {
         sm = GetComponent<SlotManager>();
+        bag = GameObject.FindGameObjectWithTag("Bag").GetComponent<Bag>();
     }
   
-    public void Fill()
+    public void Fill()// width = 51 height = 65
     {
+        Debug.Log("Cycelfor");
         for (int i = 0; i < sm.Slots.Length; i++)
         {
+            
             if (sm.isSlotFull[i] == false)
             {
+                
                 sm.isSlotFull[i] = true;
-                Instantiate(currentSlot, sm.Slots[i].transform);
+                Instantiate(bag.BagSlots[i], sm.Slots[i].transform);
                 break;
             }
         }
