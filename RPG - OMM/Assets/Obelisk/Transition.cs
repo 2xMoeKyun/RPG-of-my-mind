@@ -12,16 +12,24 @@ public class Transition : MonoBehaviour
     public GameObject[] Objects;
 
     private Bag bag;
-
+    private Inventory inventory;
+    private Coins coins;
     private void Start()
     {
         bag = GameObject.FindGameObjectWithTag("Bag").GetComponent<Bag>();
         TransitionManager._bagSlots = new RectTransform[bag.BagSlots.Length];
         TransitionManager._isBagFull = new bool[bag.isBagFull.Length];
+
+        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        TransitionManager._slots = new RectTransform[inventory.slots.Length];
+        TransitionManager._isFull = new bool[inventory.isFull.Length];
+
+        coins = GameObject.FindGameObjectWithTag("Player").GetComponent<Coins>();
     }
 
     public void TransitPlayerSaves()
     {
+        //saving bag items
         for (int i = 0; i < bag.BagSlots.Length; i++)
         {
             if (TransitionManager._isBagFull[i] == false && bag.BagSlots[i].transform.GetChildCount() == 2)
@@ -31,6 +39,21 @@ public class Transition : MonoBehaviour
                 TransitionManager._isBagFull[i] = true;
                 Debug.Log(TransitionManager._bagSlots[0] == null);
             }
+        }
+        //saving inventory items
+        for (int i = 0; i < inventory.slots.Length; i++)
+        {
+            if (TransitionManager._isFull[i] == false && inventory.slots[i].transform.GetChildCount() == 2)
+            {
+                TransitionManager._slots[i] =  Instantiate(inventory.slots[i].transform.GetChild(1)) as RectTransform;
+                TransitionManager._isFull[i] = true;
+            }
+        }
+        //saving coins count
+        if (coins.coinsCount != 0)
+        {
+            TransitionManager._coinsCount = coins.coinsCount;
+            Debug.Log(TransitionManager._coinsCount);
         }
     }
 

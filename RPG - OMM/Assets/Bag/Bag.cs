@@ -17,6 +17,22 @@ public class Bag : MonoBehaviour
             SlotsAtcive();
         }
     }
+
+
+    public void TakeItem(GameObject Item)
+    {
+        for (int i = 0; i < BagSlots.Length; i++)
+        {
+            if (isBagFull[i] == false)
+            {
+                isBagFull[i] = true;
+                Instantiate(Item, BagSlots[i].transform);
+                break;
+            }
+        }
+    }
+
+
     public void SlotsAtcive()
     {
         isActive = !isActive;

@@ -13,8 +13,13 @@ public class Coins : MonoBehaviour
         if (collision.CompareTag("Coin"))
         {
             coinsCount++;
-            T.text = coinsCount.ToString();
+            UpdateCoinsCount(coinsCount);
             collision.gameObject.SetActive(false);
         }
+    }
+
+    public void UpdateCoinsCount(int coinsCount)
+    {
+        T.text = coinsCount.ToString();
     }
 }
