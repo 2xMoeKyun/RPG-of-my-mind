@@ -1,10 +1,15 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public static class TransitionManager
 {
     public static bool isTransit;
     public  static GameObject[] gameObjects;
+
+    //situative scr
+    public static bool SceneSwitch;
+
+    //Bag
+    public static bool[] _isBagFull;
+    public static RectTransform[] _bagSlots;
 
 }

@@ -28,7 +28,7 @@ public class SituativeScript : MonoBehaviour // this sript must be component of 
             point.SetActive(true);
             Move.fUsed = true;
             srabotalo = false;
-            ManagerScene.SceneSwitch = false;
+            TransitionManager.SceneSwitch = false;
             StartCoroutine(NPCGO());
         }
 

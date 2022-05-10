@@ -16,6 +16,7 @@ TagManager:
   - Rock
   - Vagner
   - Bag
+  - DontDestroy
   layers:
   - Default
   - TransparentFX

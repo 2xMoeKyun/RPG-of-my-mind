@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class Rainbow : MonoBehaviour
 {
     public float rainbowSpeed;
-
+    public bool Image;
+    public bool Text;
 
     private float hue;
     private float saturation;
@@ -16,7 +17,14 @@ public class Rainbow : MonoBehaviour
 
     private void Update()
     {
-        Color.RGBToHSV(GetComponent<Image>().color, out hue, out saturation, out brightness);
+        if (Image)
+        {
+            Color.RGBToHSV(GetComponent<Image>().color, out hue, out saturation, out brightness);
+        }
+        else if (Text)
+        {
+            Color.RGBToHSV(GetComponent<Text>().color, out hue, out saturation, out brightness);
+        }
         hue += rainbowSpeed / 10000;
         if(hue >= 1)
         {
@@ -24,7 +32,13 @@ public class Rainbow : MonoBehaviour
         }
         saturation = 1;
         brightness = 1;
-
-        GetComponent<Image>().color = Color.HSVToRGB(hue, saturation, brightness);
+        if (Image)
+        {
+            GetComponent<Image>().color = Color.HSVToRGB(hue, saturation, brightness);
+        }
+        else if (Text)
+        {
+            GetComponent<Text>().color = Color.HSVToRGB(hue, saturation, brightness);
+        }
     }
 }
