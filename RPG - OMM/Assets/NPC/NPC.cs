@@ -132,7 +132,6 @@ public class NPC : MonoBehaviour
         {
             transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
             GetComponent<SpriteRenderer>().flipX = false;
-            Debug.Log(GetComponent<SpriteRenderer>().flipX);
         }
         else
         {

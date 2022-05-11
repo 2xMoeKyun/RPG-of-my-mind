@@ -18,10 +18,11 @@ public class SituativeScript : MonoBehaviour // this sript must be component of 
             transform.parent.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.None;
             transform.parent.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePositionY;
             parentThisDialogue.transform.SetParent(transform.parent.GetChild(0).transform);
+            transform.parent.GetComponent<NPC>().CanTrade = true;
             Destroy(deleteDialogue.gameObject);
             Destroy(this);
         }
-        if (srabotalo /*&& ManagerScene.SceneSwitch*/)//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (srabotalo /*&& TransitionManager.SceneSwitch*/)//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             transform.parent.GetComponent<NPC>().CanTrade = false;
             NPC.firstLevel = false;

@@ -19,13 +19,14 @@ public class Bag : MonoBehaviour
     }
 
 
-    public void TakeItem(GameObject Item)
+    public void TakeItem(GameObject Item)// BuyItem
     {
         for (int i = 0; i < BagSlots.Length; i++)
         {
             if (isBagFull[i] == false)
             {
                 isBagFull[i] = true;
+                Item.SetActive(true);
                 Instantiate(Item, BagSlots[i].transform);
                 break;
             }

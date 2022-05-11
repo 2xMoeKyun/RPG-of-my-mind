@@ -12,6 +12,7 @@ public class BuyItem : MonoBehaviour
     [Header("Other")]
     public Text coinText;
     public GameObject buyButton;
+    public Text playerCoins;
 
     private Bag bag;
     public SlotManager sm;
@@ -35,6 +36,7 @@ public class BuyItem : MonoBehaviour
         {
             coins.coinsCount -= Cost;
             coins.UpdateCoinsCount(coins.coinsCount);
+            playerCoins.text = coins.coinsCount.ToString();
 
             bag.TakeItem(Item);
             for (int i = 0; i < bag.BagSlots.Length; i++)
@@ -45,8 +47,7 @@ public class BuyItem : MonoBehaviour
                     tempItem.sizeDelta = new Vector2(70, 83);
                     GameObject TemporaryItem = Instantiate(Item, sm.Slots[i].transform);
                     TemporaryItem.SetActive(true);
-                    
-                    
+                    Item.SetActive(false);
                     sm.isSlotFull[i] = true;
                     break;
                 }
