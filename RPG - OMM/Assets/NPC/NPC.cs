@@ -24,7 +24,7 @@ public class NPC : MonoBehaviour
     public bool isDialogue;
     //Trade
     public bool CanTrade = true;
-    public bool trade;
+    public static bool trade;
 
 
     private void Update()

@@ -17,6 +17,7 @@ TagManager:
   - Vagner
   - Bag
   - DontDestroy
+  - Sell
   layers:
   - Default
   - TransparentFX

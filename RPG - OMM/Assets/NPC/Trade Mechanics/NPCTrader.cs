@@ -32,6 +32,8 @@ public class NPCTrader : MonoBehaviour
     {
         tradeUI.SetActive(false);
         fts.UnFill();
+        DTriggerObject.reloadtrade = false;
+        NPC.trade = false;
         move.AblePlayer();
     }
 }

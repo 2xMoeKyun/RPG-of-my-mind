@@ -330,6 +330,8 @@ public class Move : MonoBehaviour
 
     private void RealoadSit()
     {
+        Coins.isSit = false;
+        Coins.isStay = true;
         playerCollider.enabled = true;
         AlternativeHitBox.SetActive(false);
         playerAnimator.SetBool("IdleSit", false);
@@ -351,6 +353,9 @@ public class Move : MonoBehaviour
 
     void MoveingSit()
     {
+        Coins.isStay = false;
+        Coins.isSit = true;
+
         if (Input.GetKeyDown(KeyCode.LeftControl) && !CanMove && !finish)
         {
             RealoadSit();
@@ -363,6 +368,7 @@ public class Move : MonoBehaviour
         playerCollider.enabled = false;
         //
         isSitting = true;
+        
         CanMove = false;
         playerAnimator.SetBool("IdleSit", true);
         XSit = Input.GetAxis("Horizontal");
