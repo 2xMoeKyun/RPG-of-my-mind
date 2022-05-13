@@ -21,6 +21,7 @@ public class NPCTrader : MonoBehaviour
 
     public void TradeTrigger()
     {
+        Debug.Log("Trade Active!");
         tradeUI.SetActive(true);
         fts.Fill();
         coinText.text = coins.coinsCount.ToString();

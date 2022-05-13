@@ -28,7 +28,7 @@ public class DTriggerObject : MonoBehaviour
             }
             if (NPC.trade && !reloadtrade && transform.name != "Rock")
             {
-                Debug.Log("vndfjkhgbjkdfgjkdfjgdfjkljgkdf");
+                Debug.Log( "CanTrade");
                 transform.parent.GetComponent<NPCTrader>().TradeTrigger();
                 reloadtrade = true;
             }

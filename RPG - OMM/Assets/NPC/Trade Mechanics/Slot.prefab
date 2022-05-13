@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: -7383829841323998199}
   m_Layer: 5
   m_Name: Slot
-  m_TagString: Untagged
+  m_TagString: SellItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -118,5 +118,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d6975d9cb0ad9a449269066abaf0e9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sellItem: []
-  totalCoins: 0
+  index: 0
+  isPressed: 0
+  sm: {fileID: 0}

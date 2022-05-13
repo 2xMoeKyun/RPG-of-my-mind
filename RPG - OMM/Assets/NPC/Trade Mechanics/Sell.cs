@@ -10,7 +10,7 @@ public class Sell : MonoBehaviour
     private Coins coins;
     private NPCTrader nPCTrader;
     private Bag bag;
-
+    public SlotManager sm;
     private void Start()
     {
         coins = GameObject.FindGameObjectWithTag("Player").GetComponent<Coins>();
@@ -23,6 +23,8 @@ public class Sell : MonoBehaviour
         {
             if (SellItem.isActive[i] == true)
             {
+                sm.isSlotFull[i] = false;
+                SellItem.isPresseds[i] = 3;
                 //
                 Destroy(SellItem.sellItem[i].transform.GetChild(0).gameObject);
                 SellItem.sellItem[i].GetComponent<Image>().color = new Color32(91, 88, 88, 255);

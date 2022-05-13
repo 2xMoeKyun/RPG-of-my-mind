@@ -18,6 +18,7 @@ TagManager:
   - Bag
   - DontDestroy
   - Sell
+  - SellItem
   layers:
   - Default
   - TransparentFX

@@ -5,13 +5,13 @@ using UnityEngine.UI;
 
 public class FillTheSlots : MonoBehaviour
 {
-    private SlotManager sm;
-    private Bag bag;
+    public SlotManager sm;
+    public Bag bag;
     private RectTransform currentObject;
     private void Start()
     {
-        sm = GetComponent<SlotManager>();
-        bag = GameObject.FindGameObjectWithTag("Bag").GetComponent<Bag>();
+
+        //bag = GameObject.FindGameObjectWithTag("Bag").GetComponent<Bag>();
     }
 
     public void UnFill()
@@ -21,6 +21,10 @@ public class FillTheSlots : MonoBehaviour
             if (sm.isSlotFull[i] == true && bag.BagSlots[i].transform.GetChildCount() == 2)
             {
                 currentObject = bag.BagSlots[i].transform.GetChild(1).GetComponent<RectTransform>();
+                if(currentObject.sizeDelta.x - 51 <= 0)
+                {
+                    break;
+                }
                 currentObject.sizeDelta = new Vector2(currentObject.sizeDelta.x - 51, currentObject.sizeDelta.y - 65);
             }
         }
@@ -33,7 +37,7 @@ public class FillTheSlots : MonoBehaviour
         {
             for (int i = 0; i < bag.BagSlots.Length; i++)
             {
-                if (sm.isSlotFull[i] == false && bag.BagSlots[i].transform.GetChildCount() == 2)
+                if (sm.isSlotFull[i] == false && bag.BagSlots[i].transform.childCount == 2)
                 {
                     currentObject = bag.BagSlots[i].transform.GetChild(1).GetComponent<RectTransform>();
                     currentObject.sizeDelta = new Vector2(currentObject.sizeDelta.x + 51, currentObject.sizeDelta.y + 65);

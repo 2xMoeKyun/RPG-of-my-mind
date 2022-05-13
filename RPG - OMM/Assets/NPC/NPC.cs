@@ -29,11 +29,10 @@ public class NPC : MonoBehaviour
 
     private void Update()
     {
-
-
         #region Dialogue
         if (npcDialogue && !DialogueManager.DialogueEnd && isDialogue )
         {
+
             if (transform.GetChild(0).GetChildCount() == getDialogue)
             {
                 getDialogue = 0;
