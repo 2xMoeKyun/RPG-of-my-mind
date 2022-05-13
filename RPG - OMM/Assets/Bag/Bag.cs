@@ -27,6 +27,9 @@ public class Bag : MonoBehaviour
             {
                 isBagFull[i] = true;
                 Item.SetActive(true);
+
+                Item.GetComponent<RectTransform>().sizeDelta = new Vector2(Item.GetComponent<RectTransform>().sizeDelta.x - 51, Item.GetComponent<RectTransform>().sizeDelta.y - 65);
+
                 Instantiate(Item, BagSlots[i].transform);
                 break;
             }
