@@ -16,6 +16,7 @@ public class FillTheSlots : MonoBehaviour
 
     public void UnFill()
     {
+        Debug.Log("unfill");
         for (int i = 0; i < bag.BagSlots.Length; i++)
         {
             if (sm.isSlotFull[i] == true && bag.BagSlots[i].transform.GetChildCount() == 2)

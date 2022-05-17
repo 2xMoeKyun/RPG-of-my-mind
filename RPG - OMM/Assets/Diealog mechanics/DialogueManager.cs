@@ -18,7 +18,6 @@ public class DialogueManager : MonoBehaviour
     public void StartDialogue(Dialogue dialogue)
     {
         Move.SetAblePlayer = false;
-        Debug.Log("dfsfdsfs");
         NPC.npcDialogue = false;
         Move.playerDialogue = false;
         DialogueEnd = true;

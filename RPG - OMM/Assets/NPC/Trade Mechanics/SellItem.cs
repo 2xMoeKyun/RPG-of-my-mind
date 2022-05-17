@@ -15,29 +15,29 @@ public class SellItem : MonoBehaviour
 
     public bool isPressed;
 
-    private Sell sell;
+    public Sell sell;
     public SlotManager sm;
     private void Start()
     {
         sellItem = new GameObject[20];
         isActive = new bool[sellItem.Length];
         isPresseds = new int[sellItem.Length];
-        sell = GameObject.FindGameObjectWithTag("Sell").GetComponent<Sell>();
     }
 
 
 
     public void Sell()
     {
-        if(isPresseds[index] == 3)
+        sm.isSlotFull[index] = true;
+        if (isPresseds[index] == 3)
         {
             isPressed = false;
         }
         if (!isPressed && transform.GetChildCount() != 0)
         {
+            Debug.Log(1);
             isPresseds[index] = 1;
             isActive[index] = true;
-            sm.isSlotFull[index] = true;
             sellItem[index] = gameObject;
             sellItem[index].GetComponent<Image>().color = Color.red;
             totalCoins += sellItem[index].transform.GetChild(0).GetComponent<BagItemUI>().Cost;
@@ -46,9 +46,9 @@ public class SellItem : MonoBehaviour
         }
         else if(isPressed && transform.GetChildCount() != 0)
         {
+            Debug.Log(2);
             isPresseds[index] = 0;
             isActive[index] = false;
-            sm.isSlotFull[index] = false;
             sellItem[index].GetComponent<Image>().color = new Color32(91, 88, 88, 255);
             totalCoins -= sellItem[index].transform.GetChild(0).GetComponent<BagItemUI>().Cost;
             sellItem[index] = null;
