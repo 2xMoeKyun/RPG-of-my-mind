@@ -10,6 +10,7 @@ public class Move : MonoBehaviour
     public static Animation playerAnimation;
     public static Rigidbody2D playerRb;
     private BoxCollider2D playerCollider;
+    public GameObject pauseMenu;
     //
     public float maxSpeed = 3f;
     public float Jforce = 6f;
@@ -30,6 +31,12 @@ public class Move : MonoBehaviour
     public static bool CanInteract = true;
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            pauseMenu.SetActive(true);
+            Time.timeScale = 0f;
+        }
+
         if (Input.GetKeyDown(KeyCode.F) && !fUsed && CanInteract)
         {
             fUsed = true;
@@ -72,7 +79,13 @@ public class Move : MonoBehaviour
            
             if (CanJump && !playerAnimator.GetCurrentAnimatorStateInfo(0).IsName("Attack_end"))
             {
-
+                if (!isGrounded && !IsJump)
+                {
+                    Debug.Log("flu");
+                    RealoadSit();
+                    CanAttack = false;
+                    startJump = true;
+                }
                 Jump();
             }
             if (CanUse)
@@ -153,11 +166,16 @@ public class Move : MonoBehaviour
     }
     #endregion
 
+    public GameObject DeathUI;
     #region Death
     public void Death()
     {
-        Destroy(gameObject);
+        DeathUI.SetActive(true);
+        gameObject.SetActive(false);
     }
+
+
+
     #endregion
 
     void Dash()
@@ -197,11 +215,12 @@ public class Move : MonoBehaviour
         startJump = true;
         IsJump = false;
     }
-    
+
+
     public void Jump()// גûחûגאועסÿ ג אןהויעו
     {
 
-        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && !startJump && isGrounded)
+        if ((Input.GetKey(KeyCode.Space) || Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W)) && !startJump && isGrounded )
         {
             IsJump = true;
             RealoadSit();
@@ -214,6 +233,7 @@ public class Move : MonoBehaviour
             playerAnimator.SetBool("OnAir", true);
             onAirVal = true;
         }
+        
         else if (isGrounded && onAirVal && startJump)// םא חולכו
         {
             playerAnimator.SetBool("OnGround", true);
