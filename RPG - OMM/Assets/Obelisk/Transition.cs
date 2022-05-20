@@ -8,23 +8,25 @@ public class Transition : MonoBehaviour
 
     [Header("Scene index")]
     public int loadSceneNumber;
-    [Header("Move GameObjects To Scene")]
-    public GameObject[] Objects;
 
+    public GameObject player;
+    private Move move;
     private Bag bag;
     private Inventory inventory;
     private Coins coins;
     private void Start()
     {
+        move = player.GetComponent<Move>();
+
         bag = GameObject.FindGameObjectWithTag("Bag").GetComponent<Bag>();
         TransitionManager._bagSlots = new RectTransform[bag.BagSlots.Length];
         TransitionManager._isBagFull = new bool[bag.isBagFull.Length];
 
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        inventory = player.GetComponent<Inventory>();
         TransitionManager._slots = new RectTransform[inventory.slots.Length];
         TransitionManager._isFull = new bool[inventory.isFull.Length];
 
-        coins = GameObject.FindGameObjectWithTag("Player").GetComponent<Coins>();
+        coins = player.GetComponent<Coins>();
     }
 
     public void TransitPlayerSaves()
@@ -55,6 +57,11 @@ public class Transition : MonoBehaviour
             TransitionManager._coinsCount = coins.coinsCount;
             Debug.Log(TransitionManager._coinsCount);
         }
+
+        TransitionManager.playerAttack = player.GetComponent<Damage>().damage;
+        TransitionManager.playerHealth = player.GetComponent<Health>().health;
+        TransitionManager.jumpForce = move.Jforce;
+        TransitionManager.maxSpeed = move.maxSpeed;
     }
 
     public void TransitionTrigger(int number)

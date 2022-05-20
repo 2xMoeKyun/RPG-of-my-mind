@@ -5,6 +5,12 @@ public static class TransitionManager
     public static bool isTransit;
     public  static GameObject[] gameObjects;
 
+    //Player(and his components)
+    public static int playerAttack;
+    public static int playerHealth;
+    public static float jumpForce;
+    public static float maxSpeed;
+
     //situative scr
     public static bool SceneSwitch;
 

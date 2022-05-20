@@ -8,13 +8,12 @@ public class Sell : MonoBehaviour
     public Text totalCoins;
 
     private Coins coins;
-    private NPCTrader nPCTrader;
+    public NPCTrader nPCTrader;
     private Bag bag;
     public SlotManager sm;
     private void Start()
     {
         coins = GameObject.FindGameObjectWithTag("Player").GetComponent<Coins>();
-        nPCTrader = GameObject.FindGameObjectWithTag("Vagner").GetComponent<NPCTrader>();
         bag = GameObject.FindGameObjectWithTag("Bag").GetComponent<Bag>();
     }
     public void SellButtonClick()

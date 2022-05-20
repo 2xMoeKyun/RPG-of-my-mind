@@ -238,7 +238,6 @@ GameObject:
   - component: {fileID: 3942884902369924393}
   - component: {fileID: 6665842678502731438}
   - component: {fileID: 6733598609668956440}
-  - component: {fileID: 845385991}
   m_Layer: 0
   m_Name: Vagner
   m_TagString: Vagner
@@ -397,19 +396,3 @@ MonoBehaviour:
   EndOfCountDialogue: 0
   isDialogue: 0
   CanTrade: 1
---- !u!114 &845385991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8037328829280092658}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2d2c373652b9f2748a1ca4d4cfa9d866, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tradeUI: {fileID: 0}
-  mainThings: {fileID: 0}
-  fts: {fileID: 0}
-  coinText: {fileID: 0}

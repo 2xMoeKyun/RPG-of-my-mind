@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class SituativeScript : MonoBehaviour // this sript must be component of Rock(NPC)'s child(DTrigger)

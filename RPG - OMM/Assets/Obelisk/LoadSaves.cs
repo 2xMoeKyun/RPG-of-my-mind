@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class LoadSaves : MonoBehaviour
 {
+    public GameObject player;
+    private Move move;
     private Bag bag;
     private Inventory inventory;
     private Coins coins;
     private void Start()
     {
+        move = player.GetComponent<Move>();
+
         bag = GameObject.FindGameObjectWithTag("Bag").GetComponent<Bag>();
         
-        inventory = GameObject.FindGameObjectWithTag("Player").GetComponent<Inventory>();
+        inventory = player.GetComponent<Inventory>();
 
-        coins = GameObject.FindGameObjectWithTag("Player").GetComponent<Coins>();
+        coins = player.GetComponent<Coins>();
         Debug.Log(TransitionManager._coinsCount);
     }
 
@@ -71,6 +75,12 @@ public class LoadSaves : MonoBehaviour
             coins.UpdateCoinsCount(coins.coinsCount);
             TransitionManager._coinsCount = 0;
             TransitionManager.isTransit = false;
+
+            //Loading other components
+            player.GetComponent<Damage>().damage = TransitionManager.playerAttack;
+            player.GetComponent<Health>().health = TransitionManager.playerHealth;
+            move.Jforce = TransitionManager.jumpForce;
+            move.maxSpeed = TransitionManager.maxSpeed;
         }
     }
 }

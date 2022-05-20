@@ -111,12 +111,14 @@ public class Enemy : MonoBehaviour
     //
     #endregion
 
+
+    private bool CanTurn = true;
     void Follow()
     {
         anim.SetBool("Going", true);
-        if (transform.position.x < target.position.x) // vpravo
+        if (transform.position.x < target.position.x && CanTurn) // vpravo
         {
-            transform.position = new Vector2(transform.position.x + speed * Time.deltaTime, transform.position.y);
+            CanTurn = false;
             direction = 1;
             if (Slime)
             {
@@ -126,10 +128,12 @@ public class Enemy : MonoBehaviour
             {
                  GetComponent<SpriteRenderer>().flipX = false;
             }
+            StartCoroutine(FollowCD());
         }
-        else
+        else if(transform.position.x > target.position.x && CanTurn)
         {
-            transform.position = new Vector2(transform.position.x - speed * Time.deltaTime, transform.position.y);
+            CanTurn = false;
+            
             direction = -1;
             if (Slime)
             {
@@ -139,7 +143,16 @@ public class Enemy : MonoBehaviour
             {
                 GetComponent<SpriteRenderer>().flipX = true;
             }
+            StartCoroutine(FollowCD());
         }
+
+        transform.position = new Vector2(transform.position.x + (speed * direction) * Time.deltaTime, transform.position.y);
+    }
+
+    private IEnumerator FollowCD()
+    {
+        yield return new WaitForSeconds(0.3f);
+        CanTurn = true;
     }
 
 
