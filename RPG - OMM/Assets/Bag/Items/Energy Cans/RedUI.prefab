@@ -101,4 +101,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b26aab568b20d0a469f5dc2f18891c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Cost: 5
+  itemName: Red
+  Cost: 3

@@ -120,4 +120,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   index: 0
   isPressed: 0
+  sell: {fileID: 0}
   sm: {fileID: 0}

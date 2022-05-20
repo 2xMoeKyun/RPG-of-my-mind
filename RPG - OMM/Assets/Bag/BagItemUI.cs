@@ -4,5 +4,6 @@ using UnityEngine;
 
 public class BagItemUI : MonoBehaviour
 {
+    public string itemName;
     public int Cost;
 }
