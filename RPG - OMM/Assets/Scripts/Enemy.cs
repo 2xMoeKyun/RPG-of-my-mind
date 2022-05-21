@@ -23,6 +23,8 @@ public class Enemy : MonoBehaviour
     private bool CanAttack = true;
     //other
     public static float direction = 1;
+
+
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
@@ -105,7 +107,7 @@ public class Enemy : MonoBehaviour
 
     IEnumerator AfterAttack()
     {
-        yield return new WaitForSeconds(atkSpeed + 1f);
+        yield return new WaitForSeconds(atkSpeed + 0.5f);
         CanAttack = true;
     }
     //
@@ -170,7 +172,13 @@ public class Enemy : MonoBehaviour
     {
         GetComponent<BoxCollider2D>().enabled = false;
         rb.bodyType = RigidbodyType2D.Static;
-        Destroy(transform.GetChild(0).GetComponent<BoxCollider2D>());
-        Destroy(this);
+        StartCoroutine(Respawn());
+    }
+
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
+
     }
 }

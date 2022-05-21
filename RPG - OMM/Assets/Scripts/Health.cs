@@ -8,15 +8,28 @@ public class Health : MonoBehaviour
     public int health;
     public int maxHealth;
     public static int HitTaken;
+
+    private int hitTakecd;
     public void TakeHit(int damage, Collider2D col)
     {
         if (col.CompareTag("Enemy"))
         {
             health -= damage;
             Enemy en = GetComponent<Enemy>();
-            en.HitTake();
-            if (health <= 0)
+            if(hitTakecd != 2)
             {
+                
+                hitTakecd++;
+                en.HitTake();
+            }
+            else
+            {
+                Debug.LogError("worked");
+                StartCoroutine(CoolDown());
+            }
+            if (health <= 0 )
+            {
+                
                 en.Death();
             }
         }
@@ -36,7 +49,14 @@ public class Health : MonoBehaviour
             }
 
         }
-        
 
+    }
+
+
+    private IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(1.5f);
+        hitTakecd = 0;
+        
     }
 }

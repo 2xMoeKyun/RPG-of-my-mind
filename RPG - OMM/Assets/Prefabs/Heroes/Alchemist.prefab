@@ -452,9 +452,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f67cc30e6171244082194356fda8f61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
   maxSpeed: 4
   Jforce: 5
   dashForce: 200
+  DeathUI: {fileID: 0}
   HitEnemies: []
   enemyLayer:
     serializedVersion: 2
@@ -868,6 +870,10 @@ PrefabInstance:
       propertyPath: playerHealth
       value: 
       objectReference: {fileID: 847221565897914987}
+    - target: {fileID: 2761317058607218679, guid: 23a766d187ef23843b96b720cd6667b5, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 23a766d187ef23843b96b720cd6667b5, type: 3}
 --- !u!1 &5140663029306115431 stripped

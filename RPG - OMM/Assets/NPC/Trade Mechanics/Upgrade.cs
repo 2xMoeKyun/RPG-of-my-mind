@@ -27,6 +27,8 @@ public class Upgrade : MonoBehaviour
     public GameObject player;
     private Bag bag;
 
+
+
     private void Start()
     {
         bag = GameObject.FindGameObjectWithTag("Bag").GetComponent<Bag>();

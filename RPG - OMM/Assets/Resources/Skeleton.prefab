@@ -140,7 +140,7 @@ GameObject:
   - component: {fileID: 6628656463456144858}
   - component: {fileID: 6628656463456144859}
   m_Layer: 7
-  m_Name: 'Skeleton '
+  m_Name: Skeleton
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -155,7 +155,7 @@ Transform:
   m_GameObject: {fileID: 6628656463456144834}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 22.38336, y: 1.1451705, z: 8.760569}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalScale: {x: 4, y: 4, z: 1}
   m_Children:
   - {fileID: 6628656463344313268}
   m_Father: {fileID: 0}
@@ -244,7 +244,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.004800983}
+  m_Offset: {x: 0, y: -0.027845696}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -255,7 +255,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.24, y: 0.31039804}
+  m_Size: {x: 0.24, y: 0.2451047}
   m_EdgeRadius: 0
 --- !u!50 &6628656463456144838
 Rigidbody2D:
@@ -292,10 +292,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Slime: 0
   Skeleton: 1
-  isTriggerEnemy: 0
+  isTriggerEnemy: 1
   speed: 1
   followDistance: 5
-  atkDistance: 1
+  atkDistance: 1.1
   atkSpeed: 0
   hitPlayer: {fileID: 0}
   playerLayer:
@@ -330,5 +330,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed17602c5e527164f9488f1745411d83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 10
+  damage: 60
   Tag: Player
