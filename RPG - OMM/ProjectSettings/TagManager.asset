@@ -19,6 +19,7 @@ TagManager:
   - DontDestroy
   - Sell
   - SellItem
+  - Upgrade
   layers:
   - Default
   - TransparentFX

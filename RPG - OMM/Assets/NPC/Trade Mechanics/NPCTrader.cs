@@ -17,7 +17,9 @@ public class NPCTrader : MonoBehaviour
         move = GameObject.FindGameObjectWithTag("Player").GetComponent<Move>();
 
         coins = GameObject.FindGameObjectWithTag("Player").GetComponent<Coins>();
+
     }
+
 
 
     public void TradeTrigger()
@@ -41,4 +43,5 @@ public class NPCTrader : MonoBehaviour
         NPC.trade = false;
         move.AblePlayer();
     }
+
 }

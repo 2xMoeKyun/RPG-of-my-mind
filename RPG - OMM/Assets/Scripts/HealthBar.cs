@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class HealthBar : MonoBehaviour
 {
     public Slider slider;
-    public Health playerHealth; //скрипт health, где берутся переменные и функции
+    public Health playerHealth; //скрипт health, где берутся переменные
 
     private void Update()
     {

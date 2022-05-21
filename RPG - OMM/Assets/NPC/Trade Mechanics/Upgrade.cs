@@ -66,7 +66,7 @@ public class Upgrade : MonoBehaviour
                 {
                     isAtkBuff[j] = true;
                 }
-                else if(child.itemName == maxHPBuff[j])
+                else if (child.itemName == maxHPBuff[j])
                 {
                     isMaxHPBuff[j] = true;
                 }
@@ -77,38 +77,34 @@ public class Upgrade : MonoBehaviour
             }
         }
 
-        for (int i = 0; i < atkBuff.Length; i++)
-        {
-            if (isAtkBuff[i] == true && isAtkBuff[i + 1] == true)
-            {
-                buffText.text = "Attack: +" + buffAtk.ToString();
-                player.GetComponent<Damage>().damage += buffAtk;
-                DeleteAllObjects();
-                isAtkBuff[i] = false;
-                isAtkBuff[i + 1] = false;
-                break;
-            }
-            else if (isMaxHPBuff[i] == true && isMaxHPBuff[i + 1] == true)
-            {
-                buffText.text = $"Max HP: +" + buffMaxHp.ToString();
-                player.GetComponent<Health>().maxHealth += buffMaxHp;
-                player.GetComponent<Health>().health = player.GetComponent<Health>().maxHealth;
-                DeleteAllObjects();
-                isMaxHPBuff[i] = false;
-                isMaxHPBuff[i+1] = false;
-                break;
-            }
-            else if (isMaxSpeed[i] == true && isMaxSpeed[i + 1] == true)
-            {
-                buffText.text = $"Max Speed: +" + buffMaxSpeed.ToString();
-                player.GetComponent<Move>().maxSpeed += buffMaxSpeed;
-                DeleteAllObjects();
-                isMaxSpeed[i] = false;
-                isMaxSpeed[i+1] = false;
-                break;
-            }
 
+        if (isAtkBuff[0] == true && isAtkBuff[1] == true)
+        {
+            buffText.text = "Attack: +" + buffAtk.ToString();
+            player.GetComponent<Damage>().damage += buffAtk;
+            DeleteAllObjects();
+            isAtkBuff[0] = false;
+            isAtkBuff[1] = false;
         }
+        else if (isMaxHPBuff[0] == true && isMaxHPBuff[1] == true)
+        {
+            buffText.text = $"Max HP: +" + buffMaxHp.ToString();
+            player.GetComponent<Health>().maxHealth += buffMaxHp;
+            player.GetComponent<Health>().health = player.GetComponent<Health>().maxHealth;
+            DeleteAllObjects();
+            isMaxHPBuff[0] = false;
+            isMaxHPBuff[1] = false;
+        }
+        else if (isMaxSpeed[0] == true && isMaxSpeed[1] == true)
+        {
+            buffText.text = $"Max Speed: +" + buffMaxSpeed.ToString();
+            player.GetComponent<Move>().maxSpeed += buffMaxSpeed;
+            DeleteAllObjects();
+            isMaxSpeed[0] = false;
+            isMaxSpeed[1] = false;
+        }
+
+
     }
 
 
@@ -119,7 +115,7 @@ public class Upgrade : MonoBehaviour
         {
             Destroy(slots[i].transform.GetChild(0).gameObject);
             isFull[i] = false;
-           
+
         }
         for (int i = 0; i < bag.BagSlots.Length; i++)
         {
@@ -130,7 +126,7 @@ public class Upgrade : MonoBehaviour
                 bag.isBagFull[i] = false;
             }
         }
-        
+
     }
 
     public void SetButton()
@@ -139,7 +135,7 @@ public class Upgrade : MonoBehaviour
         {
             for (int j = 0; j < SellItem.sellItem.Length; j++)
             {
-                if(isFull[i] == false && SellItem.isActive[j] == true)
+                if (isFull[i] == false && SellItem.isActive[j] == true)
                 {
                     isFull[i] = true;
 
@@ -166,9 +162,10 @@ public class Upgrade : MonoBehaviour
         {
             for (int i = 0; i < slots.Length; i++)
             {
-                for (int j = 0; j < SellItem.sellItem.Length; j++)
+
+                for (int j = 0; j < bag.BagSlots.Length; j++)
                 {
-                    if (isFull[i] == true && sm.isSlotFull[j] == false)
+                    if (isFull[i] == true && sm.isSlotFull[j] == false && bag.isBagFull[j] == true)
                     {
                         isFull[i] = false;
 
@@ -178,6 +175,7 @@ public class Upgrade : MonoBehaviour
                         sm.isSlotFull[j] = true;
                     }
                 }
+
             }
         }
     }

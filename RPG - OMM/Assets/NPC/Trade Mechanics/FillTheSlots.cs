@@ -8,11 +8,7 @@ public class FillTheSlots : MonoBehaviour
     public SlotManager sm;
     public Bag bag;
     private RectTransform currentObject;
-    private void Start()
-    {
 
-        //bag = GameObject.FindGameObjectWithTag("Bag").GetComponent<Bag>();
-    }
 
     public void UnFill()
     {
@@ -24,7 +20,7 @@ public class FillTheSlots : MonoBehaviour
                 currentObject = bag.BagSlots[i].transform.GetChild(1).GetComponent<RectTransform>();
                 if(currentObject.sizeDelta.x - 51 <= 0)
                 {
-                    break;
+                    continue;
                 }
                 currentObject.sizeDelta = new Vector2(currentObject.sizeDelta.x - 51, currentObject.sizeDelta.y - 65);
             }
