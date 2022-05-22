@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public GameObject magicBall;
+    public float atk2Distance;
+    private bool reloadAtk2;
     //Type of enemy
+    public bool Witch;
     public bool Slime;
     public bool Skeleton;
     public bool isTriggerEnemy;
@@ -22,7 +26,7 @@ public class Enemy : MonoBehaviour
     public float atkSpeed;
     private bool CanAttack = true;
     //other
-    public static float direction = 1;
+    public float direction = 1;
 
 
     void Start()
@@ -35,25 +39,39 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if(Vector2.Distance(transform.position, target.position) < followDistance && !isAtack)
+        if (Vector2.Distance(transform.position, target.position) < followDistance && !isAtack)
         {
             Follow();
+        }
+        if (Vector2.Distance(transform.position, target.position) < atk2Distance && CanAttack && Witch && !reloadAtk2)
+        {
+            //Attack2 function
+            
+            reloadAtk2 = true;
+            anim.SetBool("Going", false);
+            isAtack = true;
+            anim.SetTrigger("Atk2");
+            GameObject mb = Instantiate(magicBall);
+            mb.transform.position = new Vector2(transform.position.x + (direction * 1f), transform.position.y + Random.Range(-0.1f, 0.7f));
+            mb.SetActive(true);
         }
         if (Vector2.Distance(transform.position, target.position) < atkDistance && CanAttack)
         {
             //Attack function
             anim.SetBool("Going", false);
             isAtack = true;
-            anim.SetTrigger("Atk");            
+            anim.SetTrigger("Atk");
         }
-        else if(Vector2.Distance(transform.position, target.position) > atkDistance + 1f)
+        else if (Vector2.Distance(transform.position, target.position) > atkDistance + 1f)
         {
             isAtack = false;
         }
+
     }
 
     public void HitTake()
     {
+        Debug.Log("Hit taken");
         anim.SetTrigger("TakeHit");
     }
 
@@ -89,7 +107,7 @@ public class Enemy : MonoBehaviour
             attackRange.position = AR_left.position;
         }
         hitPlayer = Physics2D.OverlapCircle(attackRange.position, atkRad, playerLayer);
-        if(hitPlayer == null)
+        if (hitPlayer == null)
         {
             return;
         }
@@ -102,8 +120,22 @@ public class Enemy : MonoBehaviour
     {
         Follow();
         anim.SetTrigger("AtkEnd");
-        anim.ResetTrigger("Atk");
+        if (Witch)
+        {
+            anim.ResetTrigger("Atk2");
+        }
+        else
+        {
+            anim.ResetTrigger("Atk");
+        }
         CanAttack = false;
+    }
+
+    IEnumerator MagicBalCD()
+    {
+        yield return new WaitForSeconds(3f);
+        CanAttack = true;
+        reloadAtk2 = false;
     }
 
     IEnumerator AfterAttack()
@@ -123,11 +155,11 @@ public class Enemy : MonoBehaviour
         {
             CanTurn = false;
             direction = 1;
-            if (Slime)
+            if (Slime )
             {
                 GetComponent<SpriteRenderer>().flipX = true;
             }
-            else if (Skeleton)
+            else if (Skeleton || Witch)
             {
                  GetComponent<SpriteRenderer>().flipX = false;
             }
@@ -138,11 +170,11 @@ public class Enemy : MonoBehaviour
             CanTurn = false;
             
             direction = -1;
-            if (Slime)
+            if (Slime )
             {
                 GetComponent<SpriteRenderer>().flipX = false;
             }
-            else if (Skeleton)
+            else if (Skeleton || Witch)
             {
                 GetComponent<SpriteRenderer>().flipX = true;
             }

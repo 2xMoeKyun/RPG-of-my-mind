@@ -98,6 +98,7 @@ public class Move : MonoBehaviour
             else if(isDashing)
             {
                 transform.Translate(Vector2.right * (playerDirection * dashSpeed) * Time.deltaTime);
+                transform.rotation = new Quaternion(0, 0, 0, 0);
             }
         }
 
@@ -207,6 +208,7 @@ public class Move : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
         playerRb.constraints = RigidbodyConstraints2D.None;
         playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        
         AblePlayer();
         CanDash = false;
         isDashing = false;
@@ -519,13 +521,7 @@ public class Move : MonoBehaviour
     }
 
 
-    // импульс после атаки (для скрипта Damage)
-    public void AfterHit(int HitForce)
-    {
-        playerRb.velocity = Vector2.zero;
-
-        playerRb.AddForce(new Vector2(Enemy.direction * HitForce, 0));
-    }
+ 
 
     #region Ground Check
     public Transform GrCheck;
