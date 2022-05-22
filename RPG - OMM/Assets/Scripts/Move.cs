@@ -70,7 +70,6 @@ public class Move : MonoBehaviour
             {
                 Attack();
             }
-
             if (CanMove)
             {
                 MoveX();
@@ -92,7 +91,14 @@ public class Move : MonoBehaviour
             {
                 UseThing();
             }
-            Dash();
+            if (Input.GetKeyDown(KeyCode.LeftShift) && CanDash)
+            {
+                Dash();
+            }
+            else if(isDashing)
+            {
+                transform.Translate(Vector2.right * (playerDirection * dashSpeed) * Time.deltaTime);
+            }
         }
 
 
@@ -120,6 +126,7 @@ public class Move : MonoBehaviour
         CanMove = false;
         CanSit = false;
         CanUse = false;
+        CanDash = false;    
     }
 
     public void AblePlayer()
@@ -132,6 +139,7 @@ public class Move : MonoBehaviour
         CanMove = true;
         CanSit = true;
         CanUse = true;
+        CanDash = true;
     }
 
     #region for moveing Platform
@@ -178,15 +186,44 @@ public class Move : MonoBehaviour
 
     #endregion
 
-    void Dash()
+    #region Dash
+    public static bool CanDash = true;
+    public static bool isDashing;
+    private bool airDash = true;
+    public float dashSpeed;
+    public void Dash()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            playerRb.velocity = Vector2.zero;
-
-            playerRb.AddForce(new Vector2(Xmove * dashForce, 0));
-        }
+        DisablePlayer();
+        CanMove = true;
+        isDashing = true;
+        airDash = false;
+        playerRb.constraints = RigidbodyConstraints2D.FreezePositionY;
+        playerAnimator.SetTrigger("DashStart");
+        StartCoroutine(DashCD());
     }
+
+    private IEnumerator DashCD()
+    {
+        yield return new WaitForSeconds(1.5f);
+        playerRb.constraints = RigidbodyConstraints2D.None;
+        playerRb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        AblePlayer();
+        CanDash = false;
+        isDashing = false;
+        playerRb.simulated = true;
+        playerAnimator.SetTrigger("DashEnd");
+        StartCoroutine(DashCoolDown());
+    }
+
+
+    private IEnumerator DashCoolDown()
+    {
+        yield return new WaitForSeconds(2f);
+        CanDash = true;
+        airDash = true;
+    }
+
+    #endregion
 
     public static bool CanJump = true;
     public static bool IsJump = false;
@@ -225,11 +262,18 @@ public class Move : MonoBehaviour
             IsJump = true;
             RealoadSit();
             CanAttack = false;
+            CanDash = false;
             playerAnimator.Play("StartingJump");// Подготовка к прыжку
             
         }
         else if (!isGrounded && startJump) //В воздухе
         {
+            
+            if (airDash)
+            {
+                Debug.Log("on air");
+                CanDash = true;
+            }
             playerAnimator.SetBool("OnAir", true);
             onAirVal = true;
         }
@@ -297,6 +341,7 @@ public class Move : MonoBehaviour
             CanAttack = false;
             CanJump = false;
             CanMove = false;
+            CanDash = false;
         }
         playerRb.velocity = Vector2.zero;
         CurrentAtk++;
@@ -335,6 +380,7 @@ public class Move : MonoBehaviour
         CanSit = true; 
         CanJump = true;
         CanMove = true;
+        CanDash = true;
         CurrentAtk = 0;
         playerAnimator.SetInteger("Atk", CurrentAtk);
     }

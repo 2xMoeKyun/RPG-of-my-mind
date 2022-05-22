@@ -100,6 +100,7 @@ public class Enemy : MonoBehaviour
 
     public void ResetAttack()
     {
+        Follow();
         anim.SetTrigger("AtkEnd");
         anim.ResetTrigger("Atk");
         CanAttack = false;
@@ -171,14 +172,24 @@ public class Enemy : MonoBehaviour
     public void AfterDeath()
     {
         GetComponent<BoxCollider2D>().enabled = false;
-        rb.bodyType = RigidbodyType2D.Static;
+        rb.constraints = RigidbodyConstraints2D.FreezeAll;
         StartCoroutine(Respawn());
     }
 
     private IEnumerator Respawn()
     {
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(4f);
         Destroy(gameObject);
 
     }
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.tag == "Player" || collision.gameObject.tag == "Enemy")
+        {
+            Physics2D.IgnoreCollision(gameObject.GetComponent<Collider2D>(), collision.gameObject.GetComponent<Collider2D>());
+        }
+    }
+
 }

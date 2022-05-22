@@ -8,12 +8,24 @@ public class SpawnManager : MonoBehaviour
     public GameObject[] enemyRef;
 
     private bool reload;
+
+    public int wavesCount;
+
+    public int spawnCount;
+    public int limitSpawn;
     private void Update()
     {
-        if (!reload)
+        if (!reload && spawnCount != limitSpawn)
         {
+            spawnCount++;
             StartCoroutine(Spawn());
             reload = true;
+        }
+        else
+        {
+            wavesCount++;
+            spawnCount = 0;
+            limitSpawn += 10;
         }
     }
 

@@ -10,7 +10,7 @@ public class JumpOnEnemy : MonoBehaviour
     {
         if (collision.CompareTag("Enemy") && !Move.isGrounded)
         {
-            Move.playerRb.velocity = new Vector2(0, 5);
+            Move.playerRb.velocity = new Vector2(Move.playerDirection*2, 5);
         }
     }
 }
