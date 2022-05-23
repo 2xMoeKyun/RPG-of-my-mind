@@ -12,12 +12,15 @@ public class Upgrade : MonoBehaviour
     public int buffAtk;
     public int buffMaxHp;
     public float buffMaxSpeed;
+    public float buffDashSpeed;
     private string[] atkBuff = { "Red", "Pants" };
     private bool[] isAtkBuff;
     private string[] maxHPBuff = { "Crisps", "Donut" };
     private bool[] isMaxHPBuff;
     private string[] maxSpeed = { "Blue", "Disk" };
     private bool[] isMaxSpeed;
+    private string[] dashSpeed = { "Yellow", "Sock" };
+    private bool[] isDashSpeed;
 
     private bool[] mayDeletable;
 
@@ -36,6 +39,7 @@ public class Upgrade : MonoBehaviour
         isAtkBuff = new bool[atkBuff.Length];
         isMaxHPBuff = new bool[maxHPBuff.Length];
         isMaxSpeed = new bool[maxSpeed.Length];
+        isDashSpeed = new bool[dashSpeed.Length];
     }
 
     public void TipsEnter()
@@ -76,6 +80,10 @@ public class Upgrade : MonoBehaviour
                 {
                     isMaxSpeed[j] = true;
                 }
+                else if(child.itemName == dashSpeed[j])
+                {
+                    isDashSpeed[j] = true;
+                }
             }
         }
 
@@ -105,7 +113,14 @@ public class Upgrade : MonoBehaviour
             isMaxSpeed[0] = false;
             isMaxSpeed[1] = false;
         }
-
+        else if (isDashSpeed[0] == true && isDashSpeed[1] == true)
+        {
+            buffText.text = $"Dash Speed: +" + buffMaxSpeed.ToString();
+            player.GetComponent<Move>().dashSpeed += buffDashSpeed;
+            DeleteAllObjects();
+            isDashSpeed[0] = false;
+            isDashSpeed[1] = false;
+        }
 
     }
 

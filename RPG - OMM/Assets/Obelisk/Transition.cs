@@ -62,6 +62,7 @@ public class Transition : MonoBehaviour
         TransitionManager.playerHealth = player.GetComponent<Health>().health;
         TransitionManager.jumpForce = move.Jforce;
         TransitionManager.maxSpeed = move.maxSpeed;
+        TransitionManager.dashSpeed = move.dashSpeed;
     }
 
     public void TransitionTrigger(int number)

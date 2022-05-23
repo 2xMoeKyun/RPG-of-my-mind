@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2838025175902359763}
   - component: {fileID: 1071122531129522694}
   - component: {fileID: 6966592413901658299}
+  - component: {fileID: 5660379654847741789}
   m_Layer: 5
   m_Name: CrispsUI
   m_TagString: DontDestroy
@@ -90,3 +91,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Crisps
   Cost: 3
+--- !u!114 &5660379654847741789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7231884144057988669}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07feb7d0a4ef63b419db177f83bb8980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

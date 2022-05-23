@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8180777431862660375
+--- !u!1 &2888848922169283379
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,25 +8,25 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8868186665568316823}
-  - component: {fileID: 3272470275263597231}
-  - component: {fileID: 7882116207712799811}
-  - component: {fileID: 8645497580856619471}
-  - component: {fileID: 1648462989708473543}
+  - component: {fileID: 2356182159616014713}
+  - component: {fileID: 6378638557377743824}
+  - component: {fileID: 5017302269169073576}
+  - component: {fileID: 5741132382291822997}
+  - component: {fileID: -564676538423282667}
   m_Layer: 5
-  m_Name: DonutUI
+  m_Name: SockUI
   m_TagString: DontDestroy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!224 &8868186665568316823
+--- !u!224 &2356182159616014713
 RectTransform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8180777431862660375}
+  m_GameObject: {fileID: 2888848922169283379}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -39,21 +39,21 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 19, y: 18}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!222 &3272470275263597231
+--- !u!222 &6378638557377743824
 CanvasRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8180777431862660375}
+  m_GameObject: {fileID: 2888848922169283379}
   m_CullTransparentMesh: 1
---- !u!114 &7882116207712799811
+--- !u!114 &5017302269169073576
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8180777431862660375}
+  m_GameObject: {fileID: 2888848922169283379}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
@@ -67,7 +67,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 4542565457335521043, guid: b4f86e9cee8d5b2408189ced9f680ffe, type: 3}
+  m_Sprite: {fileID: -8689035635190686027, guid: b454caea1803fce449c4af5bc068d6cf, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -77,27 +77,27 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
---- !u!114 &8645497580856619471
+--- !u!114 &5741132382291822997
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8180777431862660375}
+  m_GameObject: {fileID: 2888848922169283379}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b26aab568b20d0a469f5dc2f18891c92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: Donut
-  Cost: 5
---- !u!114 &1648462989708473543
+  itemName: Sock
+  Cost: 6
+--- !u!114 &-564676538423282667
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8180777431862660375}
+  m_GameObject: {fileID: 2888848922169283379}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 07feb7d0a4ef63b419db177f83bb8980, type: 3}

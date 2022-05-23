@@ -13,7 +13,7 @@ public class Use : MonoBehaviour
             Instantiate(SpawnObject, gameObject.transform.position , Quaternion.identity);
             Move.isUsed = false;
             PickUp.delete = true;
-            
+            Move.playerAnimator.SetTrigger("Use");
             Destroy(gameObject);
         }
     }

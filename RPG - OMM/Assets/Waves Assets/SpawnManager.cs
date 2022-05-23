@@ -1,18 +1,42 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SpawnManager : MonoBehaviour
 {
     public GameObject[] spawnPoints;
     public GameObject[] enemyRef;
 
+    public Text currentWave;
+
     private bool reload;
 
     public int wavesCount;
 
-    public int spawnCount;
+    private int spawnCount;
     public int limitSpawn;
+
+    private void Start()
+    {
+        UpdateValue();
+    }
+
+
+    public void UpdateValue()
+    {
+        currentWave.gameObject.SetActive(true);
+        currentWave.text = "Wave " + (wavesCount + 1).ToString();
+        StartCoroutine(CoolDown());
+    }
+
+
+    private IEnumerator CoolDown()
+    {
+        yield return new WaitForSeconds(3f);
+        currentWave.gameObject.SetActive(false);
+    }
+
     private void Update()
     {
         if (!reload && spawnCount != limitSpawn)
@@ -21,11 +45,13 @@ public class SpawnManager : MonoBehaviour
             StartCoroutine(Spawn());
             reload = true;
         }
-        else
+        else if (reload && spawnCount == limitSpawn)
         {
             wavesCount++;
             spawnCount = 0;
-            limitSpawn += 10;
+            limitSpawn += 5;
+            UpdateValue();
+            Debug.Log("UpdateValue");
         }
     }
 

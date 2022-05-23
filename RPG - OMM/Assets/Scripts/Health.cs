@@ -24,7 +24,6 @@ public class Health : MonoBehaviour
             }
             else
             {
-                Debug.LogError("worked");
                 StartCoroutine(CoolDown());
             }
             if (health <= 0 )

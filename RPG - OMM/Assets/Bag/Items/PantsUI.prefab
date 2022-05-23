@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 5750749575545065885}
   - component: {fileID: 6817123009981145036}
   - component: {fileID: 7390024889082242847}
+  - component: {fileID: -8123990692666529386}
   m_Layer: 5
   m_Name: PantsUI
   m_TagString: DontDestroy
@@ -90,3 +91,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Pants
   Cost: 4
+--- !u!114 &-8123990692666529386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490625197638318289}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07feb7d0a4ef63b419db177f83bb8980, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

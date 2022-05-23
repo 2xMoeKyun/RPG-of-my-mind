@@ -81,6 +81,7 @@ public class LoadSaves : MonoBehaviour
             player.GetComponent<Health>().health = TransitionManager.playerHealth;
             move.Jforce = TransitionManager.jumpForce;
             move.maxSpeed = TransitionManager.maxSpeed;
+            move.dashSpeed = TransitionManager.dashSpeed;
         }
     }
 }

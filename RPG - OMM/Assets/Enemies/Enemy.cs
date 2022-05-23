@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public GameObject magicBall;
-    public float atk2Distance;
+    private WitchVariables witchVariables;
     private bool reloadAtk2;
     //Type of enemy
     public bool Witch;
@@ -31,6 +30,10 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
+        if (Witch)
+        {
+           witchVariables =  GetComponent<WitchVariables>();
+        }
         target = GameObject.FindGameObjectWithTag("Player").GetComponent<Transform>();
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
@@ -43,17 +46,20 @@ public class Enemy : MonoBehaviour
         {
             Follow();
         }
-        if (Vector2.Distance(transform.position, target.position) < atk2Distance && CanAttack && Witch && !reloadAtk2)
+        if (Witch)
         {
-            //Attack2 function
-            
-            reloadAtk2 = true;
-            anim.SetBool("Going", false);
-            isAtack = true;
-            anim.SetTrigger("Atk2");
-            GameObject mb = Instantiate(magicBall);
-            mb.transform.position = new Vector2(transform.position.x + (direction * 1f), transform.position.y + Random.Range(-0.1f, 0.7f));
-            mb.SetActive(true);
+            if (Vector2.Distance(transform.position, target.position) < witchVariables.atk2Distance && CanAttack && !reloadAtk2)
+            {
+                //Attack2 function
+
+                reloadAtk2 = true;
+                anim.SetBool("Going", false);
+                isAtack = true;
+                anim.SetTrigger("Atk2");
+                GameObject mb = Instantiate(witchVariables.magicBall);
+                mb.transform.position = new Vector2(transform.position.x + (direction * 1f), transform.position.y + Random.Range(-0.1f, 0.7f));
+                mb.SetActive(true);
+            }
         }
         if (Vector2.Distance(transform.position, target.position) < atkDistance && CanAttack)
         {
@@ -198,13 +204,16 @@ public class Enemy : MonoBehaviour
             Boulder.boulderStart = true;
         }
         anim.SetTrigger("Die");
-        
+        if (Witch)
+        {
+            reloadAtk2 = true;
+        }
+        followDistance = 0;
     }
 
     public void AfterDeath()
     {
-        GetComponent<BoxCollider2D>().enabled = false;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+
         StartCoroutine(Respawn());
     }
 

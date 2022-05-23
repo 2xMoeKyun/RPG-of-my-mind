@@ -288,14 +288,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf13bf68de846ae47ab9641c5629aeb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wave: 1
+  magicBall: {fileID: 0}
+  atk2Distance: 0
+  Witch: 0
   Slime: 1
   Skeleton: 0
   isTriggerEnemy: 0
   speed: 1
-  followDistance: 10
+  followDistance: 1000
   atkDistance: 1
   atkSpeed: 1
+  direction: 1
   hitPlayer: {fileID: 0}
   playerLayer:
     serializedVersion: 2

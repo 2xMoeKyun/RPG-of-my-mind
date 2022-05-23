@@ -24,7 +24,7 @@ public class From : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D collision)
    {
-        if (collision.CompareTag("Player") && Input.GetKey(KeyCode.E) && PickUp.isRedStone)
+        if (collision.CompareTag("Player") && Input.GetKey(KeyCode.F) && PickUp.isRedStone)
         {
             gameObject.GetComponent<Animator>().SetBool("Strike", true);
         }

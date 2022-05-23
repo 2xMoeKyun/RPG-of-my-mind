@@ -290,13 +290,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf13bf68de846ae47ab9641c5629aeb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Witch: 0
   Slime: 0
   Skeleton: 1
-  isTriggerEnemy: 1
+  isTriggerEnemy: 0
   speed: 1
-  followDistance: 5
+  followDistance: 1000
   atkDistance: 1.1
-  atkSpeed: 0
+  atkSpeed: -1
+  direction: 1
   hitPlayer: {fileID: 0}
   playerLayer:
     serializedVersion: 2

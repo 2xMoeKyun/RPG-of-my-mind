@@ -16,7 +16,6 @@ public class Move : MonoBehaviour
     public float Jforce = 6f;
     private float Xmove;
     public static int HitForce;
-    public int dashForce = 500;
     void Start()
     {
         playerAnimator = GetComponent<Animator>();
@@ -87,7 +86,7 @@ public class Move : MonoBehaviour
                 }
                 Jump();
             }
-            if (CanUse)
+            if (CanUse && Input.GetKeyDown(KeyCode.F))
             {
                 UseThing();
             }
@@ -513,15 +512,14 @@ public class Move : MonoBehaviour
     public static bool isUsed = false;
     void UseThing()
     {
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            playerAnimator.SetTrigger("Use");
-            isUsed = true;
-        }
+        isUsed = true;
     }
 
 
+
  
+
+
 
     #region Ground Check
     public Transform GrCheck;

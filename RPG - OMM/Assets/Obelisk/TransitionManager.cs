@@ -10,6 +10,7 @@ public static class TransitionManager
     public static int playerHealth;
     public static float jumpForce;
     public static float maxSpeed;
+    public static float dashSpeed;
 
     //situative scr
     public static bool SceneSwitch;
