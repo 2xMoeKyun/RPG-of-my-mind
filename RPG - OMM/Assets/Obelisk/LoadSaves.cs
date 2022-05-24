@@ -9,25 +9,32 @@ public class LoadSaves : MonoBehaviour
     private Bag bag;
     private Inventory inventory;
     private Coins coins;
-    private void Start()
+
+    private void Awake()
     {
         move = player.GetComponent<Move>();
 
         bag = GameObject.FindGameObjectWithTag("Bag").GetComponent<Bag>();
-        
+
         inventory = player.GetComponent<Inventory>();
 
         coins = player.GetComponent<Coins>();
-        Debug.Log(TransitionManager._coinsCount);
+
+        Load();
     }
 
-    private void Update()
+
+
+    public void Load()
     {
+       
         //Loading bag items
         if (TransitionManager.isTransit)
         {
+
             if (TransitionManager._bagSlots[0] != null)
             {
+
                 for (int i = 0; i < bag.BagSlots.Length; i++)
                 {
                     if (TransitionManager._bagSlots[i] == null)
@@ -70,11 +77,12 @@ public class LoadSaves : MonoBehaviour
 
                 }
             }
+            Debug.Log(TransitionManager._coinsCount);
             //Loading coins count
             coins.coinsCount = TransitionManager._coinsCount;
             coins.UpdateCoinsCount(coins.coinsCount);
             TransitionManager._coinsCount = 0;
-            TransitionManager.isTransit = false;
+
 
             //Loading other components
             player.GetComponent<Damage>().damage = TransitionManager.playerAttack;
@@ -82,6 +90,10 @@ public class LoadSaves : MonoBehaviour
             move.Jforce = TransitionManager.jumpForce;
             move.maxSpeed = TransitionManager.maxSpeed;
             move.dashSpeed = TransitionManager.dashSpeed;
+
+            TransitionManager.isTransit = false;
         }
     }
+
+
 }

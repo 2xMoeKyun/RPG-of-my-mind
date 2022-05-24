@@ -8,6 +8,7 @@ public class Transition : MonoBehaviour
 
     [Header("Scene index")]
     public int loadSceneNumber;
+    public bool mustTrigger;
 
     public GameObject player;
     private Move move;
@@ -36,10 +37,8 @@ public class Transition : MonoBehaviour
         {
             if (TransitionManager._isBagFull[i] == false && bag.BagSlots[i].transform.GetChildCount() == 2)
             {
-
                 TransitionManager._bagSlots[i] = Instantiate(bag.BagSlots[i].transform.GetChild(1)) as RectTransform;
                 TransitionManager._isBagFull[i] = true;
-                Debug.Log(TransitionManager._bagSlots[0] == null);
             }
         }
         //saving inventory items
@@ -55,7 +54,6 @@ public class Transition : MonoBehaviour
         if (coins.coinsCount != 0)
         {
             TransitionManager._coinsCount = coins.coinsCount;
-            Debug.Log(TransitionManager._coinsCount);
         }
 
         TransitionManager.playerAttack = player.GetComponent<Damage>().damage;
@@ -75,7 +73,7 @@ public class Transition : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player") && !TransitionManager.isTransit)
+        if (collision.CompareTag("Player") && !TransitionManager.isTransit && !mustTrigger)
         {
             TransitionManager.isTransit = true;
             TransitionTrigger(loadSceneNumber);

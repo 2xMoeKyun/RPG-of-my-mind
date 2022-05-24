@@ -20,6 +20,7 @@ TagManager:
   - Sell
   - SellItem
   - Upgrade
+  - Obelisk
   layers:
   - Default
   - TransparentFX

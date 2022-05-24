@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Yorkshin.unity
     guid: b7ae489016ad09b4a9a8731609bcd5ba
+  - enabled: 1
+    path: Assets/Scenes/Waves.unity
+    guid: 65e760cf2ae0cf54b9b975bea042a024
   m_configObjects: {}

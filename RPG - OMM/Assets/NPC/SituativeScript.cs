@@ -21,7 +21,7 @@ public class SituativeScript : MonoBehaviour // this sript must be component of 
             Destroy(deleteDialogue.gameObject);
             Destroy(this);
         }
-        if (srabotalo /*&& TransitionManager.SceneSwitch*/)//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+        if (srabotalo && TransitionManager.SceneSwitch)//!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         {
             transform.parent.GetComponent<NPC>().CanTrade = false;
             NPC.firstLevel = false;

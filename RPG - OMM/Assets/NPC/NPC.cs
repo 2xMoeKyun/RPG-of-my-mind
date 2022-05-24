@@ -30,7 +30,7 @@ public class NPC : MonoBehaviour
     private void Update()
     {
         #region Dialogue
-        if (npcDialogue && !DialogueManager.DialogueEnd && isDialogue )
+        if (npcDialogue && !DialogueManager.DialogueEnd && isDialogue)
         {
 
             if (transform.GetChild(0).GetChildCount() == getDialogue)
@@ -51,7 +51,7 @@ public class NPC : MonoBehaviour
 
             else
             {
-                
+
                 Debug.Log("Getdial" + getDialogue);
                 transform.GetChild(0).GetChild(getDialogue).GetComponent<DialogueTrigger>().TriggerDialogue();
                 getDialogue++;
@@ -68,6 +68,10 @@ public class NPC : MonoBehaviour
                 else if (DialogueManager.SwitchesCount == 3)
                 {
                     DialogueManager.SwitchTo = "Rock";
+                    if (transform.name == "Rock")
+                    {
+                        GameObject.FindGameObjectWithTag("Obelisk").GetComponent<Transition>().mustTrigger = false;
+                    }
                 }
 
             }

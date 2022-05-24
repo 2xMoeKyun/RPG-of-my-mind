@@ -205,24 +205,27 @@ public class Enemy : MonoBehaviour
         {
             reloadAtk2 = true;
         }
+        rb.constraints = RigidbodyConstraints2D.FreezePosition;
         GetComponent<BoxCollider2D>().enabled = false;
         followDistance = 0;
     }
+
 
     public void AfterDeath()
     {
 
         StartCoroutine(Respawn());
-    }
-
-    private IEnumerator Respawn()
-    {
-        yield return new WaitForSeconds(4f);
-        Destroy(gameObject);
         if (Skeleton && isTriggerEnemy)
         {
             Boulder.boulderStart = true;
         }
+    }
+
+    private IEnumerator Respawn()
+    {
+        yield return new WaitForSeconds(2f);
+        Destroy(gameObject);
+        
 
     }
 

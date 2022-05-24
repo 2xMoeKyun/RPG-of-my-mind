@@ -54,7 +54,7 @@ public class Health : MonoBehaviour
 
     private IEnumerator CoolDown()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(0.7f);
         hitTakecd = 0;
         
     }

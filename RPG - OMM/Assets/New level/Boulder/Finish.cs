@@ -16,8 +16,20 @@ public class Finish : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        GetComponent<BoxCollider2D>().isTrigger = false;
-        Move.finish = false;
-        finished = true;
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            GetComponent<BoxCollider2D>().isTrigger = false;
+            Move.finish = false;
+            if (collision.transform.position.x < transform.position.x)
+            {
+                finished = false;
+
+            }
+            else
+            {
+                finished = true;
+
+            }
+        }
     }
 }
