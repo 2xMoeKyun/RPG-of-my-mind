@@ -34,6 +34,7 @@ public class Move : MonoBehaviour
         {
             pauseMenu.SetActive(true);
             Time.timeScale = 0f;
+            Boulder.boulderStart = false;
         }
 
         if (Input.GetKeyDown(KeyCode.F) && !fUsed && CanInteract)

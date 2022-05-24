@@ -199,15 +199,13 @@ public class Enemy : MonoBehaviour
 
     public void Death()
     {
-        if(Skeleton && isTriggerEnemy)
-        {
-            Boulder.boulderStart = true;
-        }
+        
         anim.SetTrigger("Die");
         if (Witch)
         {
             reloadAtk2 = true;
         }
+        GetComponent<BoxCollider2D>().enabled = false;
         followDistance = 0;
     }
 
@@ -221,8 +219,13 @@ public class Enemy : MonoBehaviour
     {
         yield return new WaitForSeconds(4f);
         Destroy(gameObject);
+        if (Skeleton && isTriggerEnemy)
+        {
+            Boulder.boulderStart = true;
+        }
 
     }
+
 
 
     private void OnCollisionEnter2D(Collision2D collision)

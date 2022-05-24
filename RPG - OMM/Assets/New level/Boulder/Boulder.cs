@@ -13,14 +13,14 @@ public class Boulder : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         startPosY = transform.GetChild(0).position.y;
     }
-    private void Update()
+    private void FixedUpdate()
     {
         if (boulderStart)
         {
-            transform.GetChild(0).position = new Vector2(transform.position.x - 0.6f, startPosY);
-            transform.GetChild(0).rotation = Quaternion.identity;
+            //transform.GetChild(0).position = new Vector2(transform.position.x - 0.6f, startPosY);
+            //transform.GetChild(0).rotation = Quaternion.identity;
             transform.Rotate(new Vector3(0, 0, -90) * 1.5f * Time.deltaTime);
-            rb.velocity = new Vector2(1, 0) * 2 ;
+            rb.velocity = new Vector2(1, 0) * 2;
         }
     }
 
@@ -44,7 +44,7 @@ public class Boulder : MonoBehaviour
         if (collision.transform.tag == "Finish")
         {
             boulderStart = false;
-            transform.GetChild(0).GetComponent<GameObject>().SetActive(false);
+            //transform.GetChild(0).GetComponent<GameObject>().SetActive(false);
         }
         if (collision.transform.tag == "Player")
         {
