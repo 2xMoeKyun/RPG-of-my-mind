@@ -138,6 +138,7 @@ public class Upgrade : MonoBehaviour
         {
             if (mayDeletable[i] == true)
             {
+                Debug.LogError(i);
                 mayDeletable[i] = false;
                 Destroy(bag.BagSlots[i].transform.GetChild(1).gameObject);
                 bag.isBagFull[i] = false;
@@ -154,8 +155,9 @@ public class Upgrade : MonoBehaviour
             {
                 if (isFull[i] == false && SellItem.isActive[j] == true)
                 {
+                    SellItem.totalCoins -= SellItem.sellItem[j].transform.GetChild(0).GetComponent<BagItemUI>().Cost;
                     isFull[i] = true;
-
+                    Debug.LogError(j);
                     mayDeletable[j] = true;
 
                     SellItem.sellItem[j].transform.GetChild(0).SetParent(slots[i].transform);

@@ -86,6 +86,7 @@ public class LoadSaves : MonoBehaviour
 
             //Loading other components
             player.GetComponent<Damage>().damage = TransitionManager.playerAttack;
+            player.GetComponent<Health>().maxHealth = TransitionManager.playerMaxHealth;
             player.GetComponent<Health>().health = TransitionManager.playerHealth;
             move.Jforce = TransitionManager.jumpForce;
             move.maxSpeed = TransitionManager.maxSpeed;

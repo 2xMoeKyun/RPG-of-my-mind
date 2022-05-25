@@ -22,6 +22,7 @@ public class FillTheSlots : MonoBehaviour
                 {
                     continue;
                 }
+               // Debug.Log(i);
                 currentObject.sizeDelta = new Vector2(currentObject.sizeDelta.x - 51, currentObject.sizeDelta.y - 65);
             }
         }

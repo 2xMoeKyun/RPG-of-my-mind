@@ -25,12 +25,17 @@ public class NPCTrader : MonoBehaviour
     public void TradeTrigger()
     {
         Debug.Log("Trade Active!");
+       
         tradeUI.SetActive(true);
         mainThings.SetActive(true);
         mainThings.transform.SetParent(tradeUI.transform);
         fts.Fill();
         coinText.text = coins.coinsCount.ToString();
         move.DisablePlayer();
+        if (transform.name == "Adele")
+        {
+            GameObject.FindGameObjectWithTag("SellComponent").GetComponent<Sell>().totalCoins.text = SellItem.totalCoins.ToString();
+        }
     }
 
 

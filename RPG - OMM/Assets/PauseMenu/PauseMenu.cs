@@ -22,10 +22,10 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void Quit()
+
+    public void BackToMainMenu()
     {
         Time.timeScale = 1f;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        Application.Quit();
+        SceneManager.LoadScene(0);
     }
 }

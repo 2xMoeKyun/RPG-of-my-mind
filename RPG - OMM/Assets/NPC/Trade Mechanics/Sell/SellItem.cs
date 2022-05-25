@@ -26,16 +26,16 @@ public class SellItem : MonoBehaviour
 
 
 
-    public void Sell()
+    public void SellIt()
     {
-        sm.isSlotFull[index] = true;
+        
         if (isPresseds[index] == 3)
         {
             isPressed = false;
         }
         if (!isPressed && transform.GetChildCount() != 0)
         {
-            Debug.Log(1);
+            sm.isSlotFull[index] = true;
             isPresseds[index] = 1;
             isActive[index] = true;
             sellItem[index] = gameObject;
@@ -46,7 +46,6 @@ public class SellItem : MonoBehaviour
         }
         else if(isPressed && transform.GetChildCount() != 0)
         {
-            Debug.Log(2);
             isPresseds[index] = 0;
             isActive[index] = false;
             sellItem[index].GetComponent<Image>().color = new Color32(91, 88, 88, 255);

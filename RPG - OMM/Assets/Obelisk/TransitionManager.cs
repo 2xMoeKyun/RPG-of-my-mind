@@ -8,6 +8,7 @@ public static class TransitionManager
 
     //Player(and his components)
     public static int playerAttack;
+    public static int playerMaxHealth;
     public static int playerHealth;
     public static float jumpForce;
     public static float maxSpeed;

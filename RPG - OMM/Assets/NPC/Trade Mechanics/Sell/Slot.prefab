@@ -96,7 +96,7 @@ MonoBehaviour:
         m_Calls:
         - m_Target: {fileID: -7383829841323998199}
           m_TargetAssemblyTypeName: SellItem, Assembly-CSharp
-          m_MethodName: Sell
+          m_MethodName: SellIt
           m_Mode: 1
           m_Arguments:
             m_ObjectArgument: {fileID: 0}

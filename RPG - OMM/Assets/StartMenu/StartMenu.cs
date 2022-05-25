@@ -44,7 +44,8 @@ public class StartMenu : MonoBehaviour
     private IEnumerator Load()
     {
         yield return new WaitForSeconds(0.6f);
-        SceneManager.LoadScene(0);
+        player.GetComponent<Move>().AblePlayer();
+        SceneManager.LoadScene(1);
     }
 
     public void ShowControl()

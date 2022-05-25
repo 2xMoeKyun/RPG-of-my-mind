@@ -6,18 +6,25 @@ using System;
 public class OpenChest : MonoBehaviour
 {
     public GameObject[] items; 
-    Animator anim;
+    private Animator anim;
+    private Transform player;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             anim = GetComponent<Animator>();
             anim.SetTrigger("Opening");
-            for(int i = 0; i < items.Length; i++)
-            {
-                Instantiate(items[i], new Vector2(collision.transform.position.x - i , collision.transform.position.y), Quaternion.identity);
-            }
-            Destroy(this);
+            player = collision.transform;
         }
+    }
+
+
+    public void ItemGive()
+    {
+        for (int i = 0; i < items.Length; i++)
+        {
+            Instantiate(items[i], new Vector2(player.position.x, player.position.y), Quaternion.identity);
+        }
+        Destroy(this);
     }
 }

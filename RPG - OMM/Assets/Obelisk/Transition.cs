@@ -57,6 +57,7 @@ public class Transition : MonoBehaviour
         }
 
         TransitionManager.playerAttack = player.GetComponent<Damage>().damage;
+        TransitionManager.playerMaxHealth = player.GetComponent<Health>().maxHealth;
         TransitionManager.playerHealth = player.GetComponent<Health>().health;
         TransitionManager.jumpForce = move.Jforce;
         TransitionManager.maxSpeed = move.maxSpeed;
